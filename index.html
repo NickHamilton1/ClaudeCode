@@ -343,11 +343,24 @@
     }
     .info-strip-inner {
       max-width: 1280px; margin: 0 auto;
-      display: flex; justify-content: space-between;
+      display: flex; justify-content: center;
       padding: 28px 0;
+      gap: 0;
     }
     .info-strip-item {
       display: flex; align-items: center; gap: 14px;
+      padding: 0 clamp(20px, 3vw, 48px);
+      position: relative;
+    }
+    .info-strip-item + .info-strip-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 36px;
+      background: var(--border);
     }
     .info-strip-num {
       font-family: var(--serif);
@@ -580,6 +593,8 @@
       .hero-actions { justify-content: center; }
 
       .info-strip-inner { flex-direction: column; gap: 20px; }
+      .info-strip-item + .info-strip-item::before { display: none; }
+      .info-strip-item { padding: 0; }
 
       .ministries-top { flex-direction: column; align-items: flex-start; }
       .ministry-grid {
