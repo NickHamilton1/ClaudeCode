@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500&display=swap');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0c1a2e;
+      --navy-95: rgba(12, 26, 46, 0.95);
+      --navy-80: rgba(12, 26, 46, 0.8);
+      --navy-60: rgba(12, 26, 46, 0.6);
+      --gold: #b89a3d;
+      --gold-dim: #a08633;
+      --gold-glow: rgba(184, 154, 61, 0.15);
+      --warm-white: #faf9f6;
+      --off-white: #f3f1ed;
+      --white: #ffffff;
+      --text: #2c2a26;
+      --text-secondary: #6e6b63;
+      --text-faint: #9e9b93;
+      --text-on-dark: rgba(255, 255, 255, 0.75);
+      --border: #e8e6e0;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background: var(--warm-white);
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Subtle grain texture */
+    .has-grain::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.show { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 clamp(20px, 4vw, 48px);
+      transition: background 0.5s ease, padding 0.4s ease;
+    }
+    .nav.solid {
+      background: rgba(250, 249, 246, 0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      transition: height 0.4s ease;
+    }
+    .nav.solid .nav-inner { height: 60px; }
+
+    .nav-brand { display: flex; align-items: center; }
+    .nav-logo {
+      height: 42px; width: auto;
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s ease, height 0.3s ease;
+    }
+    .nav.solid .nav-logo {
+      filter: none;
+      height: 36px;
+    }
+
+    .nav-center {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-center a {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s ease;
+    }
+    .nav.solid .nav-center a { color: var(--text-secondary); }
+    .nav-center a:hover { color: #fff; }
+    .nav.solid .nav-center a:hover { color: var(--text); }
+
+    .nav-visit {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 10px 24px;
+      border-radius: 100px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .nav-visit:hover { background: var(--gold-dim); transform: translateY(-1px); }
+
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 24px; position: relative; z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 100%; height: 1.5px;
+      background: #fff; position: absolute; left: 0;
+      transition: 0.3s ease;
+    }
+    .nav.solid .hamburger span { background: var(--text); }
+    .hamburger span:nth-child(1) { top: 4px; }
+    .hamburger span:nth-child(2) { top: 11px; width: 65%; }
+    .hamburger span:nth-child(3) { top: 18px; width: 80%; }
+    .nav.open .hamburger span { background: #fff; }
+    .nav.open .hamburger span:nth-child(1) { top: 11px; transform: rotate(45deg); }
+    .nav.open .hamburger span:nth-child(2) { opacity: 0; }
+    .nav.open .hamburger span:nth-child(3) { top: 11px; width: 100%; transform: rotate(-45deg); }
+
+    /* Mobile overlay */
+    .mob-menu {
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: 0.4s ease;
+    }
+    .mob-menu.open { opacity: 1; visibility: visible; }
+    .mob-menu ul {
+      list-style: none; text-align: center;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .mob-menu a {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: #fff; display: block; padding: 8px 0;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.5s var(--ease), color 0.2s;
+    }
+    .mob-menu.open a { opacity: 1; transform: none; }
+    .mob-menu.open li:nth-child(1) a { transition-delay: 0.05s; }
+    .mob-menu.open li:nth-child(2) a { transition-delay: 0.1s; }
+    .mob-menu.open li:nth-child(3) a { transition-delay: 0.15s; }
+    .mob-menu.open li:nth-child(4) a { transition-delay: 0.2s; }
+    .mob-menu.open li:nth-child(5) a { transition-delay: 0.25s; }
+    .mob-menu a:hover { color: var(--gold); }
+    .mob-menu-cta {
+      margin-top: 2.5rem; text-align: center;
+      opacity: 0; transition: opacity 0.4s ease 0.3s;
+    }
+    .mob-menu.open .mob-menu-cta { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      padding: 0 clamp(20px, 4vw, 48px) clamp(60px, 8vh, 120px);
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/20240331_063503_resized-scaled.jpg') center 40% / cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, var(--navy-60) 0%, rgba(12,26,46,0.3) 40%, var(--navy-80) 75%, var(--navy-95) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      max-width: 1280px; width: 100%; margin: 0 auto;
+    }
+    .hero-tag {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      color: #fff;
+      max-width: 800px;
+      margin-bottom: 32px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      color: var(--text-on-dark);
+      max-width: 440px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      background: var(--gold); color: var(--navy);
+      border-radius: 100px;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .btn-primary:hover { background: var(--gold-dim); transform: translateY(-2px); }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; transform: translateY(-2px); }
+    .btn-ghost svg { width: 16px; height: 16px; }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(20px, 4vw, 48px);
+    }
+    .info-strip-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      padding: 28px 0;
+    }
+    .info-strip-item {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .info-strip-num {
+      font-family: var(--serif);
+      font-size: 2rem; font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .info-strip-text {
+      font-size: 0.82rem; color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .info-strip-text strong {
+      display: block;
+      font-size: 0.92rem; font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── MINISTRY SECTION ── */
+    .ministries {
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px);
+      background: var(--warm-white);
+    }
+    .ministries-top {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: clamp(40px, 5vw, 64px);
+      gap: 40px;
+    }
+    .ministries-heading {
+      max-width: 520px;
+    }
+    .ministries-heading .tag {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .ministries-heading h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .ministries-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 340px;
+      line-height: 1.7;
+    }
+
+    .ministry-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .ministry-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--navy);
+      cursor: pointer;
+      min-height: 400px;
+    }
+    .ministry-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .ministry-card:hover .ministry-card-img {
+      transform: scale(1.04);
+    }
+    .ministry-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(12,26,46,0.85) 0%, rgba(12,26,46,0.1) 60%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(20px, 3vw, 32px);
+    }
+    .ministry-card-num {
+      font-family: var(--serif);
+      font-size: 3.5rem; font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      opacity: 0.4;
+      position: absolute;
+      top: 20px; left: 24px;
+    }
+    .ministry-card h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .ministry-card p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+      max-width: 360px;
+    }
+    .ministry-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-top: 16px;
+      transition: gap 0.3s var(--ease);
+    }
+    .ministry-card:hover .ministry-card-link { gap: 12px; }
+    .ministry-card-link svg { width: 14px; height: 14px; }
+
+    /* Card with no photo — gradient placeholder */
+    .ministry-card--placeholder .ministry-card-img {
+      display: none;
+    }
+    .ministry-card--placeholder {
+      background: linear-gradient(135deg, #1a2f4a 0%, #0f1b2d 100%);
+      min-height: 260px;
+    }
+
+    /* ── VISIT CTA ── */
+    .visit-cta {
+      position: relative;
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px);
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .visit-cta-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+    }
+    .visit-cta-text .tag {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .visit-cta-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .visit-cta-text p {
+      font-size: 1rem;
+      color: var(--text-on-dark);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+    .visit-cta-image {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .visit-cta-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .visit-cta-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #080e19;
+      padding: clamp(48px, 5vw, 64px) clamp(20px, 4vw, 48px) 32px;
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-brand-logo {
+      height: 40px; width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+    .footer-info {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.8;
+    }
+    .footer-info a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-info a:hover { color: var(--gold); }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-socials a {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.3);
+      transition: 0.3s ease;
+    }
+    .footer-socials a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .footer-socials svg { width: 14px; height: 14px; }
+    .footer-bottom {
+      padding-top: 24px;
+      display: flex; justify-content: space-between;
+      font-size: 0.7rem; color: rgba(255,255,255,0.2);
+      flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-center, .nav-visit-wrap { display: none; }
+      .hamburger { display: block; }
+
+      .hero { align-items: center; padding-top: 100px; text-align: center; }
+      .hero h1 { max-width: 100%; }
+      .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+
+      .info-strip-inner { flex-direction: column; gap: 20px; }
+
+      .ministries-top { flex-direction: column; align-items: flex-start; }
+      .ministry-grid {
+        grid-template-columns: 1fr;
+      }
+      .ministry-card:first-child { grid-row: auto; }
+      .ministry-card { min-height: 280px; }
+
+      .visit-cta-inner { grid-template-columns: 1fr; text-align: center; }
+      .visit-cta-text p { margin-left: auto; margin-right: auto; }
+
+      .footer-top { flex-direction: column; }
+      .footer-bottom { justify-content: center; text-align: center; }
+    }
+
+    @media (min-width: 901px) {
+      .mob-menu { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <ul class="nav-center">
+      <li><a href="#">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="#">Ministries</a></li>
+      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="nav-visit-wrap">
+      <a href="visit.html" class="nav-visit">Plan Your Visit</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <div>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="#">Ministries</a></li>
+      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="mob-menu-cta">
+      <a href="visit.html" class="btn-primary">Plan Your Visit</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero has-grain">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag reveal">First Baptist Church &mdash; Concord, NC</div>
+    <h1 class="reveal reveal-delay-1">Loving God.<br>Loving Others.<br><em>Making Disciples.</em></h1>
+    <p class="hero-sub reveal reveal-delay-2">Imperfect people connecting with our perfect Lord Jesus through worship and ministry. Come as you are.</p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="visit.html" class="btn-primary">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+      </a>
+      <a href="https://www.youtube.com/user/FBCConcord/live" class="btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+        Watch a Sermon
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-strip-item reveal">
+      <div class="info-strip-num">01</div>
+      <div class="info-strip-text">
+        <strong>Sunday Worship</strong>
+        10:45 AM every Sunday
+      </div>
+    </div>
+    <div class="info-strip-item reveal reveal-delay-1">
+      <div class="info-strip-num">02</div>
+      <div class="info-strip-text">
+        <strong>200 Branchview Dr SE</strong>
+        Concord, NC 28025
+      </div>
+    </div>
+    <div class="info-strip-item reveal reveal-delay-2">
+      <div class="info-strip-num">03</div>
+      <div class="info-strip-text">
+        <strong>Get in Touch</strong>
+        704.786.9167
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES -->
+<section class="ministries">
+  <div class="ministries-top">
+    <div class="ministries-heading reveal">
+      <div class="tag">Get Involved</div>
+      <h2>Find your place in<br>our church family</h2>
+    </div>
+    <p class="ministries-desc reveal reveal-delay-1">Whether you're looking to worship, grow with your family, or serve your community — there's a place for you here.</p>
+  </div>
+
+  <div class="ministry-grid">
+    <!-- Worship — tall left card -->
+    <a href="https://www.fbcconcord.org/worship/" class="ministry-card reveal">
+      <img class="ministry-card-img" src="images/Worship/Luke-23-Web-Cover.jpg" alt="Worship at FBC Concord">
+      <div class="ministry-card-overlay">
+        <div class="ministry-card-num">01</div>
+        <h3>Worship</h3>
+        <p>Sundays at 10:45 AM — blended music, Scripture reading, and expository preaching. A warm greeting and open hearts await you.</p>
+        <span class="ministry-card-link">
+          Learn more
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Families — top right -->
+    <a href="https://www.fbcconcord.org/Discipleship" class="ministry-card ministry-card--placeholder reveal reveal-delay-1">
+      <div class="ministry-card-overlay">
+        <div class="ministry-card-num">02</div>
+        <h3>Families</h3>
+        <p>Kids, Youth, and ABC Preschool — dedicated leaders helping your family grow in faith together.</p>
+        <span class="ministry-card-link">
+          Learn more
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Outreach — bottom right -->
+    <a href="https://www.fbcconcord.org/missions/" class="ministry-card reveal reveal-delay-2">
+      <img class="ministry-card-img" src="images/Missions/Thanksgiving 2025.jpg" alt="FBC Concord Outreach">
+      <div class="ministry-card-overlay">
+        <div class="ministry-card-num">03</div>
+        <h3>Outreach</h3>
+        <p>From Concord to international trips — we believe in making Jesus known everywhere we go.</p>
+        <span class="ministry-card-link">
+          Learn more
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- VISIT CTA -->
+<section class="visit-cta has-grain">
+  <div class="visit-cta-inner">
+    <div class="visit-cta-text reveal">
+      <div class="tag">Come Visit</div>
+      <h2>We'd love to<br>meet you</h2>
+      <p>If you're scouting us out, please accept our invitation to come check us out in person. Chances are, we're just like you — imperfect people connecting with our perfect Lord Jesus through worship and ministry.</p>
+      <a href="visit.html" class="btn-primary">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+      </a>
+    </div>
+    <div class="visit-cta-image reveal reveal-delay-1">
+      <img src="images/20240331_063503_resized-scaled.jpg" alt="First Baptist Church Concord">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <img src="images/logo.png" alt="First Baptist Church Concord" class="footer-brand-logo">
+        <div class="footer-info">
+          200 Branchview Dr SE, Concord, NC 28025<br>
+          704.786.9167 &middot; <a href="mailto:email@fbcconcord.org">email@fbcconcord.org</a>
+        </div>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Nav scroll behavior
+  var nav = document.getElementById('nav');
+  var hamburger = document.getElementById('hamburger');
+  var mob = document.getElementById('mobMenu');
+  var open = false;
+
+  hamburger.addEventListener('click', function() {
+    open = !open;
+    nav.classList.toggle('open', open);
+    mob.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mob.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      open = false;
+      nav.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('solid', window.scrollY > 60);
+  }, { passive: true });
+
+  // Scroll reveal
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('show'); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
