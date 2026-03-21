@@ -889,8 +889,8 @@
         scrollDelta = direction;
       }
 
-      // Scrolling DOWN: trigger as soon as user scrolls past 80% of the hero
-      if (scrollDelta > 0 && scrollY > heroBottom * 0.8 && scrollY < ministriesTop) {
+      // Scrolling DOWN: trigger after a small scroll (20% into the hero)
+      if (scrollDelta > 0 && scrollY > heroBottom * 0.15 && scrollY < ministriesTop) {
         isSnapping = true;
         cooldown = true;
         scrollDelta = 0;
