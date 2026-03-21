@@ -894,7 +894,8 @@
         isSnapping = true;
         cooldown = true;
         scrollDelta = 0;
-        window.scrollTo({ top: ministriesTop, behavior: 'smooth' });
+        var navHeight = nav.offsetHeight || 70;
+        window.scrollTo({ top: ministriesTop - navHeight, behavior: 'smooth' });
         setTimeout(function() { isSnapping = false; }, 1000);
         setTimeout(function() { cooldown = false; }, 2000);
       }
