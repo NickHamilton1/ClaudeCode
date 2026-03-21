@@ -895,7 +895,8 @@
         cooldown = true;
         scrollDelta = 0;
         var navHeight = nav.offsetHeight || 70;
-        window.scrollTo({ top: ministriesTop + navHeight, behavior: 'smooth' });
+        var ministriesPadding = parseInt(getComputedStyle(ministries).paddingTop) || 100;
+        window.scrollTo({ top: ministriesTop + ministriesPadding - navHeight - 20, behavior: 'smooth' });
         setTimeout(function() { isSnapping = false; }, 1000);
         setTimeout(function() { cooldown = false; }, 2000);
       }
