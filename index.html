@@ -862,6 +862,45 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+
+  // Snap-scroll: hero -> ministries
+  (function() {
+    var hero = document.querySelector('.hero');
+    var ministries = document.querySelector('.ministries');
+    if (!hero || !ministries) return;
+
+    var isSnapping = false;
+    var lastScrollY = 0;
+    var cooldown = false;
+
+    window.addEventListener('scroll', function() {
+      if (isSnapping || cooldown) return;
+
+      var scrollY = window.scrollY;
+      var heroBottom = hero.offsetTop + hero.offsetHeight;
+      var ministriesTop = ministries.offsetTop;
+      var scrollingDown = scrollY > lastScrollY;
+
+      // If user is scrolling down and has entered the zone between hero and ministries
+      if (scrollingDown && scrollY > heroBottom - 100 && scrollY < ministriesTop - 200) {
+        isSnapping = true;
+        cooldown = true;
+        window.scrollTo({ top: ministriesTop, behavior: 'smooth' });
+        setTimeout(function() { isSnapping = false; }, 800);
+        setTimeout(function() { cooldown = false; }, 1500);
+      }
+      // If user is scrolling up from ministries back toward the info strip
+      else if (!scrollingDown && scrollY < ministriesTop && scrollY > heroBottom) {
+        isSnapping = true;
+        cooldown = true;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(function() { isSnapping = false; }, 800);
+        setTimeout(function() { cooldown = false; }, 1500);
+      }
+
+      lastScrollY = scrollY;
+    }, { passive: true });
+  })();
 })();
 </script>
 
