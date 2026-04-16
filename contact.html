@@ -70,32 +70,35 @@
   </div>
 </div>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-content">
-    <span class="label-tag" id="contactLabel">Get in Touch</span>
-    <h1 id="contactTitle">Contact Us</h1>
-    <p id="contactSubtitle">Send us a quick message and we'll get back to you as soon as we can.</p>
-  </div>
-</section>
-
 <!-- CONTACT FORM -->
 <section class="contact-section">
   <div class="contact-section-inner">
 
     <div class="contact-form-card fade-up">
       <div class="contact-form-header">
-        <span class="contact-form-to-label">You're messaging</span>
-        <div class="contact-form-to-name" id="contactRecipientName">First Baptist Church Concord</div>
-        <div class="contact-form-to-role" id="contactRecipientRole">We'll route your message to the right person.</div>
+        <label for="field-to" class="contact-form-to-label">Who are you messaging?</label>
+        <div class="contact-form-select-wrap">
+          <select id="field-to" name="to" class="contact-form-to-select" form="contactForm" required>
+            <option value="" disabled selected>Select a person...</option>
+            <optgroup label="Pastors">
+              <option value="jim">Dr. Jim Collier — Senior Pastor</option>
+              <option value="aaron">Aaron Edwards — Associate Pastor, Youth &amp; Families</option>
+              <option value="luke">Luke Waters — Worship Pastor</option>
+            </optgroup>
+            <optgroup label="Ministry Directors &amp; Staff">
+              <option value="korighan">Korighan Gabriel — Children's Ministry &amp; ABC Preschool Director</option>
+              <option value="angela">Angela Simpson — Membership Secretary</option>
+              <option value="cindy">Cindy Key — Financial Secretary</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="contact-form-to-role" id="contactRecipientRole">Pick the person you'd like to reach and we'll deliver your message.</div>
       </div>
 
       <form id="contactForm" class="contact-form" novalidate>
-        <input type="hidden" name="to" id="contactToField" value="">
-
         <div class="form-row">
           <label for="field-name">Your name <span class="req">*</span></label>
-          <input type="text" id="field-name" name="name" autocomplete="name" required>
+          <input type="text" id="field-name" name="name" autocomplete="name" placeholder="Jane Smith" required>
         </div>
 
         <div class="form-row">
@@ -153,41 +156,51 @@
 <script src="js/global.js"></script>
 <script>
   // Staff / ministry contact directory.
-  // Add entries here as additional ministry pages link to the contact form.
-  // `to` value in the URL maps to the entry below.
+  // Add an entry here for anyone new who should receive contact messages.
+  // The `to` URL param (e.g. ?to=luke) and the <select> value both map here.
   const CONTACT_DIRECTORY = {
-    luke: {
-      name: 'Luke Waters',
-      role: 'Worship & Music Pastor',
-      ministry: 'Worship & Music',
-      // email: 'lwaters@fbcconcord.org', // wired up later
-    },
+    jim:      { name: 'Dr. Jim Collier', role: 'Senior Pastor' },
+    aaron:    { name: 'Aaron Edwards',   role: 'Associate Pastor to Youth & Families' },
+    luke:     { name: 'Luke Waters',     role: 'Worship Pastor' },
+    korighan: { name: 'Korighan Gabriel', role: "Children's Ministry & ABC Preschool Director" },
+    angela:   { name: 'Angela Simpson',  role: 'Membership Secretary' },
+    cindy:    { name: 'Cindy Key',       role: 'Financial Secretary' },
+    // email addresses will be added here once the backend is wired up
   };
 
+  const selectEl   = document.getElementById('field-to');
+  const roleEl     = document.getElementById('contactRecipientRole');
+  const successEl  = document.getElementById('successMessage');
+  const DEFAULT_ROLE_TEXT = roleEl.textContent;
+
+  function applyRecipient(key) {
+    const contact = CONTACT_DIRECTORY[key];
+    if (contact) {
+      roleEl.textContent = contact.role;
+      // Strip honorific prefixes like "Dr." so "Dr. Jim Collier" → "Jim"
+      const parts = contact.name.split(' ');
+      const firstName = parts[0].endsWith('.') ? parts[1] : parts[0];
+      successEl.textContent = 'Thanks for reaching out — ' + firstName + ' will be in touch soon.';
+    } else {
+      roleEl.textContent = DEFAULT_ROLE_TEXT;
+      successEl.textContent = 'Thanks for reaching out — someone will be in touch soon.';
+    }
+  }
+
+  // Prefill from ?to= URL param if present
   (function prefillFromQuery() {
     const params = new URLSearchParams(window.location.search);
     const toKey = (params.get('to') || '').toLowerCase();
-    const contact = CONTACT_DIRECTORY[toKey];
-
-    const labelEl = document.getElementById('contactLabel');
-    const titleEl = document.getElementById('contactTitle');
-    const subtitleEl = document.getElementById('contactSubtitle');
-    const nameEl = document.getElementById('contactRecipientName');
-    const roleEl = document.getElementById('contactRecipientRole');
-    const toField = document.getElementById('contactToField');
-
-    if (contact) {
-      const firstName = contact.name.split(' ')[0];
-      if (contact.ministry) labelEl.textContent = contact.ministry;
-      titleEl.textContent = 'Connect with ' + contact.name;
-      subtitleEl.textContent = 'Send ' + firstName + ' a quick message and ' + firstName + ' will get back to you soon.';
-      nameEl.textContent = contact.name;
-      roleEl.textContent = contact.role;
-      toField.value = toKey;
-      document.getElementById('successMessage').textContent =
-        'Thanks for reaching out — ' + firstName + ' will be in touch soon.';
+    if (CONTACT_DIRECTORY[toKey]) {
+      selectEl.value = toKey;
+      applyRecipient(toKey);
     }
   })();
+
+  // Update role text whenever the user changes the dropdown
+  selectEl.addEventListener('change', function () {
+    applyRecipient(this.value);
+  });
 
   // Form handler — email routing not yet wired up. Captures submission client-side.
   document.getElementById('contactForm').addEventListener('submit', function (e) {
@@ -199,14 +212,15 @@
     }
     // TODO: POST to form handler (Cloudflare Worker / Formspree / etc.) once wired up
     const payload = {
-      to: form.to.value,
-      name: form.name.value,
-      phone: form.phone.value,
-      message: form.message.value,
+      to: selectEl.value,
+      name: form.elements['name'].value,
+      phone: form.elements['phone'].value,
+      message: form.elements['message'].value,
     };
     console.log('Contact form submission:', payload);
 
     form.hidden = true;
+    document.querySelector('.contact-form-header').hidden = true;
     document.getElementById('contactFormSuccess').hidden = false;
     window.scrollTo({ top: document.querySelector('.contact-form-card').offsetTop - 100, behavior: 'smooth' });
   });
