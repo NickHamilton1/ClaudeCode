@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    /* ── BLOG INDEX ── */
+    .blog-list {
+      padding: 4rem 24px 5rem;
+      background: var(--cream);
+    }
+    .blog-list-inner {
+      max-width: 1060px; margin: 0 auto;
+    }
+
+    /* Featured post */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+      margin-bottom: 3rem;
+    }
+    .blog-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .blog-featured-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .blog-featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .blog-featured:hover .blog-featured-img img { transform: scale(1.04); }
+    .blog-featured-body {
+      padding: 2.5rem 2.5rem 2.5rem 0;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .blog-featured-body .label-tag { margin-bottom: 0.8rem; }
+    .blog-featured-body h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .blog-featured-body p.excerpt {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.3rem;
+    }
+    .blog-meta-row {
+      display: flex; gap: 1rem; align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+    .blog-meta-row .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .read-more {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--gold-hover);
+      transition: gap var(--transition), color var(--transition);
+    }
+    .read-more:hover { gap: 12px; color: var(--gold); }
+    .read-more svg { width: 15px; height: 15px; }
+
+    /* Post grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .blog-card-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-body {
+      padding: 1.5rem 1.6rem 1.8rem;
+      display: flex; flex-direction: column;
+      flex: 1;
+    }
+    .blog-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .blog-card-body .excerpt {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    /* Empty-state style coming-soon card */
+    .blog-empty-note {
+      text-align: center;
+      max-width: 520px;
+      margin: 3rem auto 0;
+      padding: 2rem 1.5rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 880px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured-body { padding: 2rem 1.75rem 2.25rem; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">
+      <img src="../images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../staff.html">Staff</a></li>
+      <li><a href="../ministries.html">Ministries</a></li>
+      <li><a href="../calendar.html">Events</a></li>
+      <li><a href="../sermons.html">Sermons</a></li>
+      <li><a href="index.html" class="active">Blog</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="../visit.html" class="nav-cta">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <img src="../images/FB_logoR.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../staff.html">Staff</a></li>
+        <li><a href="../ministries.html">Ministries</a></li>
+        <li><a href="../sermons.html">Sermons</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="../visit.html" class="btn-gold">Plan Your Visit</a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="label-tag">From Our Church</span>
+    <h1>The Blog</h1>
+    <p>Reflections on faith, Scripture, and life at FBC Concord — written to encourage and equip the church family and anyone exploring what Christianity is all about.</p>
+  </div>
+</section>
+
+<!-- BLOG LIST -->
+<section class="blog-list">
+  <div class="blog-list-inner">
+
+    <!-- FEATURED POST -->
+    <a href="why-the-resurrection-matters.html" class="blog-featured fade-up">
+      <div class="blog-featured-img">
+        <img src="../images/20240331_063503_resized-scaled.jpg" alt="Why Does the Resurrection of Jesus Actually Matter?">
+      </div>
+      <div class="blog-featured-body">
+        <span class="label-tag">Featured Post</span>
+        <h2>Why Does the Resurrection of Jesus Actually Matter?</h2>
+        <div class="blog-meta-row">
+          <span>April 10, 2026</span>
+          <span class="dot"></span>
+          <span>FBC Concord</span>
+        </div>
+        <p class="excerpt">Most people have heard that Jesus rose from the dead. But here's a question worth asking: why does it matter? What difference does it make if one man walked out of a tomb two thousand years ago? It turns out, it makes all the difference.</p>
+        <span class="read-more">
+          Read the post
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- POST GRID (future posts land here) -->
+    <div class="blog-empty-note">
+      More posts are on the way. Check back soon — or subscribe to our YouTube channel for weekly sermons in the meantime.
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner fade-up">
+    <span class="label-tag">Come Visit</span>
+    <h2>See you Sunday?</h2>
+    <p>Join us Sundays at 10:45 AM for worship, or 9:30 AM for Sunday School.</p>
+    <a href="../visit.html" class="btn-gold">
+      Plan Your Visit
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <img src="../images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <p>200 Branchview Dr SE, Concord, NC 28025</p>
+      <p>704.786.9167</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/global.js"></script>
+
+</body>
+</html>
