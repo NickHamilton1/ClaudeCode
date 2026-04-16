@@ -1,0 +1,248 @@
+/* ================================================================
+   FBC Concord — Ministries Landing Page
+   ================================================================ */
+
+/* ── Compact hero override ── */
+.page-hero--compact {
+  padding: 7rem 24px 2.5rem;
+}
+.page-hero--compact p {
+  max-width: 520px; margin: 0 auto;
+}
+
+/* ── SECTION WRAPPER ── */
+.ministries-section {
+  padding: 3rem 24px 5rem;
+  background: var(--light-bg);
+}
+.ministries-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* ── FEATURED ROW (2 large cards) ── */
+.ministries-featured {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ministry-card--featured {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.ministry-card--featured:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.ministry-card--featured .ministry-card-img {
+  position: absolute; inset: 0;
+}
+.ministry-card--featured .ministry-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.ministry-card--featured:hover .ministry-card-img img {
+  transform: scale(1.04);
+}
+.ministry-card--featured .ministry-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(12, 26, 46, 0.92) 0%,
+    rgba(12, 26, 46, 0.6) 45%,
+    rgba(12, 26, 46, 0.15) 100%
+  );
+}
+
+.ministry-card--featured .ministry-card-content {
+  position: relative; z-index: 2;
+  padding: 2rem 2.2rem;
+}
+.ministry-card--featured .ministry-card-icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(201, 162, 39, 0.2);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+.ministry-card--featured .ministry-card-icon svg {
+  width: 22px; height: 22px; color: var(--gold);
+}
+.ministry-card--featured h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-weight: 500; color: #fff;
+  margin-bottom: 0.6rem;
+}
+.ministry-card--featured p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ministry-card--featured .ministry-card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--gold);
+  transition: gap 0.2s ease;
+}
+.ministry-card--featured:hover .ministry-card-link { gap: 10px; }
+.ministry-card--featured .ministry-card-link svg {
+  width: 14px; height: 14px;
+}
+
+/* ── STANDARD GRID ── */
+.ministries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── STANDARD MINISTRY CARD ── */
+.ministry-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex; flex-direction: column;
+}
+.ministry-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+/* Icon-based header (no photo) */
+.ministry-card-header {
+  height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.ministry-card-header .ministry-card-icon {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+.ministry-card-header .ministry-card-icon svg {
+  width: 26px; height: 26px; color: #fff;
+}
+
+/* Color variants */
+.ministry-card-header--navy {
+  background: linear-gradient(135deg, #0f1b2d 0%, #1a2d4a 100%);
+}
+.ministry-card-header--gold {
+  background: linear-gradient(135deg, #a08825 0%, #c9a227 60%, #d4b84a 100%);
+}
+.ministry-card-header--rose {
+  background: linear-gradient(135deg, #8b3a4a 0%, #b25068 100%);
+}
+.ministry-card-header--slate {
+  background: linear-gradient(135deg, #2d3e50 0%, #445c6e 100%);
+}
+.ministry-card-header--teal {
+  background: linear-gradient(135deg, #1a5c5c 0%, #2a8a7e 100%);
+}
+.ministry-card-header--warm {
+  background: linear-gradient(135deg, #8b6914 0%, #c49a2e 100%);
+}
+
+/* Photo-based short header */
+.ministry-card-img--short {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.ministry-card-img--short img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.ministry-card:hover .ministry-card-img--short img {
+  transform: scale(1.04);
+}
+.ministry-card-img--short .ministry-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(12, 26, 46, 0.3) 0%,
+    rgba(12, 26, 46, 0.05) 100%
+  );
+}
+
+/* Card body */
+.ministry-card-body {
+  padding: 1.5rem 1.6rem 1.8rem;
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.ministry-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+.ministry-card-body p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ministry-card-body .ministry-card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--gold);
+  transition: gap 0.2s ease;
+}
+.ministry-card:hover .ministry-card-link { gap: 10px; }
+.ministry-card-body .ministry-card-link svg {
+  width: 14px; height: 14px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .ministries-featured {
+    grid-template-columns: 1fr;
+  }
+  .ministry-card--featured {
+    min-height: 300px;
+  }
+  .ministries-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ministries-featured {
+    grid-template-columns: 1fr;
+  }
+  .ministry-card--featured {
+    min-height: 320px;
+  }
+  .ministries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
