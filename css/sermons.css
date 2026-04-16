@@ -269,7 +269,7 @@
 
 /* Video container */
 .sermon-video {
-  max-width: 900px; margin: -2.5rem auto 0;
+  max-width: 900px; margin: 7rem auto 0;
   padding: 0 24px;
   position: relative; z-index: 3;
 }
@@ -441,7 +441,7 @@
     max-width: 480px;
   }
 
-  .sermon-video { padding: 0 16px; margin-top: -1.5rem; }
+  .sermon-video { padding: 0 16px; margin-top: 5.5rem; }
   .sermon-details-header { flex-direction: column; gap: 1.2rem; }
   .sermon-details-actions { flex-direction: row; }
   .sermon-more-grid { grid-template-columns: 1fr; max-width: 480px; }
