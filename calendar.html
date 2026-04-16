@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events &amp; Calendar — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="ministries.html">Ministries</a></li>
+      <li><a href="calendar.html" class="active">Events</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="visit.html" class="nav-cta">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <img src="images/logo.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="#">About</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="calendar.html">Events</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="visit.html" class="btn-gold">Plan Your Visit</a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="label-tag">Stay Connected</span>
+    <h1>Events &amp; Calendar</h1>
+    <p>Here's what's happening at FBC Concord over the next few months — worship services, rehearsals, retreats, and ministry events. We'd love to see you there.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="events-filters">
+  <div class="events-filters-inner">
+    <button class="events-filter active" data-filter="all">All Events</button>
+    <button class="events-filter" data-filter="worship">Worship</button>
+    <button class="events-filter" data-filter="music">Music</button>
+    <button class="events-filter" data-filter="kids">Kids</button>
+    <button class="events-filter" data-filter="women">Women</button>
+    <button class="events-filter" data-filter="men">Men</button>
+    <button class="events-filter" data-filter="missions">Missions</button>
+  </div>
+</section>
+
+<!-- EVENTS LIST -->
+<section class="events-section">
+  <div class="events-section-inner">
+
+    <!-- ── APRIL 2026 ── -->
+    <div class="events-month">
+      <h2 class="events-month-header">April 2026</h2>
+
+      <article class="event-card fade-up" data-category="women">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">16</span>
+          <span class="event-date-weekday">Thu</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Women's Bible Study</h3>
+          <div class="event-meta">
+            <span>10:00 AM</span>
+            <span>Fellowship Hall</span>
+          </div>
+          <p class="event-desc">Weekly women's Bible study on the book of Philippians. Open to women of all ages — newcomers welcome.</p>
+          <span class="event-tag event-tag--women">Women</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">19</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Sunday Worship Service</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Join us for worship led by our choir, orchestra, and praise team. Pastor Jim continues his series in the Gospel of John.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="missions">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">20</span>
+          <span class="event-date-weekday">Mon</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Mercy Meals Packing Night</h3>
+          <div class="event-meta">
+            <span>6:30 PM</span>
+            <span>Activities Building</span>
+          </div>
+          <p class="event-desc">Partner with us to pack 10,000 meals for families in need. All ages welcome — great for families and small groups.</p>
+          <span class="event-tag event-tag--missions">Missions</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="music">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">22</span>
+          <span class="event-date-weekday">Wed</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Handbells &amp; Choir Rehearsal</h3>
+          <div class="event-meta">
+            <span>6:30 PM Handbells · 7:30 PM Choir</span>
+            <span>Music Suite</span>
+          </div>
+          <p class="event-desc">Weekly rehearsal for handbells and the adult choir. Contact Luke Waters if you'd like to join.</p>
+          <span class="event-tag event-tag--music">Music</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">26</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Sunday Worship + Lord's Supper</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">We'll observe the Lord's Supper together at the close of our worship service.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="men">
+        <div class="event-date">
+          <span class="event-date-month">Apr</span>
+          <span class="event-date-day">30</span>
+          <span class="event-date-weekday">Thu</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Men's Breakfast</h3>
+          <div class="event-meta">
+            <span>7:00 AM</span>
+            <span>Fellowship Hall</span>
+          </div>
+          <p class="event-desc">Monthly breakfast for men of all ages. Pastor Aaron will share a short devotional. $5 suggested.</p>
+          <span class="event-tag event-tag--men">Men</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- ── MAY 2026 ── -->
+    <div class="events-month">
+      <h2 class="events-month-header">May 2026</h2>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">3</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Sunday Worship Service</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Worship with us as Pastor Jim continues our spring sermon series.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">10</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Mother's Day Worship</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Honor the mothers in our church family with a special worship service and a small gift for every mom.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="women">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">15</span>
+          <span class="event-date-weekday">Fri</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Women's Spring Retreat</h3>
+          <div class="event-meta">
+            <span>May 15 – 17</span>
+            <span>Ridgecrest Conference Center</span>
+          </div>
+          <p class="event-desc">A weekend of worship, teaching, and fellowship in the NC mountains. Register at the Information Services desk.</p>
+          <span class="event-tag event-tag--women">Women</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="kids">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">20</span>
+          <span class="event-date-weekday">Wed</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Kingdom Kidz Fun Night</h3>
+          <div class="event-meta">
+            <span>6:00 PM</span>
+            <span>Children's Wing</span>
+          </div>
+          <p class="event-desc">Games, snacks, and Bible stories for kids ages 4 – 5th grade. Invite a friend!</p>
+          <span class="event-tag event-tag--kids">Kids</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">24</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Baptism Service</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Celebrate with those being baptized during our morning worship service. A reception follows in the Fellowship Hall.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">May</span>
+          <span class="event-date-day">31</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Sunday Worship Service</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Join us as we finish the month in worship together.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- ── JUNE 2026 ── -->
+    <div class="events-month">
+      <h2 class="events-month-header">June 2026</h2>
+
+      <article class="event-card fade-up" data-category="kids">
+        <div class="event-date">
+          <span class="event-date-month">Jun</span>
+          <span class="event-date-day">1</span>
+          <span class="event-date-weekday">Mon</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Vacation Bible School</h3>
+          <div class="event-meta">
+            <span>June 1 – 5 · 6:00 PM nightly</span>
+            <span>Children's Wing</span>
+          </div>
+          <p class="event-desc">A week of Bible lessons, music, crafts, and games for kids from pre-K through 5th grade. Register online — volunteers still needed!</p>
+          <span class="event-tag event-tag--kids">Kids</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">Jun</span>
+          <span class="event-date-day">7</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Youth Sunday</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Our students lead worship and Pastor Aaron preaches. Come support our next generation of worshippers.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+
+      <article class="event-card fade-up" data-category="worship">
+        <div class="event-date">
+          <span class="event-date-month">Jun</span>
+          <span class="event-date-day">21</span>
+          <span class="event-date-weekday">Sun</span>
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">Father's Day + Baby Dedications</h3>
+          <div class="event-meta">
+            <span>10:45 AM</span>
+            <span>Sanctuary</span>
+          </div>
+          <p class="event-desc">Honor the dads in our church family and join us as we dedicate this year's new babies and their families to the Lord.</p>
+          <span class="event-tag event-tag--worship">Worship</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="events-empty" id="eventsEmpty" hidden>
+      <p>No events match this filter. <button type="button" class="events-empty-reset">Show all events</button></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner fade-up">
+    <span class="label-tag">Get Involved</span>
+    <h2>Have an event to add?</h2>
+    <p>Ministry leaders can submit events directly to the church office — we'll get it on the calendar and published here.</p>
+    <div class="cta-buttons">
+      <a href="contact.html" class="btn-gold">
+        Contact the Office
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <a href="visit.html" class="btn-outline-light">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <p>200 Branchview Dr SE, Concord, NC 28025</p>
+      <p>704.786.9167</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script>
+  // Filter events by category
+  const filters = document.querySelectorAll('.events-filter');
+  const cards = document.querySelectorAll('.event-card');
+  const monthGroups = document.querySelectorAll('.events-month');
+  const emptyState = document.getElementById('eventsEmpty');
+
+  function applyFilter(filter) {
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.hidden = !show;
+      if (show) visibleCount++;
+    });
+    // Hide month headers that have no visible events
+    monthGroups.forEach(group => {
+      const anyVisible = group.querySelectorAll('.event-card:not([hidden])').length > 0;
+      group.hidden = !anyVisible;
+    });
+    emptyState.hidden = visibleCount > 0;
+  }
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  document.querySelector('.events-empty-reset').addEventListener('click', () => {
+    filters.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    applyFilter('all');
+  });
+</script>
+
+</body>
+</html>

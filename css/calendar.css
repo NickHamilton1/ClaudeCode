@@ -1,0 +1,228 @@
+/* ================================================================
+   FBC Concord — Events / Calendar Page
+   ================================================================ */
+
+/* ── FILTER TABS ── */
+.events-filters {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 24px;
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+}
+.events-filters-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.events-filter {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.events-filter:hover {
+  color: var(--navy);
+  border-color: var(--gold);
+}
+.events-filter.active {
+  color: var(--navy);
+  border-color: var(--navy);
+  background: var(--gold-soft);
+}
+
+/* ── EVENT LIST ── */
+.events-section {
+  padding: 4rem 24px 5rem;
+  background: var(--light-bg);
+}
+.events-section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.events-month {
+  margin-bottom: 3rem;
+}
+.events-month:last-child {
+  margin-bottom: 0;
+}
+.events-month-header {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  font-weight: 500;
+  color: var(--navy);
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.2px;
+}
+
+/* ── EVENT CARD ── */
+.event-card {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+}
+.event-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  border-color: var(--gold-soft);
+}
+
+/* Date badge */
+.event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 0.8rem 0.4rem;
+  text-align: center;
+  align-self: start;
+}
+.event-date-month {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+.event-date-day {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.event-date-weekday {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Body */
+.event-body {
+  position: relative;
+  padding-right: 4.5rem; /* leave room for tag */
+}
+.event-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin: 0 0 0.45rem;
+  line-height: 1.3;
+}
+.event-meta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.3px;
+  margin-bottom: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.3rem;
+}
+.event-meta span {
+  position: relative;
+}
+.event-meta span + span::before {
+  content: '·';
+  position: absolute;
+  left: -0.85rem;
+  color: var(--border);
+  font-weight: 400;
+}
+.event-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CATEGORY TAGS ── */
+.event-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+.event-tag--worship { background: rgba(201, 162, 39, 0.14); color: #8c7016; }
+.event-tag--music   { background: rgba(124, 90, 160, 0.14); color: #6a4d8f; }
+.event-tag--kids    { background: rgba(38, 138, 134, 0.14); color: #1f6f6c; }
+.event-tag--women   { background: rgba(196, 76, 110, 0.12); color: #a53d5a; }
+.event-tag--men     { background: rgba(44, 67, 109, 0.12); color: #2c436d; }
+.event-tag--missions{ background: rgba(75, 125, 74, 0.14); color: #3d6a3c; }
+
+/* ── EMPTY STATE ── */
+.events-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+}
+.events-empty p {
+  font-size: 0.95rem;
+}
+.events-empty-reset {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .events-filters { padding: 1rem 16px; top: 60px; }
+  .events-filter { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
+
+  .event-card {
+    grid-template-columns: 64px 1fr;
+    gap: 1rem;
+    padding: 1.2rem 1.3rem;
+  }
+  .event-date { padding: 0.6rem 0.3rem; }
+  .event-date-day { font-size: 1.6rem; }
+  .event-date-month { font-size: 0.62rem; letter-spacing: 1.4px; }
+
+  .event-body { padding-right: 0; }
+  .event-tag {
+    position: static;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+  .event-title { font-size: 1.1rem; }
+}
