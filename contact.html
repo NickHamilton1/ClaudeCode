@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Heart of Worship — Sermons — FBC Concord</title>
+  <title>Contact — First Baptist Church Concord, NC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/sermons.css">
+  <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">
-      <img src="images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+      <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="nav-logo">
     </a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -25,7 +25,7 @@
       <li><a href="#">About</a></li>
       <li><a href="staff.html">Staff</a></li>
       <li><a href="ministries.html">Ministries</a></li>
-      <li><a href="sermons.html" class="active">Sermons</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
       <li><a href="#">Give</a></li>
     </ul>
     <div class="nav-cta-wrap">
@@ -41,7 +41,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-header">
-      <img src="images/FB_logoR.png" alt="FBC Concord" class="mobile-menu-logo">
+      <img src="images/logo.png" alt="FBC Concord" class="mobile-menu-logo">
     </div>
     <nav class="mobile-menu-nav">
       <ul class="mobile-menu-links">
@@ -70,111 +70,63 @@
   </div>
 </div>
 
-<!-- VIDEO PLAYER -->
-<div class="sermon-video">
-  <div class="sermon-video-wrapper">
-    <iframe src="https://www.youtube.com/embed/U8aLLQP9TcE" title="The Heart of Worship — Pastor Jim Collier" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-</div>
+<!-- CONTACT FORM -->
+<section class="contact-section">
+  <div class="contact-section-inner">
 
-<!-- SERMON DETAILS -->
-<section class="sermon-player-section">
-  <div class="sermon-details">
-
-    <div class="sermon-details-header">
-      <div class="sermon-details-meta">
-        <div class="sermon-details-date">April 13, 2026</div>
-        <h1>The Heart of Worship</h1>
-        <div class="sermon-details-speaker">Pastor Jim Collier</div>
-        <div class="sermon-details-tags">
-          <a href="#" class="sermon-tag">Romans 12</a>
-          <a href="#" class="sermon-tag">Worship</a>
-          <a href="#" class="sermon-tag">Spiritual Growth</a>
+    <div class="contact-form-card fade-up">
+      <div class="contact-form-header">
+        <label for="field-to" class="contact-form-to-label">Who are you messaging?</label>
+        <div class="contact-form-select-wrap">
+          <select id="field-to" name="to" class="contact-form-to-select" form="contactForm" required>
+            <option value="" disabled selected>Select a person...</option>
+            <optgroup label="Pastors">
+              <option value="jim">Dr. Jim Collier — Senior Pastor</option>
+              <option value="aaron">Aaron Edwards — Associate Pastor, Youth &amp; Families</option>
+              <option value="luke">Luke Waters — Worship Pastor</option>
+            </optgroup>
+            <optgroup label="Ministry Directors &amp; Staff">
+              <option value="korighan">Korighan Gabriel — Children's Ministry &amp; ABC Preschool Director</option>
+              <option value="angela">Angela Simpson — Membership Secretary</option>
+              <option value="cindy">Cindy Key — Financial Secretary</option>
+            </optgroup>
+          </select>
         </div>
+        <div class="contact-form-to-role" id="contactRecipientRole">Pick the person you'd like to reach and we'll deliver your message.</div>
       </div>
-      <div class="sermon-details-actions">
-        <a href="#" class="btn-calendar">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
-          Add to Calendar
-        </a>
-        <a href="#" class="btn-share">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
-          Share
-        </a>
-      </div>
-    </div>
 
-    <!-- Scripture Reference -->
-    <div style="padding: 2rem 0 0;">
-      <div class="sermon-scripture">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-        Romans 12:1–2
-      </div>
-    </div>
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-row">
+          <label for="field-name">Your name <span class="req">*</span></label>
+          <input type="text" id="field-name" name="name" autocomplete="name" placeholder="Jane Smith" required>
+        </div>
 
-    <!-- Summary -->
-    <div class="sermon-summary">
-      <h3>About This Message</h3>
-      <p>In this message, Pastor Jim explores what it means to offer ourselves as "living sacrifices" and how true worship extends far beyond Sunday morning. Drawing from Romans 12, we discover that worship is not just singing — it's the way we live every moment of every day.</p>
-      <p>Paul urges believers not to conform to the patterns of this world, but to be transformed by the renewing of their minds. This transformation is the heart of worship — a daily surrender that changes how we think, how we act, and how we love the people around us.</p>
-    </div>
+        <div class="form-row">
+          <label for="field-phone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="field-phone" name="phone" autocomplete="tel" placeholder="704-555-1234" required>
+        </div>
 
-    <!-- More Sermons -->
-    <div class="sermon-more">
-      <h3>More Sermons</h3>
-      <div class="sermon-more-grid">
+        <div class="form-row">
+          <label for="field-message">Your message <span class="req">*</span></label>
+          <textarea id="field-message" name="message" rows="5" placeholder="Tell us a little about why you're reaching out..." required></textarea>
+        </div>
 
-        <a href="sermon.html" class="sermon-card">
-          <div class="sermon-card-thumb">
-            <img src="images/20240331_063503_resized-scaled.jpg" alt="Walking by Faith">
-            <div class="sermon-card-play">
-              <div class="sermon-card-play-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <div class="sermon-card-date">April 6, 2026</div>
-            <div class="sermon-card-title">Walking by Faith</div>
-            <div class="sermon-card-speaker">Pastor Aaron Edwards</div>
-            <div class="sermon-card-series">Hebrews 11</div>
-          </div>
-        </a>
+        <button type="submit" class="btn-gold contact-submit">
+          Send Message
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+        </button>
 
-        <a href="sermon.html" class="sermon-card">
-          <div class="sermon-card-thumb">
-            <img src="images/Missions/Thanksgiving 2025.jpg" alt="Go and Make Disciples">
-            <div class="sermon-card-play">
-              <div class="sermon-card-play-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <div class="sermon-card-date">March 30, 2026</div>
-            <div class="sermon-card-title">Go and Make Disciples</div>
-            <div class="sermon-card-speaker">Pastor Jim Collier</div>
-            <div class="sermon-card-series">Matthew 28</div>
-          </div>
-        </a>
+        <p class="contact-form-note">We'll only use your contact info to follow up on this message.</p>
+      </form>
 
-        <a href="sermon.html" class="sermon-card">
-          <div class="sermon-card-thumb">
-            <img src="images/Worship/Luke-23-Web-Cover.jpg" alt="The Power of Prayer">
-            <div class="sermon-card-play">
-              <div class="sermon-card-play-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <div class="sermon-card-date">March 23, 2026</div>
-            <div class="sermon-card-title">The Power of Prayer</div>
-            <div class="sermon-card-speaker">Pastor Jim Collier</div>
-            <div class="sermon-card-series">James 5</div>
-          </div>
-        </a>
-
+      <!-- Success state (hidden until submit) -->
+      <div class="contact-form-success" id="contactFormSuccess" hidden>
+        <div class="contact-success-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Message sent!</h3>
+        <p id="successMessage">Thanks for reaching out — someone will be in touch soon.</p>
+        <a href="index.html" class="btn-outline-dark">Back to Home</a>
       </div>
     </div>
 
@@ -185,7 +137,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-info">
-      <img src="images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="footer-logo">
       <p>200 Branchview Dr SE, Concord, NC 28025</p>
       <p>704.786.9167</p>
     </div>
@@ -202,6 +154,77 @@
 </footer>
 
 <script src="js/global.js"></script>
+<script>
+  // Staff / ministry contact directory.
+  // Add an entry here for anyone new who should receive contact messages.
+  // The `to` URL param (e.g. ?to=luke) and the <select> value both map here.
+  const CONTACT_DIRECTORY = {
+    jim:      { name: 'Dr. Jim Collier', role: 'Senior Pastor' },
+    aaron:    { name: 'Aaron Edwards',   role: 'Associate Pastor to Youth & Families' },
+    luke:     { name: 'Luke Waters',     role: 'Worship Pastor' },
+    korighan: { name: 'Korighan Gabriel', role: "Children's Ministry & ABC Preschool Director" },
+    angela:   { name: 'Angela Simpson',  role: 'Membership Secretary' },
+    cindy:    { name: 'Cindy Key',       role: 'Financial Secretary' },
+    // email addresses will be added here once the backend is wired up
+  };
+
+  const selectEl   = document.getElementById('field-to');
+  const roleEl     = document.getElementById('contactRecipientRole');
+  const successEl  = document.getElementById('successMessage');
+  const DEFAULT_ROLE_TEXT = roleEl.textContent;
+
+  function applyRecipient(key) {
+    const contact = CONTACT_DIRECTORY[key];
+    if (contact) {
+      roleEl.textContent = contact.role;
+      // Strip honorific prefixes like "Dr." so "Dr. Jim Collier" → "Jim"
+      const parts = contact.name.split(' ');
+      const firstName = parts[0].endsWith('.') ? parts[1] : parts[0];
+      successEl.textContent = 'Thanks for reaching out — ' + firstName + ' will be in touch soon.';
+    } else {
+      roleEl.textContent = DEFAULT_ROLE_TEXT;
+      successEl.textContent = 'Thanks for reaching out — someone will be in touch soon.';
+    }
+  }
+
+  // Prefill from ?to= URL param if present
+  (function prefillFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const toKey = (params.get('to') || '').toLowerCase();
+    if (CONTACT_DIRECTORY[toKey]) {
+      selectEl.value = toKey;
+      applyRecipient(toKey);
+    }
+  })();
+
+  // Update role text whenever the user changes the dropdown
+  selectEl.addEventListener('change', function () {
+    applyRecipient(this.value);
+  });
+
+  // Form handler — email routing not yet wired up. Captures submission client-side.
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    // TODO: POST to form handler (Cloudflare Worker / Formspree / etc.) once wired up
+    const payload = {
+      to: selectEl.value,
+      name: form.elements['name'].value,
+      phone: form.elements['phone'].value,
+      message: form.elements['message'].value,
+    };
+    console.log('Contact form submission:', payload);
+
+    form.hidden = true;
+    document.querySelector('.contact-form-header').hidden = true;
+    document.getElementById('contactFormSuccess').hidden = false;
+    window.scrollTo({ top: document.querySelector('.contact-form-card').offsetTop - 100, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
