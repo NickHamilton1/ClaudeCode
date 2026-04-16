@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    /* ── ABOUT PAGE ── */
+    .about-intro {
+      padding: 5rem 24px 2rem;
+      background: var(--cream);
+    }
+    .about-intro-inner {
+      max-width: 880px; margin: 0 auto;
+      text-align: center;
+    }
+    .about-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .about-intro p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 680px;
+      margin: 0 auto 1.2rem;
+    }
+
+    /* ── MISSION STATEMENT ── */
+    .about-mission {
+      padding: 3rem 24px 5rem;
+      background: var(--cream);
+    }
+    .about-mission-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .mission-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .mission-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .mission-card-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold);
+    }
+    .mission-card-icon svg { width: 26px; height: 26px; }
+    .mission-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .mission-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── STORY SECTION ── */
+    .about-story {
+      padding: 5rem 24px;
+      background: var(--light-bg);
+    }
+    .about-story-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-story-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: var(--shadow-card);
+    }
+    .about-story-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .about-story-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .about-story-text p {
+      font-size: 1rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* ── BELIEFS SECTION ── */
+    .about-beliefs {
+      padding: 5rem 24px;
+      background: var(--cream);
+    }
+    .about-beliefs-inner {
+      max-width: 1060px; margin: 0 auto;
+    }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .belief-item {
+      background: var(--white);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-card);
+    }
+    .belief-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .belief-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── QUICK FACTS ── */
+    .about-facts {
+      padding: 4rem 24px;
+      background: var(--navy);
+      color: var(--white);
+    }
+    .about-facts-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .fact-item .fact-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .fact-item .fact-label {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .about-mission-inner { grid-template-columns: 1fr; }
+      .about-story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .about-facts-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="ministries.html">Ministries</a></li>
+      <li><a href="calendar.html">Events</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="visit.html" class="nav-cta">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <img src="images/FB_logoR.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="visit.html" class="btn-gold">Plan Your Visit</a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="label-tag">Who We Are</span>
+    <h1>About Our Church</h1>
+    <p>First Baptist Church Concord is a family of imperfect people connecting with our perfect Lord Jesus through worship, discipleship, and ministry in our community.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="about-intro">
+  <div class="about-intro-inner fade-up">
+    <h2>Loving God. Loving Others.<br>Making Disciples.</h2>
+    <p>We're a Southern Baptist church in the heart of Concord, North Carolina, rooted in Scripture and committed to sharing the gospel of Jesus Christ. Whether you're exploring faith for the first time or looking for a church home, you're welcome here — just as you are.</p>
+  </div>
+</section>
+
+<!-- MISSION CARDS -->
+<section class="about-mission">
+  <div class="about-mission-inner">
+    <div class="mission-card fade-up">
+      <div class="mission-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+      </div>
+      <h3>Loving God</h3>
+      <p>We gather weekly to worship the Lord through Scripture, song, and prayer — giving Him our hearts, minds, and lives in gratitude for His grace.</p>
+    </div>
+    <div class="mission-card fade-up" style="transition-delay: 0.1s;">
+      <div class="mission-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+      </div>
+      <h3>Loving Others</h3>
+      <p>We believe the church is a family. We care for one another, serve our neighbors, and welcome everyone regardless of background or stage of life.</p>
+    </div>
+    <div class="mission-card fade-up" style="transition-delay: 0.2s;">
+      <div class="mission-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+      </div>
+      <h3>Making Disciples</h3>
+      <p>From Concord to the ends of the earth, we train and send believers to share the good news of Jesus, following His call in Matthew 28.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="about-story">
+  <div class="about-story-inner">
+    <div class="about-story-image fade-up">
+      <img src="images/20240331_063503_resized-scaled.jpg" alt="First Baptist Church Concord campus">
+    </div>
+    <div class="about-story-text fade-up" style="transition-delay: 0.1s;">
+      <span class="label-tag">Our Story</span>
+      <h2>Rooted in Concord.<br>Reaching the world.</h2>
+      <p>First Baptist Church Concord has called 200 Branchview Drive home for generations. What began as a gathering of believers has grown into a church family of all ages — worshiping together every Sunday and serving our community throughout the week.</p>
+      <p>We're unapologetically missional. As an Acts 1:8 church, we're committed to sharing Christ locally through our neighbors, regionally and nationally through partnerships, and globally through international missions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE BELIEVE -->
+<section class="about-beliefs">
+  <div class="about-beliefs-inner">
+    <div class="section-header fade-up">
+      <span class="label-tag">What We Believe</span>
+      <h2>Grounded in the gospel</h2>
+      <p>Our beliefs are rooted in Scripture and align with the Baptist Faith and Message. Here are a few of the convictions that shape who we are.</p>
+    </div>
+    <div class="beliefs-grid">
+      <div class="belief-item fade-up">
+        <h4>The Bible</h4>
+        <p>The Bible is the inspired, inerrant Word of God — our final authority for faith and practice. We preach it expositionally each Sunday.</p>
+      </div>
+      <div class="belief-item fade-up" style="transition-delay: 0.05s;">
+        <h4>Jesus Christ</h4>
+        <p>Jesus is fully God and fully man. He lived a sinless life, died for our sins, rose from the dead, and is the only way to the Father.</p>
+      </div>
+      <div class="belief-item fade-up" style="transition-delay: 0.1s;">
+        <h4>Salvation by Grace</h4>
+        <p>Salvation is a gift of God's grace, received through faith in Jesus Christ alone — not by works, so no one can boast.</p>
+      </div>
+      <div class="belief-item fade-up" style="transition-delay: 0.15s;">
+        <h4>The Church</h4>
+        <p>The local church is God's plan for discipleship, worship, and mission — a family of believers committed to one another and to the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<section class="about-facts">
+  <div class="about-facts-inner">
+    <div class="fact-item fade-up">
+      <div class="fact-value">10:45 AM</div>
+      <div class="fact-label">Sunday Worship Service</div>
+    </div>
+    <div class="fact-item fade-up" style="transition-delay: 0.1s;">
+      <div class="fact-value">9:30 AM</div>
+      <div class="fact-label">Sunday School for All Ages</div>
+    </div>
+    <div class="fact-item fade-up" style="transition-delay: 0.2s;">
+      <div class="fact-value">All Ages</div>
+      <div class="fact-label">Ministries for Every Season</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-banner-inner fade-up">
+    <span class="label-tag">Come See For Yourself</span>
+    <h2>We'd love to meet you</h2>
+    <p>The best way to get to know us is to join us on a Sunday morning. Plan your visit today — or get in touch with any questions.</p>
+    <div class="cta-buttons">
+      <a href="visit.html" class="btn-gold">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <a href="contact.html" class="btn-outline-light">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <img src="images/FB_logoR.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <p>200 Branchview Dr SE, Concord, NC 28025</p>
+      <p>704.786.9167</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+
+</body>
+</html>
