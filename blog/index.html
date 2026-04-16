@@ -3,12 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worship &amp; Music — First Baptist Church Concord, NC</title>
+  <title>Blog — First Baptist Church Concord, NC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/global.css">
-  <link rel="stylesheet" href="../css/ministry-page.css">
+  <style>
+    /* ── BLOG INDEX ── */
+    .blog-list {
+      padding: 4rem 24px 5rem;
+      background: var(--cream);
+    }
+    .blog-list-inner {
+      max-width: 1060px; margin: 0 auto;
+    }
+
+    /* Featured post */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+      margin-bottom: 3rem;
+    }
+    .blog-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .blog-featured-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .blog-featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .blog-featured:hover .blog-featured-img img { transform: scale(1.04); }
+    .blog-featured-body {
+      padding: 2.5rem 2.5rem 2.5rem 0;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .blog-featured-body .label-tag { margin-bottom: 0.8rem; }
+    .blog-featured-body h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .blog-featured-body p.excerpt {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.3rem;
+    }
+    .blog-meta-row {
+      display: flex; gap: 1rem; align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+    .blog-meta-row .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .read-more {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--gold-hover);
+      transition: gap var(--transition), color var(--transition);
+    }
+    .read-more:hover { gap: 12px; color: var(--gold); }
+    .read-more svg { width: 15px; height: 15px; }
+
+    /* Post grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .blog-card-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-body {
+      padding: 1.5rem 1.6rem 1.8rem;
+      display: flex; flex-direction: column;
+      flex: 1;
+    }
+    .blog-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .blog-card-body .excerpt {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    /* Empty-state style coming-soon card */
+    .blog-empty-note {
+      text-align: center;
+      max-width: 520px;
+      margin: 3rem auto 0;
+      padding: 2rem 1.5rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 880px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured-body { padding: 2rem 1.75rem 2.25rem; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -24,10 +172,10 @@
     <ul class="nav-links">
       <li><a href="../about.html">About</a></li>
       <li><a href="../staff.html">Staff</a></li>
-      <li><a href="../ministries.html" class="active">Ministries</a></li>
+      <li><a href="../ministries.html">Ministries</a></li>
       <li><a href="../calendar.html">Events</a></li>
       <li><a href="../sermons.html">Sermons</a></li>
-      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="index.html" class="active">Blog</a></li>
       <li><a href="#">Give</a></li>
     </ul>
     <div class="nav-cta-wrap">
@@ -50,9 +198,8 @@
         <li><a href="../about.html">About</a></li>
         <li><a href="../staff.html">Staff</a></li>
         <li><a href="../ministries.html">Ministries</a></li>
-        <li><a href="../calendar.html">Events</a></li>
         <li><a href="../sermons.html">Sermons</a></li>
-        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="index.html">Blog</a></li>
         <li><a href="#">Give</a></li>
       </ul>
     </nav>
@@ -77,113 +224,55 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-content">
-    <span class="label-tag">Ministries</span>
-    <h1>Worship &amp; Music</h1>
-    <p>For the Glory of God and to promote worship in Spirit and Truth — whether you sing or play an instrument, come join us as we praise the Triune God together.</p>
+    <span class="label-tag">From Our Church</span>
+    <h1>The Blog</h1>
+    <p>Reflections on faith, Scripture, and life at FBC Concord — written to encourage and equip the church family and anyone exploring what Christianity is all about.</p>
   </div>
 </section>
 
-<!-- OVERVIEW -->
-<section class="ministry-overview fade-up">
-  <div class="ministry-overview-inner">
-    <div class="ministry-overview-text">
-      <span class="label-tag">Our Mission</span>
-      <h2>Worship in Spirit &amp; Truth</h2>
-      <p>The Music &amp; Worship Ministry of First Baptist Church exists for the Glory of God and to promote Worship in Spirit and Truth <em>(John 4:24)</em> and Singing in the Spirit and with Understanding <em>(1 Corinthians 14:15)</em>.</p>
-      <p>Regardless of whether you play an instrument or sing, come and let us praise the Triune God with our talents in all areas of music. There's a place here for every voice and every skill level.</p>
-      <a href="../contact.html?to=luke" class="btn-gold ministry-overview-cta">
-        Connect with Luke Waters
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
-    <div class="ministry-overview-img">
-      <img src="../images/Worship/Luke-23-Web-Cover.jpg" alt="Worship at FBC Concord">
-    </div>
-  </div>
-</section>
+<!-- BLOG LIST -->
+<section class="blog-list">
+  <div class="blog-list-inner">
 
-<!-- WAYS TO PARTICIPATE -->
-<section class="ministry-participate fade-up">
-  <div class="ministry-participate-inner">
-    <div class="ministry-participate-header">
-      <span class="label-tag">Get Involved</span>
-      <h2>Ways to Participate</h2>
-      <p>Four different groups lead worship throughout the year — each with its own rehearsal time and open to new members.</p>
-    </div>
-
-    <div class="participate-grid">
-
-      <div class="participate-card fade-up">
-        <div class="participate-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"/></svg>
-        </div>
-        <h3>Adult Choir</h3>
-        <div class="participate-card-meta">Wed 7:30–8:30 PM · Choir Room</div>
-        <p>Provides musical leadership in the 10:45 AM Sunday worship service. Rehearsals are held weekly in the choir room.</p>
+    <!-- FEATURED POST -->
+    <a href="why-the-resurrection-matters.html" class="blog-featured fade-up">
+      <div class="blog-featured-img">
+        <img src="../images/20240331_063503_resized-scaled.jpg" alt="Why Does the Resurrection of Jesus Actually Matter?">
       </div>
-
-      <div class="participate-card fade-up" style="transition-delay: 0.05s;">
-        <div class="participate-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/></svg>
+      <div class="blog-featured-body">
+        <span class="label-tag">Featured Post</span>
+        <h2>Why Does the Resurrection of Jesus Actually Matter?</h2>
+        <div class="blog-meta-row">
+          <span>April 10, 2026</span>
+          <span class="dot"></span>
+          <span>FBC Concord</span>
         </div>
-        <h3>Praise Team</h3>
-        <div class="participate-card-meta">Sunday Services</div>
-        <p>Helps lead music for Sunday morning services with contemporary worship songs alongside the choir and orchestra.</p>
+        <p class="excerpt">Most people have heard that Jesus rose from the dead. But here's a question worth asking: why does it matter? What difference does it make if one man walked out of a tomb two thousand years ago? It turns out, it makes all the difference.</p>
+        <span class="read-more">
+          Read the post
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </span>
       </div>
+    </a>
 
-      <div class="participate-card fade-up" style="transition-delay: 0.1s;">
-        <div class="participate-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm-16.5 2.666V8.25m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"/></svg>
-        </div>
-        <h3>Church Orchestra</h3>
-        <div class="participate-card-meta">Sun 9:30 AM · Sanctuary</div>
-        <p>Provides musical leadership in the 10:45 AM service. Open to anyone in 9th grade or above who plays an instrument.</p>
-      </div>
-
-      <div class="participate-card fade-up" style="transition-delay: 0.15s;">
-        <div class="participate-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
-        </div>
-        <h3>Handbells</h3>
-        <div class="participate-card-meta">Wed 6:30 PM · Music Suite</div>
-        <p>Adult handbells play for morning worship quarterly and practice in Fall and Spring. They also attend an annual handbell conference.</p>
-      </div>
-
+    <!-- POST GRID (future posts land here) -->
+    <div class="blog-empty-note">
+      More posts are on the way. Check back soon — or subscribe to our YouTube channel for weekly sermons in the meantime.
     </div>
-  </div>
-</section>
 
-<!-- CONTACT CARD -->
-<section class="ministry-contact fade-up">
-  <div class="ministry-contact-card">
-    <div class="ministry-contact-label">For More Information</div>
-    <div class="ministry-contact-headline">Reach out to Luke Waters</div>
-    <div class="ministry-contact-role">Worship &amp; Music Pastor</div>
-    <div class="ministry-contact-actions">
-      <a href="../contact.html?to=luke">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-        Email Luke
-      </a>
-    </div>
   </div>
 </section>
 
 <!-- CTA BANNER -->
 <section class="cta-banner">
   <div class="cta-banner-inner fade-up">
-    <span class="label-tag">Join Us</span>
-    <h2>Ready to lift your voice?</h2>
-    <p>Come visit a Sunday service, or reach out to Luke directly — we'd love to welcome you into the music ministry family.</p>
-    <div class="cta-buttons">
-      <a href="../visit.html" class="btn-gold">
-        Plan Your Visit
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-      <a href="../ministries.html" class="btn-outline-light">
-        All Ministries
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
+    <span class="label-tag">Come Visit</span>
+    <h2>See you Sunday?</h2>
+    <p>Join us Sundays at 10:45 AM for worship, or 9:30 AM for Sunday School.</p>
+    <a href="../visit.html" class="btn-gold">
+      Plan Your Visit
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
   </div>
 </section>
 
