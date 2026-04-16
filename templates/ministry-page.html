@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TEMPLATE: Change the title for each ministry page -->
+  <title>Ministry Name — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    /* Overview Section */
+    .ministry-overview {
+      padding: 5rem 24px;
+      background: var(--light-bg);
+    }
+    .ministry-overview-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .ministry-overview-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500; color: var(--navy);
+      margin-bottom: 1.2rem; line-height: 1.2;
+    }
+    .ministry-overview-text p {
+      font-size: 0.95rem; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 1rem;
+    }
+    .ministry-overview-img {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .ministry-overview-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      aspect-ratio: 4/3;
+    }
+
+    /* Info Cards */
+    .ministry-info {
+      padding: 5rem 24px;
+      background: var(--white);
+    }
+    .ministry-info-grid {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .ministry-info-card {
+      background: var(--light-bg);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.6rem;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .ministry-info-card:hover {
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-3px);
+    }
+    .ministry-info-card-icon {
+      width: 44px; height: 44px; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gold-soft); border-radius: 10px;
+    }
+    .ministry-info-card-icon svg { width: 20px; height: 20px; color: var(--gold); }
+    .ministry-info-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 500;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .ministry-info-card p {
+      font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .ministry-overview-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .ministry-info-grid { grid-template-columns: 1fr; max-width: 440px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .ministry-info-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">
+      <img src="../images/logo.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="../staff.html">Staff</a></li>
+      <li><a href="ministry-page.html" class="active">Ministries</a></li>
+      <li><a href="../sermons.html">Sermons</a></li>
+      <li><a href="#">Give</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="../visit.html" class="nav-cta">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <img src="../images/logo.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="#">About</a></li>
+        <li><a href="../staff.html">Staff</a></li>
+        <li><a href="ministry-page.html">Ministries</a></li>
+        <li><a href="../sermons.html">Sermons</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="../visit.html" class="btn-gold">Plan Your Visit</a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<!-- TEMPLATE: Update the label-tag, h1, and description for each ministry -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="label-tag">Ministries</span>
+    <h1>Ministry Name</h1>
+    <p>A brief description of this ministry — what it is, who it's for, and why it matters to the life of FBC Concord.</p>
+  </div>
+</section>
+
+<!-- OVERVIEW SECTION -->
+<!-- TEMPLATE: Replace text and image for the specific ministry -->
+<section class="ministry-overview fade-up">
+  <div class="ministry-overview-inner">
+    <div class="ministry-overview-text">
+      <span class="label-tag">Who We Are</span>
+      <h2>About This Ministry</h2>
+      <p>Write a few paragraphs about this ministry. What is the mission? What activities does it include? Who leads it? What can someone expect when they get involved?</p>
+      <p>You can include multiple paragraphs. Keep the tone warm, welcoming, and informative. Speak to someone who may be learning about this ministry for the first time.</p>
+    </div>
+    <div class="ministry-overview-img">
+      <!-- TEMPLATE: Replace with a relevant ministry photo -->
+      <img src="../images/20240331_063503_resized-scaled.jpg" alt="Ministry Name">
+    </div>
+  </div>
+</section>
+
+<!-- KEY INFO CARDS -->
+<!-- TEMPLATE: Update the 3 cards with relevant details (meeting time, location, contact, etc.) -->
+<section class="ministry-info fade-up">
+  <div class="section-header" style="max-width: 1060px; margin: 0 auto;">
+    <span class="label-tag">Get Involved</span>
+    <h2>How to Connect</h2>
+  </div>
+  <div class="ministry-info-grid">
+
+    <div class="ministry-info-card fade-up">
+      <div class="ministry-info-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h4>When We Meet</h4>
+      <p>Sundays at 9:30 AM and Wednesdays at 6:30 PM. Specific meeting times and details go here.</p>
+    </div>
+
+    <div class="ministry-info-card fade-up" style="transition-delay: 0.1s;">
+      <div class="ministry-info-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+      </div>
+      <h4>Where</h4>
+      <p>Room number, building wing, or off-site location details go here.</p>
+    </div>
+
+    <div class="ministry-info-card fade-up" style="transition-delay: 0.2s;">
+      <div class="ministry-info-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      </div>
+      <h4>Contact</h4>
+      <p>Ministry leader name and email. Reach out with questions or to let us know you're coming.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner fade-up">
+    <span class="label-tag">Join Us</span>
+    <h2>Ready to get involved?</h2>
+    <p>We'd love to welcome you. Reach out to us or just show up — no sign-up required.</p>
+    <a href="../visit.html" class="btn-gold">
+      Plan Your Visit
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <img src="../images/logo.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <p>200 Branchview Dr SE, Concord, NC 28025</p>
+      <p>704.786.9167</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/global.js"></script>
+
+</body>
+</html>

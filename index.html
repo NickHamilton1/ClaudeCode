@@ -137,43 +137,126 @@
     .hamburger span:nth-child(1) { top: 4px; }
     .hamburger span:nth-child(2) { top: 11px; width: 65%; }
     .hamburger span:nth-child(3) { top: 18px; width: 80%; }
+    .nav.open { background: transparent !important; border-color: transparent; box-shadow: none; }
     .nav.open .hamburger span { background: #fff; }
     .nav.open .hamburger span:nth-child(1) { top: 11px; transform: rotate(45deg); }
     .nav.open .hamburger span:nth-child(2) { opacity: 0; }
     .nav.open .hamburger span:nth-child(3) { top: 11px; width: 100%; transform: rotate(-45deg); }
+    .nav.open .nav-brand { opacity: 0; pointer-events: none; transition: opacity 0.2s; }
 
-    /* Mobile overlay */
+    /* ── MOBILE MENU ── */
     .mob-menu {
       position: fixed; inset: 0; z-index: 200;
       background: var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden;
-      transition: 0.4s ease;
+      display: flex; flex-direction: column;
+      clip-path: circle(0% at calc(100% - 40px) 30px);
+      visibility: hidden;
+      transition: clip-path 0.6s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.6s;
     }
-    .mob-menu.open { opacity: 1; visibility: visible; }
-    .mob-menu ul {
+    .mob-menu.open {
+      clip-path: circle(150% at calc(100% - 40px) 30px);
+      visibility: visible;
+    }
+    .mob-menu::before {
+      content: '';
+      position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(184, 154, 61, 0.06) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .mob-menu::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transform: scaleX(0);
+      transition: opacity 0.5s ease 0.3s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    }
+    .mob-menu.open::after { opacity: 0.6; transform: scaleX(1); }
+
+    .mob-menu-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      height: 100%; padding: 0 32px;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mob-menu-header {
+      display: flex; align-items: center;
+      min-height: 72px; flex-shrink: 0;
+    }
+    .mob-menu-logo {
+      height: 34px; width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0; transition: opacity 0.4s ease 0.25s;
+    }
+    .mob-menu.open .mob-menu-logo { opacity: 0.6; }
+
+    .mob-menu-nav {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .mob-menu-nav ul {
       list-style: none; text-align: center;
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 2px;
+      padding: 1rem 0;
     }
-    .mob-menu a {
+    .mob-menu-nav li { overflow: hidden; }
+    .mob-menu-nav a {
       font-family: var(--serif);
-      font-size: clamp(2rem, 6vw, 3rem);
-      color: #fff; display: block; padding: 8px 0;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.4s ease, transform 0.5s var(--ease), color 0.2s;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      color: #fff; display: inline-block; padding: 0.4rem 0;
+      position: relative;
+      transform: translateY(110%);
+      transition: transform 0.55s var(--ease), color 0.25s ease;
     }
-    .mob-menu.open a { opacity: 1; transform: none; }
-    .mob-menu.open li:nth-child(1) a { transition-delay: 0.05s; }
-    .mob-menu.open li:nth-child(2) a { transition-delay: 0.1s; }
-    .mob-menu.open li:nth-child(3) a { transition-delay: 0.15s; }
-    .mob-menu.open li:nth-child(4) a { transition-delay: 0.2s; }
-    .mob-menu.open li:nth-child(5) a { transition-delay: 0.25s; }
-    .mob-menu a:hover { color: var(--gold); }
-    .mob-menu-cta {
-      margin-top: 2.5rem; text-align: center;
-      opacity: 0; transition: opacity 0.4s ease 0.3s;
+    .mob-menu.open .mob-menu-nav a { transform: translateY(0); }
+    .mob-menu.open .mob-menu-nav li:nth-child(1) a { transition-delay: 0.12s; }
+    .mob-menu.open .mob-menu-nav li:nth-child(2) a { transition-delay: 0.17s; }
+    .mob-menu.open .mob-menu-nav li:nth-child(3) a { transition-delay: 0.22s; }
+    .mob-menu.open .mob-menu-nav li:nth-child(4) a { transition-delay: 0.27s; }
+    .mob-menu.open .mob-menu-nav li:nth-child(5) a { transition-delay: 0.32s; }
+    .mob-menu-nav a::after {
+      content: '';
+      position: absolute; bottom: 2px; left: 50%;
+      width: 0; height: 2px; background: var(--gold);
+      transition: width 0.3s var(--ease), left 0.3s var(--ease);
     }
-    .mob-menu.open .mob-menu-cta { opacity: 1; }
+    .mob-menu-nav a:hover { color: var(--gold); }
+    .mob-menu-nav a:hover::after { width: 32px; left: calc(50% - 16px); }
+
+    .mob-menu-footer {
+      flex-shrink: 0; text-align: center;
+      padding: 1.5rem 0;
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.4s ease 0.35s, transform 0.4s ease 0.35s;
+    }
+    .mob-menu.open .mob-menu-footer { opacity: 1; transform: translateY(0); }
+    .mob-menu-cta { margin-bottom: 1.5rem; }
+    .mob-menu-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 1.2rem;
+    }
+    .mob-menu-contact {
+      font-size: 0.78rem; color: rgba(255,255,255,0.3);
+      line-height: 1.7; margin-bottom: 1rem;
+    }
+    .mob-menu-contact a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .mob-menu-contact a:hover { color: var(--gold); }
+    .mob-menu-socials {
+      display: flex; gap: 10px; justify-content: center;
+    }
+    .mob-menu-socials a {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.3);
+      transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+    .mob-menu-socials a:hover {
+      border-color: var(--gold); color: var(--gold); transform: translateY(-2px);
+    }
+    .mob-menu-socials svg { width: 14px; height: 14px; }
 
     /* ── HERO ── */
     .hero {
@@ -260,11 +343,24 @@
     }
     .info-strip-inner {
       max-width: 1280px; margin: 0 auto;
-      display: flex; justify-content: space-between;
+      display: flex; justify-content: center;
       padding: 28px 0;
+      gap: 0;
     }
     .info-strip-item {
       display: flex; align-items: center; gap: 14px;
+      padding: 0 clamp(20px, 3vw, 48px);
+      position: relative;
+    }
+    .info-strip-item + .info-strip-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 36px;
+      background: var(--border);
     }
     .info-strip-num {
       font-family: var(--serif);
@@ -497,6 +593,8 @@
       .hero-actions { justify-content: center; }
 
       .info-strip-inner { flex-direction: column; gap: 20px; }
+      .info-strip-item + .info-strip-item::before { display: none; }
+      .info-strip-item { padding: 0; }
 
       .ministries-top { flex-direction: column; align-items: flex-start; }
       .ministry-grid {
@@ -513,7 +611,7 @@
     }
 
     @media (min-width: 901px) {
-      .mob-menu { display: none !important; }
+      .mob-menu { display: none !important; visibility: hidden !important; }
     }
   </style>
 </head>
@@ -528,8 +626,8 @@
     <ul class="nav-center">
       <li><a href="#">About</a></li>
       <li><a href="staff.html">Staff</a></li>
-      <li><a href="#">Ministries</a></li>
-      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
+      <li><a href="templates/ministry-page.html">Ministries</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
       <li><a href="#">Give</a></li>
     </ul>
     <div class="nav-visit-wrap">
@@ -542,16 +640,39 @@
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <div>
-    <ul>
-      <li><a href="#">About</a></li>
-      <li><a href="staff.html">Staff</a></li>
-      <li><a href="#">Ministries</a></li>
-      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
-      <li><a href="#">Give</a></li>
-    </ul>
-    <div class="mob-menu-cta">
-      <a href="visit.html" class="btn-primary">Plan Your Visit</a>
+  <div class="mob-menu-inner">
+    <div class="mob-menu-header">
+      <img src="images/logo.png" alt="FBC Concord" class="mob-menu-logo">
+    </div>
+    <nav class="mob-menu-nav">
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="templates/ministry-page.html">Ministries</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mob-menu-footer">
+      <div class="mob-menu-cta">
+        <a href="visit.html" class="btn-primary">Plan Your Visit</a>
+      </div>
+      <div class="mob-menu-divider"></div>
+      <div class="mob-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mob-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -684,7 +805,7 @@
         <img src="images/logo.png" alt="First Baptist Church Concord" class="footer-brand-logo">
         <div class="footer-info">
           200 Branchview Dr SE, Concord, NC 28025<br>
-          704.786.9167 &middot; <a href="mailto:email@fbcconcord.org">email@fbcconcord.org</a>
+          704.786.9167
         </div>
       </div>
       <div class="footer-socials">
@@ -741,6 +862,57 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+
+  // Snap-scroll: hero -> ministries
+  (function() {
+    var hero = document.querySelector('.hero');
+    var ministries = document.querySelector('.ministries');
+    if (!hero || !ministries) return;
+
+    var isSnapping = false;
+    var cooldown = false;
+    var lastScrollY = window.scrollY;
+    var scrollDelta = 0;
+
+    window.addEventListener('scroll', function() {
+      if (isSnapping || cooldown) return;
+
+      var scrollY = window.scrollY;
+      var heroBottom = hero.offsetTop + hero.offsetHeight;
+      var ministriesTop = ministries.offsetTop;
+      var direction = scrollY - lastScrollY;
+
+      // Accumulate scroll delta in same direction
+      if ((direction > 0 && scrollDelta > 0) || (direction < 0 && scrollDelta < 0)) {
+        scrollDelta += direction;
+      } else {
+        scrollDelta = direction;
+      }
+
+      // Scrolling DOWN: trigger after a small scroll (20% into the hero)
+      if (scrollDelta > 0 && scrollY > heroBottom * 0.15 && scrollY < ministriesTop) {
+        isSnapping = true;
+        cooldown = true;
+        scrollDelta = 0;
+        var navHeight = nav.offsetHeight || 70;
+        var ministriesPadding = parseInt(getComputedStyle(ministries).paddingTop) || 100;
+        window.scrollTo({ top: ministriesTop + ministriesPadding - navHeight - 20, behavior: 'smooth' });
+        setTimeout(function() { isSnapping = false; }, 1000);
+        setTimeout(function() { cooldown = false; }, 2000);
+      }
+      // Scrolling UP: trigger when scrolling up from near the ministries section
+      else if (scrollDelta < -30 && scrollY < ministriesTop + 50 && scrollY > heroBottom * 0.5) {
+        isSnapping = true;
+        cooldown = true;
+        scrollDelta = 0;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(function() { isSnapping = false; }, 1000);
+        setTimeout(function() { cooldown = false; }, 2000);
+      }
+
+      lastScrollY = scrollY;
+    }, { passive: true });
+  })();
 })();
 </script>
 

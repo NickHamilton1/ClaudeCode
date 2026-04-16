@@ -7,450 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --navy: #0f1b2d;
-      --navy-mid: #162038;
-      --navy-light: #1e2d4a;
-      --gold: #c9a227;
-      --gold-hover: #b8921f;
-      --gold-soft: rgba(201, 162, 39, 0.12);
-      --cream: #faf8f4;
-      --white: #ffffff;
-      --light-bg: #f7f6f3;
-      --text-body: #3d3935;
-      --text-muted: #6b6560;
-      --text-light: rgba(255, 255, 255, 0.7);
-      --border: rgba(0, 0, 0, 0.08);
-      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --radius: 10px;
-      --radius-lg: 16px;
-      --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
-      --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.1);
-      --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-body);
-      font-weight: 400;
-      color: var(--text-body);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; height: auto; display: block; }
-
-    .label-tag {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-    }
-
-    /* ── SCROLL ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── NAV (same as homepage) ── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 1px 20px rgba(0,0,0,0.06);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 24px;
-    }
-    .nav-brand {
-      display: flex; align-items: center;
-      transition: opacity 0.3s ease;
-    }
-    .nav-brand:hover { opacity: 0.85; }
-    .nav-logo {
-      height: 38px; width: auto;
-    }
-    .nav-links {
-      display: flex; gap: 2.5rem; list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.82rem; font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: 0.8px; text-transform: uppercase;
-      transition: color var(--transition);
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute; bottom: -4px; left: 50%; width: 0; height: 1.5px;
-      background: var(--gold);
-      transition: width var(--transition), left var(--transition);
-    }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-links a:hover::after { width: 100%; left: 0; }
-    .nav-links a.active { color: var(--navy); }
-    .nav-links a.active::after { width: 100%; left: 0; }
-
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 0.55rem 1.4rem;
-      background: var(--gold); color: var(--navy);
-      border-radius: var(--radius); font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.3px;
-      transition: background var(--transition), transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 2px 12px rgba(201, 162, 39, 0.25);
-    }
-    .nav-cta:hover {
-      background: var(--gold-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(201, 162, 39, 0.35);
-    }
-    .nav-cta svg { width: 14px; height: 14px; }
-
-    .hamburger {
-      display: none; background: none; border: none; cursor: pointer;
-      width: 28px; height: 20px; position: relative; flex-shrink: 0;
-      z-index: 201;
-    }
-    .hamburger span {
-      display: block; width: 100%; height: 2px;
-      background: var(--navy);
-      position: absolute; left: 0;
-      transition: top 0.3s ease 0.15s, transform 0.3s ease 0s, opacity 0.2s ease;
-      border-radius: 2px;
-    }
-    .hamburger span:nth-child(1) { top: 0; width: 100%; }
-    .hamburger span:nth-child(2) { top: 9px; }
-    .hamburger span:nth-child(3) { top: 18px; width: 70%; }
-    .nav.open .hamburger span { background: var(--white); }
-    .nav.open .hamburger span:nth-child(1) {
-      top: 9px; width: 100%;
-      transform: rotate(45deg);
-      transition: top 0.3s ease 0s, transform 0.3s ease 0.15s;
-    }
-    .nav.open .hamburger span:nth-child(2) { opacity: 0; }
-    .nav.open .hamburger span:nth-child(3) {
-      top: 9px; width: 100%;
-      transform: rotate(-45deg);
-      transition: top 0.3s ease 0s, transform 0.3s ease 0.15s, width 0.2s ease;
-    }
-
-    /* Mobile menu overlay */
-    .mobile-menu {
-      position: fixed; inset: 0; z-index: 200;
-      background: var(--navy);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-    .mobile-menu.open { opacity: 1; visibility: visible; }
-    .mobile-menu-inner {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-    }
-    .mobile-menu-links {
-      list-style: none; display: flex; flex-direction: column;
-      gap: 0.5rem; margin-bottom: 2.5rem;
-    }
-    .mobile-menu-links a {
-      display: block;
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 5vw, 2.4rem);
-      font-weight: 500;
-      color: var(--white);
-      padding: 0.5rem 0;
-      transform: translateY(100%); opacity: 0;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, color 0.3s ease;
-    }
-    .mobile-menu.open .mobile-menu-links a { transform: translateY(0); opacity: 1; }
-    .mobile-menu.open .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
-    .mobile-menu.open .mobile-menu-links li:nth-child(2) a { transition-delay: 0.15s; }
-    .mobile-menu.open .mobile-menu-links li:nth-child(3) a { transition-delay: 0.2s; }
-    .mobile-menu.open .mobile-menu-links li:nth-child(4) a { transition-delay: 0.25s; }
-    .mobile-menu-links a:hover { color: var(--gold); }
-    .mobile-menu-cta {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.4s ease 0.35s, transform 0.4s ease 0.35s;
-    }
-    .mobile-menu.open .mobile-menu-cta { opacity: 1; transform: translateY(0); }
-
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 0.9rem 2.2rem;
-      background: var(--gold); color: var(--navy);
-      border-radius: var(--radius); font-size: 0.9rem; font-weight: 500;
-      letter-spacing: 0.3px;
-      transition: background var(--transition), transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 4px 20px rgba(201, 162, 39, 0.3);
-    }
-    .btn-gold:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(201, 162, 39, 0.4);
-    }
-    .btn-gold svg { width: 16px; height: 16px; }
-
-    /* ── PAGE HERO (shorter for inner pages) ── */
-    .page-hero {
-      background: var(--navy);
-      padding: 9rem 24px 4.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 30% 60%, rgba(201, 162, 39, 0.05) 0%, transparent 60%),
-        radial-gradient(ellipse at 70% 40%, rgba(30, 45, 74, 0.5) 0%, transparent 50%);
-    }
-    .page-hero-content {
-      position: relative; z-index: 1;
-      max-width: 700px; margin: 0 auto;
-    }
-    .page-hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-    .page-hero p {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      max-width: 520px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ── STAFF GRID ── */
-    .staff-section {
-      padding: 5rem 24px;
-      background: var(--light-bg);
-    }
-    .staff-section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .staff-section-header h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 500;
-      color: var(--navy);
-    }
-
-    .staff-grid {
-      max-width: 1140px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .staff-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      transition: box-shadow var(--transition), transform var(--transition);
-    }
-    .staff-card:hover {
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-4px);
-    }
-
-    .staff-card-photo {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--navy-mid);
-    }
-    .staff-card-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .staff-card:hover .staff-card-photo img {
-      transform: scale(1.04);
-    }
-    .staff-card-photo::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 40%;
-      background: linear-gradient(transparent, rgba(15, 27, 45, 0.5));
-    }
-
-    .staff-card-body {
-      padding: 1.6rem 1.8rem 2rem;
-    }
-    .staff-card-name {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--navy);
-      margin-bottom: 0.2rem;
-    }
-    .staff-card-role {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .staff-card-bio {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 1.4rem;
-    }
-    .staff-card-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--navy);
-      padding: 0.5rem 1.2rem;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color var(--transition), background var(--transition), color var(--transition);
-    }
-    .staff-card-email:hover {
-      border-color: var(--gold);
-      background: var(--gold-soft);
-      color: var(--gold-hover);
-    }
-    .staff-card-email svg {
-      width: 14px; height: 14px;
-    }
-
-    /* ── CTA BANNER ── */
-    .cta-banner {
-      background: var(--navy);
-      padding: 5rem 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-banner::before {
-      content: '';
-      position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201, 162, 39, 0.06) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .cta-banner-inner {
-      position: relative; z-index: 1;
-      max-width: 600px; margin: 0 auto;
-    }
-    .cta-banner h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .cta-banner p {
-      color: var(--text-light);
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: #0a1220;
-      color: rgba(255,255,255,0.45);
-      padding: 3rem 24px;
-      font-size: 0.82rem;
-    }
-    .footer-inner {
-      max-width: 1140px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-info p { margin-bottom: 0.2rem; }
-    .footer-info a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
-    .footer-info a:hover { color: var(--gold); }
-    .footer-logo {
-      height: 50px; width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.6;
-      margin-bottom: 0.8rem;
-    }
-    .footer-socials {
-      display: flex; gap: 1rem;
-    }
-    .footer-socials a {
-      width: 38px; height: 38px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.4);
-      transition: background var(--transition), color var(--transition), transform 0.2s;
-    }
-    .footer-socials a:hover {
-      background: var(--gold);
-      color: var(--navy);
-      transform: translateY(-2px);
-    }
-    .footer-socials svg { width: 16px; height: 16px; }
-    .footer-bottom {
-      width: 100%;
-      padding-top: 1.5rem;
-      margin-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.75rem; color: rgba(255,255,255,0.3);
-      flex-wrap: wrap; gap: 0.5rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta-wrap { display: none; }
-      .hamburger { display: block; }
-
-      .page-hero { padding: 7rem 24px 3rem; }
-      .staff-section { padding: 3rem 16px; }
-      .staff-grid { grid-template-columns: 1fr; max-width: 440px; }
-
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-bottom { justify-content: center; }
-    }
-
-    @media (min-width: 769px) {
-      .mobile-menu { display: none !important; }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .staff-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/staff.css">
 </head>
 <body>
 
@@ -464,9 +22,10 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="https://www.fbcconcord.org/worship/" class="active">About</a></li>
-      <li><a href="https://www.fbcconcord.org/Discipleship">Ministries</a></li>
-      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="staff.html" class="active">Staff</a></li>
+      <li><a href="templates/ministry-page.html">Ministries</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
       <li><a href="#">Give</a></li>
     </ul>
     <div class="nav-cta-wrap">
@@ -478,20 +37,44 @@
   </div>
 </nav>
 
-<!-- MOBILE MENU OVERLAY -->
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
-    <ul class="mobile-menu-links">
-      <li><a href="https://www.fbcconcord.org/worship/">About</a></li>
-      <li><a href="https://www.fbcconcord.org/Discipleship">Ministries</a></li>
-      <li><a href="https://www.youtube.com/playlist?list=PLF-pGa8kHEmC99K4z0sRxGLOvNZ1SqqYF">Sermons</a></li>
-      <li><a href="#">Give</a></li>
-    </ul>
-    <div class="mobile-menu-cta">
-      <a href="visit.html" class="btn-gold">
-        Plan Your Visit
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
+    <div class="mobile-menu-header">
+      <img src="images/logo.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="#">About</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="templates/ministry-page.html">Ministries</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="visit.html" class="btn-gold">
+          Plan Your Visit
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -644,7 +227,7 @@
   <div class="cta-banner-inner fade-up">
     <span class="label-tag">Get In Touch</span>
     <h2>We'd love to hear from you</h2>
-    <p>Our church office is open Monday through Friday, 8:30 AM to 5:00 PM. Call us at 704.786.9167 or email us at email@fbcconcord.org.</p>
+    <p>Our church office is open Monday through Friday, 8:30 AM to 5:00 PM. Call us at 704.786.9167.</p>
     <a href="visit.html" class="btn-gold">
       Plan Your Visit
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
@@ -658,7 +241,7 @@
     <div class="footer-info">
       <img src="images/logo.png" alt="First Baptist Church Concord, NC" class="footer-logo">
       <p>200 Branchview Dr SE, Concord, NC 28025</p>
-      <p>704.786.9167 &middot; <a href="mailto:email@fbcconcord.org">email@fbcconcord.org</a></p>
+      <p>704.786.9167</p>
     </div>
     <div class="footer-socials">
       <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook">
@@ -673,48 +256,12 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
-      <span>Our mission: to make disciples through evangelism and training that leads to obedience.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
     </div>
   </div>
 </footer>
 
-<script>
-  (function() {
-    var nav = document.getElementById('nav');
-    var hamburger = document.getElementById('hamburger');
-    var mobileMenu = document.getElementById('mobileMenu');
-    var isOpen = false;
-
-    hamburger.addEventListener('click', function() {
-      isOpen = !isOpen;
-      nav.classList.toggle('open', isOpen);
-      mobileMenu.classList.toggle('open', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        isOpen = false;
-        nav.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Scroll-triggered fade-in animations
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.fade-up').forEach(function(el) {
-      observer.observe(el);
-    });
-  })();
-</script>
+<script src="js/global.js"></script>
 
 </body>
 </html>
