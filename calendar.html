@@ -83,6 +83,27 @@
   </div>
 </section>
 
+<!-- TOOLBAR -->
+<section class="cal-toolbar">
+  <div class="cal-toolbar-inner">
+    <div class="cal-view-toggle" role="tablist" aria-label="Calendar view">
+      <button class="cal-view-btn active" data-view="month">Month</button>
+      <button class="cal-view-btn" data-view="week">Week</button>
+      <button class="cal-view-btn" data-view="list">List</button>
+    </div>
+    <div class="cal-nav" id="calNav">
+      <button class="cal-nav-btn" data-nav="prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="cal-nav-btn cal-nav-today" data-nav="today">Today</button>
+      <button class="cal-nav-btn" data-nav="next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="cal-period" id="calPeriod">April 2026</div>
+  </div>
+</section>
+
 <!-- FILTERS -->
 <section class="events-filters">
   <div class="events-filters-inner">
@@ -96,285 +117,9 @@
   </div>
 </section>
 
-<!-- EVENTS LIST -->
+<!-- VIEW CONTAINER -->
 <section class="events-section">
-  <div class="events-section-inner">
-
-    <!-- ── APRIL 2026 ── -->
-    <div class="events-month">
-      <h2 class="events-month-header">April 2026</h2>
-
-      <article class="event-card fade-up" data-category="women">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">16</span>
-          <span class="event-date-weekday">Thu</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Women's Bible Study</h3>
-          <div class="event-meta">
-            <span>10:00 AM</span>
-            <span>Fellowship Hall</span>
-          </div>
-          <p class="event-desc">Weekly women's Bible study on the book of Philippians. Open to women of all ages — newcomers welcome.</p>
-          <span class="event-tag event-tag--women">Women</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">19</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Sunday Worship Service</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Join us for worship led by our choir, orchestra, and praise team. Pastor Jim continues his series in the Gospel of John.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="missions">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">20</span>
-          <span class="event-date-weekday">Mon</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Mercy Meals Packing Night</h3>
-          <div class="event-meta">
-            <span>6:30 PM</span>
-            <span>Activities Building</span>
-          </div>
-          <p class="event-desc">Partner with us to pack 10,000 meals for families in need. All ages welcome — great for families and small groups.</p>
-          <span class="event-tag event-tag--missions">Missions</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="music">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">22</span>
-          <span class="event-date-weekday">Wed</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Handbells &amp; Choir Rehearsal</h3>
-          <div class="event-meta">
-            <span>6:30 PM Handbells · 7:30 PM Choir</span>
-            <span>Music Suite</span>
-          </div>
-          <p class="event-desc">Weekly rehearsal for handbells and the adult choir. Contact Luke Waters if you'd like to join.</p>
-          <span class="event-tag event-tag--music">Music</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">26</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Sunday Worship + Lord's Supper</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">We'll observe the Lord's Supper together at the close of our worship service.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="men">
-        <div class="event-date">
-          <span class="event-date-month">Apr</span>
-          <span class="event-date-day">30</span>
-          <span class="event-date-weekday">Thu</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Men's Breakfast</h3>
-          <div class="event-meta">
-            <span>7:00 AM</span>
-            <span>Fellowship Hall</span>
-          </div>
-          <p class="event-desc">Monthly breakfast for men of all ages. Pastor Aaron will share a short devotional. $5 suggested.</p>
-          <span class="event-tag event-tag--men">Men</span>
-        </div>
-      </article>
-    </div>
-
-    <!-- ── MAY 2026 ── -->
-    <div class="events-month">
-      <h2 class="events-month-header">May 2026</h2>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">3</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Sunday Worship Service</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Worship with us as Pastor Jim continues our spring sermon series.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">10</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Mother's Day Worship</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Honor the mothers in our church family with a special worship service and a small gift for every mom.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="women">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">15</span>
-          <span class="event-date-weekday">Fri</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Women's Spring Retreat</h3>
-          <div class="event-meta">
-            <span>May 15 – 17</span>
-            <span>Ridgecrest Conference Center</span>
-          </div>
-          <p class="event-desc">A weekend of worship, teaching, and fellowship in the NC mountains. Register at the Information Services desk.</p>
-          <span class="event-tag event-tag--women">Women</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="kids">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">20</span>
-          <span class="event-date-weekday">Wed</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Kingdom Kidz Fun Night</h3>
-          <div class="event-meta">
-            <span>6:00 PM</span>
-            <span>Children's Wing</span>
-          </div>
-          <p class="event-desc">Games, snacks, and Bible stories for kids ages 4 – 5th grade. Invite a friend!</p>
-          <span class="event-tag event-tag--kids">Kids</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">24</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Baptism Service</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Celebrate with those being baptized during our morning worship service. A reception follows in the Fellowship Hall.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">May</span>
-          <span class="event-date-day">31</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Sunday Worship Service</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Join us as we finish the month in worship together.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-    </div>
-
-    <!-- ── JUNE 2026 ── -->
-    <div class="events-month">
-      <h2 class="events-month-header">June 2026</h2>
-
-      <article class="event-card fade-up" data-category="kids">
-        <div class="event-date">
-          <span class="event-date-month">Jun</span>
-          <span class="event-date-day">1</span>
-          <span class="event-date-weekday">Mon</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Vacation Bible School</h3>
-          <div class="event-meta">
-            <span>June 1 – 5 · 6:00 PM nightly</span>
-            <span>Children's Wing</span>
-          </div>
-          <p class="event-desc">A week of Bible lessons, music, crafts, and games for kids from pre-K through 5th grade. Register online — volunteers still needed!</p>
-          <span class="event-tag event-tag--kids">Kids</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">Jun</span>
-          <span class="event-date-day">7</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Youth Sunday</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Our students lead worship and Pastor Aaron preaches. Come support our next generation of worshippers.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-
-      <article class="event-card fade-up" data-category="worship">
-        <div class="event-date">
-          <span class="event-date-month">Jun</span>
-          <span class="event-date-day">21</span>
-          <span class="event-date-weekday">Sun</span>
-        </div>
-        <div class="event-body">
-          <h3 class="event-title">Father's Day + Baby Dedications</h3>
-          <div class="event-meta">
-            <span>10:45 AM</span>
-            <span>Sanctuary</span>
-          </div>
-          <p class="event-desc">Honor the dads in our church family and join us as we dedicate this year's new babies and their families to the Lord.</p>
-          <span class="event-tag event-tag--worship">Worship</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="events-empty" id="eventsEmpty" hidden>
-      <p>No events match this filter. <button type="button" class="events-empty-reset">Show all events</button></p>
-    </div>
-
-  </div>
+  <div class="events-section-inner" id="calView"></div>
 </section>
 
 <!-- CTA BANNER -->
@@ -418,39 +163,370 @@
 
 <script src="js/global.js"></script>
 <script>
-  // Filter events by category
-  const filters = document.querySelectorAll('.events-filter');
-  const cards = document.querySelectorAll('.event-card');
-  const monthGroups = document.querySelectorAll('.events-month');
-  const emptyState = document.getElementById('eventsEmpty');
+(function() {
+  // ── EVENT DATA ──
+  const EVENTS = [
+    { id: 1,  title: "Women's Bible Study",           start: '2026-04-16', time: '10:00 AM',                       location: 'Fellowship Hall',          desc: "Weekly women's Bible study on the book of Philippians. Open to women of all ages — newcomers welcome.",                               category: 'women' },
+    { id: 2,  title: "Sunday Worship Service",        start: '2026-04-19', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Join us for worship led by our choir, orchestra, and praise team. Pastor Jim continues his series in the Gospel of John.",            category: 'worship' },
+    { id: 3,  title: "Mercy Meals Packing Night",     start: '2026-04-20', time: '6:30 PM',                        location: 'Activities Building',      desc: "Partner with us to pack 10,000 meals for families in need. All ages welcome — great for families and small groups.",                   category: 'missions' },
+    { id: 4,  title: "Handbells & Choir Rehearsal",   start: '2026-04-22', time: '6:30 PM Handbells · 7:30 PM Choir', location: 'Music Suite',           desc: "Weekly rehearsal for handbells and the adult choir. Contact Luke Waters if you'd like to join.",                                       category: 'music' },
+    { id: 5,  title: "Sunday Worship + Lord's Supper",start: '2026-04-26', time: '10:45 AM',                       location: 'Sanctuary',                desc: "We'll observe the Lord's Supper together at the close of our worship service.",                                                        category: 'worship' },
+    { id: 6,  title: "Men's Breakfast",               start: '2026-04-30', time: '7:00 AM',                        location: 'Fellowship Hall',          desc: "Monthly breakfast for men of all ages. Pastor Aaron will share a short devotional. $5 suggested.",                                     category: 'men' },
+    { id: 7,  title: "Sunday Worship Service",        start: '2026-05-03', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Worship with us as Pastor Jim continues our spring sermon series.",                                                                    category: 'worship' },
+    { id: 8,  title: "Mother's Day Worship",          start: '2026-05-10', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Honor the mothers in our church family with a special worship service and a small gift for every mom.",                                category: 'worship' },
+    { id: 9,  title: "Women's Spring Retreat",        start: '2026-05-15', end: '2026-05-17', time: 'May 15 – 17', location: 'Ridgecrest Conference Center', desc: "A weekend of worship, teaching, and fellowship in the NC mountains. Register at the Information Services desk.",                    category: 'women' },
+    { id: 10, title: "Kingdom Kidz Fun Night",        start: '2026-05-20', time: '6:00 PM',                        location: "Children's Wing",          desc: "Games, snacks, and Bible stories for kids ages 4 – 5th grade. Invite a friend!",                                                       category: 'kids' },
+    { id: 11, title: "Baptism Service",               start: '2026-05-24', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Celebrate with those being baptized during our morning worship service. A reception follows in the Fellowship Hall.",                  category: 'worship' },
+    { id: 12, title: "Sunday Worship Service",        start: '2026-05-31', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Join us as we finish the month in worship together.",                                                                                  category: 'worship' },
+    { id: 13, title: "Vacation Bible School",         start: '2026-06-01', end: '2026-06-05', time: 'June 1 – 5 · 6:00 PM nightly', location: "Children's Wing", desc: "A week of Bible lessons, music, crafts, and games for kids from pre-K through 5th grade. Register online — volunteers still needed!", category: 'kids' },
+    { id: 14, title: "Youth Sunday",                  start: '2026-06-07', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Our students lead worship and Pastor Aaron preaches. Come support our next generation of worshippers.",                                category: 'worship' },
+    { id: 15, title: "Guatemala Mission Trip",        start: '2026-06-14', end: '2026-06-20', time: 'June 14 – 20',location: 'Guatemala',                desc: "A week serving alongside our partners in Guatemala — construction, kids' ministry, and medical clinics.",                               category: 'missions' },
+    { id: 16, title: "Father's Day + Baby Dedications", start: '2026-06-21', time: '10:45 AM',                     location: 'Sanctuary',                desc: "Honor the dads in our church family and join us as we dedicate this year's new babies and their families to the Lord.",                category: 'worship' },
+  ];
 
-  function applyFilter(filter) {
-    let visibleCount = 0;
-    cards.forEach(card => {
-      const show = filter === 'all' || card.dataset.category === filter;
-      card.hidden = !show;
-      if (show) visibleCount++;
-    });
-    // Hide month headers that have no visible events
-    monthGroups.forEach(group => {
-      const anyVisible = group.querySelectorAll('.event-card:not([hidden])').length > 0;
-      group.hidden = !anyVisible;
-    });
-    emptyState.hidden = visibleCount > 0;
+  const CATEGORY_LABELS = {
+    worship: 'Worship', music: 'Music', kids: 'Kids',
+    women: 'Women', men: 'Men', missions: 'Missions'
+  };
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const MONTH_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const WEEKDAY_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const TODAY = new Date(2026, 3, 16); // 2026-04-16 local
+
+  // ── DATE HELPERS ──
+  function parseDate(s) {
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function addDays(d, n) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  }
+  function startOfWeek(d) {
+    return addDays(d, -d.getDay());
+  }
+  function startOfMonth(d) {
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  }
+  function endOfMonth(d) {
+    return new Date(d.getFullYear(), d.getMonth() + 1, 0);
+  }
+  function daysBetween(a, b) {
+    return Math.round((b - a) / 86400000);
+  }
+  function sameDay(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+  function sameMonth(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
   }
 
-  filters.forEach(btn => {
+  // ── STATE ──
+  const state = {
+    view: 'month',
+    anchor: new Date(TODAY),
+    filter: 'all'
+  };
+
+  const viewEl = document.getElementById('calView');
+  const periodEl = document.getElementById('calPeriod');
+  const navEl = document.getElementById('calNav');
+
+  // ── EVENT LOOKUP / FILTER ──
+  function filteredEvents() {
+    if (state.filter === 'all') return EVENTS;
+    return EVENTS.filter(ev => ev.category === state.filter);
+  }
+
+  // Events that touch the [rangeStart, rangeEnd] inclusive range.
+  function eventsInRange(events, rangeStart, rangeEnd) {
+    return events.filter(ev => {
+      const s = parseDate(ev.start);
+      const e = parseDate(ev.end || ev.start);
+      return e >= rangeStart && s <= rangeEnd;
+    });
+  }
+
+  // Greedy row assignment within a week. Returns array of { ev, startCol, endCol, span, row }.
+  function assignRows(events, weekStart, weekEnd) {
+    const items = events.map(ev => {
+      const evStart = parseDate(ev.start);
+      const evEnd = parseDate(ev.end || ev.start);
+      const cs = evStart < weekStart ? weekStart : evStart;
+      const ce = evEnd > weekEnd ? weekEnd : evEnd;
+      const startCol = daysBetween(weekStart, cs);
+      const endCol = daysBetween(weekStart, ce);
+      return { ev, startCol, endCol, span: endCol - startCol + 1 };
+    });
+    items.sort((a, b) => b.span - a.span || a.startCol - b.startCol);
+    const rows = [];
+    items.forEach(item => {
+      let r = 0;
+      while (true) {
+        if (!rows[r]) rows[r] = [];
+        const conflict = rows[r].some(x => !(item.endCol < x.startCol || item.startCol > x.endCol));
+        if (!conflict) {
+          rows[r].push({ startCol: item.startCol, endCol: item.endCol });
+          item.row = r;
+          return;
+        }
+        r++;
+      }
+    });
+    return items;
+  }
+
+  // ── MONTH VIEW ──
+  function renderMonth() {
+    const first = startOfMonth(state.anchor);
+    const last = endOfMonth(state.anchor);
+    const gridStart = startOfWeek(first);
+    // Number of weeks to cover full month
+    const totalDays = daysBetween(gridStart, last) + 1;
+    const weeks = Math.ceil(totalDays / 7);
+
+    let html = '<div class="cal-month">';
+    html += '<div class="cal-month-head">';
+    WEEKDAY_SHORT.forEach(w => { html += `<div class="cal-month-dow">${w}</div>`; });
+    html += '</div>';
+
+    const events = filteredEvents();
+
+    for (let w = 0; w < weeks; w++) {
+      const weekStart = addDays(gridStart, w * 7);
+      const weekEnd = addDays(weekStart, 6);
+      const weekEvents = eventsInRange(events, weekStart, weekEnd);
+      const placed = assignRows(weekEvents, weekStart, weekEnd);
+      const rowCount = placed.reduce((m, p) => Math.max(m, p.row + 1), 0);
+
+      html += `<div class="cal-week" style="--rows:${rowCount};">`;
+
+      // Day cell backgrounds (span all rows as column backgrounds)
+      for (let i = 0; i < 7; i++) {
+        const d = addDays(weekStart, i);
+        const out = !sameMonth(d, state.anchor);
+        html += `<div class="cal-daycell${out ? ' cal-daycell--out' : ''}" style="grid-column:${i+1};grid-row:1/-1;"></div>`;
+      }
+      // Day numbers in row 1
+      for (let i = 0; i < 7; i++) {
+        const d = addDays(weekStart, i);
+        const out = !sameMonth(d, state.anchor);
+        const today = sameDay(d, TODAY);
+        const cls = ['cal-daynum'];
+        if (out) cls.push('cal-daynum--out');
+        if (today) cls.push('cal-daynum--today');
+        html += `<div class="cal-daynum-wrap" style="grid-column:${i+1};grid-row:1;"><span class="${cls.join(' ')}">${d.getDate()}</span></div>`;
+      }
+      // Event bars in rows 2..rowCount+1
+      placed.forEach(p => {
+        const ev = p.ev;
+        const multi = ev.end && ev.end !== ev.start;
+        const title = (multi ? '' : (ev.time ? ev.time + ' · ' : '')) + ev.title;
+        html += `<a href="#" class="cal-event cal-event--${ev.category}${multi ? ' cal-event--multi' : ''}" style="grid-column:${p.startCol+1}/${p.endCol+2};grid-row:${p.row+2};" data-id="${ev.id}" title="${escapeAttr(ev.title)}">${escapeHtml(title)}</a>`;
+      });
+
+      html += '</div>';
+    }
+    html += '</div>';
+    viewEl.innerHTML = html;
+    wireEventClicks();
+  }
+
+  // ── WEEK VIEW ──
+  function renderWeek() {
+    const weekStart = startOfWeek(state.anchor);
+    const weekEnd = addDays(weekStart, 6);
+    const events = filteredEvents();
+    const weekEvents = eventsInRange(events, weekStart, weekEnd);
+
+    // Split: multi-day -> banner; single-day -> columns
+    const multi = [];
+    const single = [];
+    weekEvents.forEach(ev => {
+      if (ev.end && ev.end !== ev.start) multi.push(ev);
+      else single.push(ev);
+    });
+    const placed = assignRows(multi, weekStart, weekEnd);
+    const bannerRows = placed.reduce((m, p) => Math.max(m, p.row + 1), 0);
+
+    let html = '<div class="cal-weekview">';
+    // Header row
+    html += '<div class="cal-weekview-head">';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(weekStart, i);
+      const today = sameDay(d, TODAY);
+      html += `<div class="cal-weekview-dow${today ? ' is-today' : ''}">
+        <span class="cal-weekview-dow-name">${WEEKDAY_SHORT[i]}</span>
+        <span class="cal-weekview-dow-num${today ? ' cal-daynum--today' : ''}">${d.getDate()}</span>
+      </div>`;
+    }
+    html += '</div>';
+
+    // Banner
+    if (bannerRows > 0) {
+      html += `<div class="cal-weekview-banner" style="--rows:${bannerRows};">`;
+      placed.forEach(p => {
+        const ev = p.ev;
+        html += `<a href="#" class="cal-event cal-event--${ev.category} cal-event--multi" style="grid-column:${p.startCol+1}/${p.endCol+2};grid-row:${p.row+1};" data-id="${ev.id}" title="${escapeAttr(ev.title)}">${escapeHtml(ev.title)}</a>`;
+      });
+      html += '</div>';
+    }
+
+    // Day columns with single-day events
+    html += '<div class="cal-weekview-cols">';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(weekStart, i);
+      html += '<div class="cal-weekview-col">';
+      single
+        .filter(ev => sameDay(parseDate(ev.start), d))
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .forEach(ev => {
+          html += `<a href="#" class="cal-event cal-event--${ev.category} cal-event--block" data-id="${ev.id}">
+            <span class="cal-event-time">${escapeHtml(ev.time || '')}</span>
+            <span class="cal-event-title">${escapeHtml(ev.title)}</span>
+          </a>`;
+        });
+      html += '</div>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    viewEl.innerHTML = html;
+    wireEventClicks();
+  }
+
+  // ── LIST VIEW ──
+  function renderList() {
+    const events = filteredEvents().slice().sort((a, b) => parseDate(a.start) - parseDate(b.start));
+
+    // Group by year-month
+    const groups = {};
+    events.forEach(ev => {
+      const d = parseDate(ev.start);
+      const key = d.getFullYear() + '-' + d.getMonth();
+      (groups[key] = groups[key] || { label: `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`, sort: d.getFullYear() * 12 + d.getMonth(), items: [] }).items.push(ev);
+    });
+    const ordered = Object.values(groups).sort((a, b) => a.sort - b.sort);
+
+    let html = '';
+    ordered.forEach(g => {
+      html += `<div class="events-month"><h2 class="events-month-header">${g.label}</h2>`;
+      g.items.forEach(ev => {
+        const d = parseDate(ev.start);
+        html += `<article class="event-card" data-category="${ev.category}">
+          <div class="event-date">
+            <span class="event-date-month">${MONTH_SHORT[d.getMonth()]}</span>
+            <span class="event-date-day">${d.getDate()}</span>
+            <span class="event-date-weekday">${WEEKDAY_SHORT[d.getDay()]}</span>
+          </div>
+          <div class="event-body">
+            <h3 class="event-title">${escapeHtml(ev.title)}</h3>
+            <div class="event-meta">
+              <span>${escapeHtml(ev.time || '')}</span>
+              <span>${escapeHtml(ev.location || '')}</span>
+            </div>
+            <p class="event-desc">${escapeHtml(ev.desc || '')}</p>
+            <span class="event-tag event-tag--${ev.category}">${CATEGORY_LABELS[ev.category] || ev.category}</span>
+          </div>
+        </article>`;
+      });
+      html += '</div>';
+    });
+
+    if (!events.length) {
+      html = `<div class="events-empty"><p>No events match this filter. <button type="button" class="events-empty-reset">Show all events</button></p></div>`;
+    }
+
+    viewEl.innerHTML = html;
+    const reset = viewEl.querySelector('.events-empty-reset');
+    if (reset) reset.addEventListener('click', () => setFilter('all'));
+  }
+
+  // ── PERIOD LABEL & NAV VISIBILITY ──
+  function updatePeriodLabel() {
+    if (state.view === 'month') {
+      periodEl.textContent = `${MONTH_NAMES[state.anchor.getMonth()]} ${state.anchor.getFullYear()}`;
+      periodEl.hidden = false;
+      navEl.hidden = false;
+    } else if (state.view === 'week') {
+      const ws = startOfWeek(state.anchor);
+      const we = addDays(ws, 6);
+      const sameYr = ws.getFullYear() === we.getFullYear();
+      const sameMo = sameYr && ws.getMonth() === we.getMonth();
+      let label;
+      if (sameMo) {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()} – ${we.getDate()}, ${ws.getFullYear()}`;
+      } else if (sameYr) {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()} – ${MONTH_SHORT[we.getMonth()]} ${we.getDate()}, ${ws.getFullYear()}`;
+      } else {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()}, ${ws.getFullYear()} – ${MONTH_SHORT[we.getMonth()]} ${we.getDate()}, ${we.getFullYear()}`;
+      }
+      periodEl.textContent = label;
+      periodEl.hidden = false;
+      navEl.hidden = false;
+    } else {
+      periodEl.hidden = true;
+      navEl.hidden = true;
+    }
+  }
+
+  // ── RENDER DISPATCH ──
+  function render() {
+    updatePeriodLabel();
+    viewEl.className = 'events-section-inner cal-view cal-view--' + state.view;
+    if (state.view === 'month') renderMonth();
+    else if (state.view === 'week') renderWeek();
+    else renderList();
+  }
+
+  // ── EVENT HANDLERS ──
+  function setView(v) {
+    state.view = v;
+    document.querySelectorAll('.cal-view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+    render();
+  }
+  function setFilter(f) {
+    state.filter = f;
+    document.querySelectorAll('.events-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    render();
+  }
+  function shiftAnchor(dir) {
+    if (state.view === 'month') {
+      state.anchor = new Date(state.anchor.getFullYear(), state.anchor.getMonth() + dir, 1);
+    } else if (state.view === 'week') {
+      state.anchor = addDays(state.anchor, dir * 7);
+    }
+    render();
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  function wireEventClicks() {
+    viewEl.querySelectorAll('.cal-event').forEach(el => {
+      el.addEventListener('click', e => e.preventDefault());
+    });
+  }
+
+  // ── WIRE UI ──
+  document.querySelectorAll('.cal-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+  document.querySelectorAll('.events-filter').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+  });
+  document.querySelectorAll('.cal-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      filters.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter(btn.dataset.filter);
+      const nav = btn.dataset.nav;
+      if (nav === 'today') { state.anchor = new Date(TODAY); render(); }
+      else if (nav === 'prev') shiftAnchor(-1);
+      else if (nav === 'next') shiftAnchor(1);
     });
   });
 
-  document.querySelector('.events-empty-reset').addEventListener('click', () => {
-    filters.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
-    applyFilter('all');
-  });
+  render();
+})();
 </script>
 
 </body>
