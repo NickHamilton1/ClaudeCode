@@ -1,0 +1,381 @@
+/* ================================================================
+   FBC Concord — Give Page
+   Mock giving form (placeholder for Planning Center embed).
+   ================================================================ */
+
+/* ── PREVIEW CALLOUT ── */
+.giving-callout {
+  max-width: 720px;
+  margin: -2.5rem auto 0;
+  padding: 1rem 1.4rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  display: flex; align-items: flex-start; gap: 0.9rem;
+  position: relative; z-index: 3;
+}
+.giving-callout-icon {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-soft); border-radius: 50%;
+  margin-top: 1px;
+}
+.giving-callout-icon svg { width: 18px; height: 18px; color: var(--gold); }
+.giving-callout p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+.giving-callout strong { color: var(--navy); font-weight: 500; }
+
+/* ── GIVING FORM SECTION ── */
+.giving-section {
+  padding: 4rem 24px 5rem;
+  background: var(--light-bg);
+}
+.giving-section-inner {
+  max-width: 720px; margin: 0 auto;
+}
+
+.giving-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2.5rem 2.25rem;
+}
+
+/* Group label */
+.giving-form-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+.giving-form-group {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.giving-form-group:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.4rem;
+}
+
+/* ── AMOUNT BUTTONS ── */
+.amount-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+.amount-btn {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 0.5rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition), transform 0.15s;
+}
+.amount-btn:hover {
+  border-color: var(--gold);
+  background: var(--white);
+}
+.amount-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  box-shadow: 0 4px 14px rgba(15, 27, 45, 0.18);
+}
+.amount-btn.other-btn {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+}
+
+/* ── CUSTOM AMOUNT INPUT ── */
+.custom-amount-wrap {
+  margin-top: 0.9rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+.custom-amount-wrap.visible {
+  max-height: 80px;
+  opacity: 1;
+}
+.custom-amount-wrap input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  width: 100%;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.custom-amount-wrap input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.custom-amount-wrap input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* ── FUND DROPDOWN ── */
+.giving-select-wrap {
+  position: relative;
+}
+.giving-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  width: 10px; height: 10px;
+  border-right: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.giving-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 2.6rem 0.85rem 1rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.giving-select:hover { border-color: var(--gold); }
+.giving-select:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* ── FREQUENCY BUTTONS ── */
+.frequency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.frequency-btn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+.frequency-btn:hover {
+  border-color: var(--gold);
+  background: var(--white);
+}
+.frequency-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  box-shadow: 0 4px 14px rgba(15, 27, 45, 0.18);
+}
+
+/* ── DONOR INFO FIELDS ── */
+.donor-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.donor-fields .form-row { display: flex; flex-direction: column; }
+.donor-fields .form-row label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--navy);
+  letter-spacing: 0.3px;
+  margin-bottom: 0.45rem;
+}
+.donor-fields .form-row input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  width: 100%;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.donor-fields .form-row input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.donor-fields .form-row input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* ── SUBMIT ── */
+.giving-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 1.75rem;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+}
+.giving-submit-note {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0.85rem 0 0;
+  line-height: 1.5;
+}
+.giving-submit-note svg { width: 13px; height: 13px; color: var(--text-muted); }
+
+/* ── SUCCESS STATE ── */
+.giving-form-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+.giving-success-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-soft);
+  border-radius: 50%;
+}
+.giving-success-icon svg { width: 34px; height: 34px; color: var(--gold); }
+.giving-form-success h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+.giving-form-success p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.giving-success-recap strong { color: var(--navy); font-weight: 500; }
+
+/* ── OTHER WAYS TO GIVE ── */
+.other-ways {
+  padding: 5rem 24px;
+  background: var(--cream);
+}
+.other-ways .section-header { margin-bottom: 3rem; }
+.other-ways-grid {
+  max-width: 1060px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.other-way-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.8rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.other-way-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+.other-way-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-soft); border-radius: 10px;
+}
+.other-way-icon svg { width: 20px; height: 20px; color: var(--gold); }
+.other-way-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 500;
+  color: var(--navy); margin-bottom: 0.5rem;
+}
+.other-way-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0.4rem;
+}
+.other-way-card p:last-child { margin-bottom: 0; }
+.other-way-card a {
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+  transition: color var(--transition);
+}
+.other-way-card a:hover { color: var(--gold); }
+
+/* ── FAQ ── */
+.giving-faq {
+  padding: 5rem 24px 6rem;
+  background: var(--light-bg);
+}
+.giving-faq .section-header { margin-bottom: 2.5rem; }
+.faq-list {
+  max-width: 760px; margin: 0 auto;
+  display: flex; flex-direction: column;
+  gap: 1rem;
+}
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.8rem;
+  box-shadow: var(--shadow-card);
+}
+.faq-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.faq-item p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .giving-callout { margin: -1.5rem 16px 0; }
+  .giving-section { padding: 3rem 16px 4rem; }
+  .giving-form-card { padding: 1.8rem 1.4rem 1.6rem; }
+  .amount-grid { grid-template-columns: repeat(3, 1fr); }
+  .frequency-grid { grid-template-columns: 1fr; }
+  .other-ways, .giving-faq { padding: 3.5rem 16px; }
+  .other-ways-grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .other-ways-grid { gap: 1.2rem; }
+}
