@@ -97,7 +97,7 @@ img { max-width: 100%; height: auto; display: block; }
   transition: opacity 0.3s ease;
 }
 .nav-brand:hover { opacity: 0.85; }
-.nav-logo { height: 38px; width: auto; }
+.nav-logo { height: 52px; width: auto; }
 
 .nav-links {
   display: flex; gap: 2.5rem; list-style: none;

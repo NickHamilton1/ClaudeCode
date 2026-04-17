@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events &amp; Calendar — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/FB_logo_black_forVimeo.png" alt="First Baptist Church Concord, NC" class="nav-logo">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="ministries.html">Ministries</a></li>
+      <li><a href="calendar.html" class="active">Events</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="giving.html">Give</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="visit.html" class="nav-cta">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <img src="images/FB_logo_black_forVimeo.png" alt="FBC Concord" class="mobile-menu-logo">
+    </div>
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="calendar.html">Events</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="giving.html">Give</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-cta">
+        <a href="visit.html" class="btn-gold">Plan Your Visit</a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contact">
+        <p>200 Branchview Dr SE, Concord, NC 28025</p>
+        <p><a href="tel:7047869167">704.786.9167</a></p>
+      </div>
+      <div class="mobile-menu-socials">
+        <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="label-tag">Stay Connected</span>
+    <h1>Events &amp; Calendar</h1>
+    <p>Here's what's happening at FBC Concord over the next few months — worship services, rehearsals, retreats, and ministry events. We'd love to see you there.</p>
+  </div>
+</section>
+
+<!-- TOOLBAR -->
+<section class="cal-toolbar">
+  <div class="cal-toolbar-inner">
+    <div class="cal-view-toggle" role="tablist" aria-label="Calendar view">
+      <button class="cal-view-btn active" data-view="month">Month</button>
+      <button class="cal-view-btn" data-view="week">Week</button>
+      <button class="cal-view-btn" data-view="list">List</button>
+    </div>
+    <div class="cal-nav" id="calNav">
+      <button class="cal-nav-btn" data-nav="prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="cal-nav-btn cal-nav-today" data-nav="today">Today</button>
+      <button class="cal-nav-btn" data-nav="next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="cal-period" id="calPeriod">April 2026</div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="events-filters">
+  <div class="events-filters-inner">
+    <button class="events-filter active" data-filter="all">All Events</button>
+    <button class="events-filter" data-filter="worship">Worship</button>
+    <button class="events-filter" data-filter="music">Music</button>
+    <button class="events-filter" data-filter="kids">Kids</button>
+    <button class="events-filter" data-filter="women">Women</button>
+    <button class="events-filter" data-filter="men">Men</button>
+    <button class="events-filter" data-filter="missions">Missions</button>
+  </div>
+</section>
+
+<!-- VIEW CONTAINER -->
+<section class="events-section">
+  <div class="events-section-inner" id="calView"></div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner fade-up">
+    <span class="label-tag">Get Involved</span>
+    <h2>Have an event to add?</h2>
+    <p>Ministry leaders can submit events directly to the church office — we'll get it on the calendar and published here.</p>
+    <div class="cta-buttons">
+      <a href="contact.html" class="btn-gold">
+        Contact the Office
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <a href="visit.html" class="btn-outline-light">
+        Plan Your Visit
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <img src="images/FB_logo_black_forVimeo.png" alt="First Baptist Church Concord, NC" class="footer-logo">
+      <p>200 Branchview Dr SE, Concord, NC 28025</p>
+      <p>704.786.9167</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/FirstBaptistChurchConcord" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.instagram.com/hope.fbcconcord/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.youtube.com/user/FBCConcord" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 First Baptist Church Concord, NC. All rights reserved.</span>
+      <span>Loving God. Loving Others. Making Disciples.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script>
+(function() {
+  // ── EVENT DATA ──
+  const EVENTS = [
+    { id: 1,  title: "Women's Bible Study",           start: '2026-04-16', time: '10:00 AM',                       location: 'Fellowship Hall',          desc: "Weekly women's Bible study on the book of Philippians. Open to women of all ages — newcomers welcome.",                               category: 'women' },
+    { id: 2,  title: "Sunday Worship Service",        start: '2026-04-19', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Join us for worship led by our choir, orchestra, and praise team. Pastor Jim continues his series in the Gospel of John.",            category: 'worship' },
+    { id: 3,  title: "Mercy Meals Packing Night",     start: '2026-04-20', time: '6:30 PM',                        location: 'Activities Building',      desc: "Partner with us to pack 10,000 meals for families in need. All ages welcome — great for families and small groups.",                   category: 'missions' },
+    { id: 4,  title: "Handbells & Choir Rehearsal",   start: '2026-04-22', time: '6:30 PM Handbells · 7:30 PM Choir', location: 'Music Suite',           desc: "Weekly rehearsal for handbells and the adult choir. Contact Luke Waters if you'd like to join.",                                       category: 'music' },
+    { id: 5,  title: "Sunday Worship + Lord's Supper",start: '2026-04-26', time: '10:45 AM',                       location: 'Sanctuary',                desc: "We'll observe the Lord's Supper together at the close of our worship service.",                                                        category: 'worship' },
+    { id: 6,  title: "Men's Breakfast",               start: '2026-04-30', time: '7:00 AM',                        location: 'Fellowship Hall',          desc: "Monthly breakfast for men of all ages. Pastor Aaron will share a short devotional. $5 suggested.",                                     category: 'men' },
+    { id: 7,  title: "Sunday Worship Service",        start: '2026-05-03', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Worship with us as Pastor Jim continues our spring sermon series.",                                                                    category: 'worship' },
+    { id: 8,  title: "Mother's Day Worship",          start: '2026-05-10', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Honor the mothers in our church family with a special worship service and a small gift for every mom.",                                category: 'worship' },
+    { id: 9,  title: "Women's Spring Retreat",        start: '2026-05-15', end: '2026-05-17', time: 'May 15 – 17', location: 'Ridgecrest Conference Center', desc: "A weekend of worship, teaching, and fellowship in the NC mountains. Register at the Information Services desk.",                    category: 'women' },
+    { id: 10, title: "Kingdom Kidz Fun Night",        start: '2026-05-20', time: '6:00 PM',                        location: "Children's Wing",          desc: "Games, snacks, and Bible stories for kids ages 4 – 5th grade. Invite a friend!",                                                       category: 'kids' },
+    { id: 11, title: "Baptism Service",               start: '2026-05-24', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Celebrate with those being baptized during our morning worship service. A reception follows in the Fellowship Hall.",                  category: 'worship' },
+    { id: 12, title: "Sunday Worship Service",        start: '2026-05-31', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Join us as we finish the month in worship together.",                                                                                  category: 'worship' },
+    { id: 13, title: "Vacation Bible School",         start: '2026-06-01', end: '2026-06-05', time: 'June 1 – 5 · 6:00 PM nightly', location: "Children's Wing", desc: "A week of Bible lessons, music, crafts, and games for kids from pre-K through 5th grade. Register online — volunteers still needed!", category: 'kids' },
+    { id: 14, title: "Youth Sunday",                  start: '2026-06-07', time: '10:45 AM',                       location: 'Sanctuary',                desc: "Our students lead worship and Pastor Aaron preaches. Come support our next generation of worshippers.",                                category: 'worship' },
+    { id: 15, title: "Guatemala Mission Trip",        start: '2026-06-14', end: '2026-06-20', time: 'June 14 – 20',location: 'Guatemala',                desc: "A week serving alongside our partners in Guatemala — construction, kids' ministry, and medical clinics.",                               category: 'missions' },
+    { id: 16, title: "Father's Day + Baby Dedications", start: '2026-06-21', time: '10:45 AM',                     location: 'Sanctuary',                desc: "Honor the dads in our church family and join us as we dedicate this year's new babies and their families to the Lord.",                category: 'worship' },
+  ];
+
+  const CATEGORY_LABELS = {
+    worship: 'Worship', music: 'Music', kids: 'Kids',
+    women: 'Women', men: 'Men', missions: 'Missions'
+  };
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const MONTH_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const WEEKDAY_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const TODAY = new Date(2026, 3, 16); // 2026-04-16 local
+
+  // ── DATE HELPERS ──
+  function parseDate(s) {
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function addDays(d, n) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  }
+  function startOfWeek(d) {
+    return addDays(d, -d.getDay());
+  }
+  function startOfMonth(d) {
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  }
+  function endOfMonth(d) {
+    return new Date(d.getFullYear(), d.getMonth() + 1, 0);
+  }
+  function daysBetween(a, b) {
+    return Math.round((b - a) / 86400000);
+  }
+  function sameDay(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+  function sameMonth(a, b) {
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+  }
+
+  // ── STATE ──
+  const state = {
+    view: 'month',
+    anchor: new Date(TODAY),
+    filter: 'all'
+  };
+
+  const viewEl = document.getElementById('calView');
+  const periodEl = document.getElementById('calPeriod');
+  const navEl = document.getElementById('calNav');
+
+  // ── EVENT LOOKUP / FILTER ──
+  function filteredEvents() {
+    if (state.filter === 'all') return EVENTS;
+    return EVENTS.filter(ev => ev.category === state.filter);
+  }
+
+  // Events that touch the [rangeStart, rangeEnd] inclusive range.
+  function eventsInRange(events, rangeStart, rangeEnd) {
+    return events.filter(ev => {
+      const s = parseDate(ev.start);
+      const e = parseDate(ev.end || ev.start);
+      return e >= rangeStart && s <= rangeEnd;
+    });
+  }
+
+  // Greedy row assignment within a week. Returns array of { ev, startCol, endCol, span, row }.
+  function assignRows(events, weekStart, weekEnd) {
+    const items = events.map(ev => {
+      const evStart = parseDate(ev.start);
+      const evEnd = parseDate(ev.end || ev.start);
+      const cs = evStart < weekStart ? weekStart : evStart;
+      const ce = evEnd > weekEnd ? weekEnd : evEnd;
+      const startCol = daysBetween(weekStart, cs);
+      const endCol = daysBetween(weekStart, ce);
+      return { ev, startCol, endCol, span: endCol - startCol + 1 };
+    });
+    items.sort((a, b) => b.span - a.span || a.startCol - b.startCol);
+    const rows = [];
+    items.forEach(item => {
+      let r = 0;
+      while (true) {
+        if (!rows[r]) rows[r] = [];
+        const conflict = rows[r].some(x => !(item.endCol < x.startCol || item.startCol > x.endCol));
+        if (!conflict) {
+          rows[r].push({ startCol: item.startCol, endCol: item.endCol });
+          item.row = r;
+          return;
+        }
+        r++;
+      }
+    });
+    return items;
+  }
+
+  // ── MONTH VIEW ──
+  function renderMonth() {
+    const first = startOfMonth(state.anchor);
+    const last = endOfMonth(state.anchor);
+    const gridStart = startOfWeek(first);
+    // Number of weeks to cover full month
+    const totalDays = daysBetween(gridStart, last) + 1;
+    const weeks = Math.ceil(totalDays / 7);
+
+    let html = '<div class="cal-month">';
+    html += '<div class="cal-month-head">';
+    WEEKDAY_SHORT.forEach(w => { html += `<div class="cal-month-dow">${w}</div>`; });
+    html += '</div>';
+
+    const events = filteredEvents();
+
+    for (let w = 0; w < weeks; w++) {
+      const weekStart = addDays(gridStart, w * 7);
+      const weekEnd = addDays(weekStart, 6);
+      const weekEvents = eventsInRange(events, weekStart, weekEnd);
+      const placed = assignRows(weekEvents, weekStart, weekEnd);
+      const rowCount = placed.reduce((m, p) => Math.max(m, p.row + 1), 0);
+
+      html += `<div class="cal-week" style="--rows:${rowCount};">`;
+
+      // Day cell backgrounds (span all rows as column backgrounds)
+      for (let i = 0; i < 7; i++) {
+        const d = addDays(weekStart, i);
+        const out = !sameMonth(d, state.anchor);
+        html += `<div class="cal-daycell${out ? ' cal-daycell--out' : ''}" style="grid-column:${i+1};grid-row:1/-1;"></div>`;
+      }
+      // Day numbers in row 1
+      for (let i = 0; i < 7; i++) {
+        const d = addDays(weekStart, i);
+        const out = !sameMonth(d, state.anchor);
+        const today = sameDay(d, TODAY);
+        const cls = ['cal-daynum'];
+        if (out) cls.push('cal-daynum--out');
+        if (today) cls.push('cal-daynum--today');
+        html += `<div class="cal-daynum-wrap" style="grid-column:${i+1};grid-row:1;"><span class="${cls.join(' ')}">${d.getDate()}</span></div>`;
+      }
+      // Event bars in rows 2..rowCount+1
+      placed.forEach(p => {
+        const ev = p.ev;
+        const multi = ev.end && ev.end !== ev.start;
+        const title = (multi ? '' : (ev.time ? ev.time + ' · ' : '')) + ev.title;
+        html += `<a href="#" class="cal-event cal-event--${ev.category}${multi ? ' cal-event--multi' : ''}" style="grid-column:${p.startCol+1}/${p.endCol+2};grid-row:${p.row+2};" data-id="${ev.id}" title="${escapeAttr(ev.title)}">${escapeHtml(title)}</a>`;
+      });
+
+      html += '</div>';
+    }
+    html += '</div>';
+    viewEl.innerHTML = html;
+    wireEventClicks();
+  }
+
+  // ── WEEK VIEW ──
+  function renderWeek() {
+    const weekStart = startOfWeek(state.anchor);
+    const weekEnd = addDays(weekStart, 6);
+    const events = filteredEvents();
+    const weekEvents = eventsInRange(events, weekStart, weekEnd);
+
+    // Split: multi-day -> banner; single-day -> columns
+    const multi = [];
+    const single = [];
+    weekEvents.forEach(ev => {
+      if (ev.end && ev.end !== ev.start) multi.push(ev);
+      else single.push(ev);
+    });
+    const placed = assignRows(multi, weekStart, weekEnd);
+    const bannerRows = placed.reduce((m, p) => Math.max(m, p.row + 1), 0);
+
+    let html = '<div class="cal-weekview">';
+    // Header row
+    html += '<div class="cal-weekview-head">';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(weekStart, i);
+      const today = sameDay(d, TODAY);
+      html += `<div class="cal-weekview-dow${today ? ' is-today' : ''}">
+        <span class="cal-weekview-dow-name">${WEEKDAY_SHORT[i]}</span>
+        <span class="cal-weekview-dow-num${today ? ' cal-daynum--today' : ''}">${d.getDate()}</span>
+      </div>`;
+    }
+    html += '</div>';
+
+    // Banner
+    if (bannerRows > 0) {
+      html += `<div class="cal-weekview-banner" style="--rows:${bannerRows};">`;
+      placed.forEach(p => {
+        const ev = p.ev;
+        html += `<a href="#" class="cal-event cal-event--${ev.category} cal-event--multi" style="grid-column:${p.startCol+1}/${p.endCol+2};grid-row:${p.row+1};" data-id="${ev.id}" title="${escapeAttr(ev.title)}">${escapeHtml(ev.title)}</a>`;
+      });
+      html += '</div>';
+    }
+
+    // Day columns with single-day events
+    html += '<div class="cal-weekview-cols">';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(weekStart, i);
+      html += '<div class="cal-weekview-col">';
+      single
+        .filter(ev => sameDay(parseDate(ev.start), d))
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .forEach(ev => {
+          html += `<a href="#" class="cal-event cal-event--${ev.category} cal-event--block" data-id="${ev.id}">
+            <span class="cal-event-time">${escapeHtml(ev.time || '')}</span>
+            <span class="cal-event-title">${escapeHtml(ev.title)}</span>
+          </a>`;
+        });
+      html += '</div>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    viewEl.innerHTML = html;
+    wireEventClicks();
+  }
+
+  // ── LIST VIEW ──
+  function renderList() {
+    const events = filteredEvents().slice().sort((a, b) => parseDate(a.start) - parseDate(b.start));
+
+    // Group by year-month
+    const groups = {};
+    events.forEach(ev => {
+      const d = parseDate(ev.start);
+      const key = d.getFullYear() + '-' + d.getMonth();
+      (groups[key] = groups[key] || { label: `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`, sort: d.getFullYear() * 12 + d.getMonth(), items: [] }).items.push(ev);
+    });
+    const ordered = Object.values(groups).sort((a, b) => a.sort - b.sort);
+
+    let html = '';
+    ordered.forEach(g => {
+      html += `<div class="events-month"><h2 class="events-month-header">${g.label}</h2>`;
+      g.items.forEach(ev => {
+        const d = parseDate(ev.start);
+        html += `<article class="event-card" data-category="${ev.category}">
+          <div class="event-date">
+            <span class="event-date-month">${MONTH_SHORT[d.getMonth()]}</span>
+            <span class="event-date-day">${d.getDate()}</span>
+            <span class="event-date-weekday">${WEEKDAY_SHORT[d.getDay()]}</span>
+          </div>
+          <div class="event-body">
+            <h3 class="event-title">${escapeHtml(ev.title)}</h3>
+            <div class="event-meta">
+              <span>${escapeHtml(ev.time || '')}</span>
+              <span>${escapeHtml(ev.location || '')}</span>
+            </div>
+            <p class="event-desc">${escapeHtml(ev.desc || '')}</p>
+            <span class="event-tag event-tag--${ev.category}">${CATEGORY_LABELS[ev.category] || ev.category}</span>
+          </div>
+        </article>`;
+      });
+      html += '</div>';
+    });
+
+    if (!events.length) {
+      html = `<div class="events-empty"><p>No events match this filter. <button type="button" class="events-empty-reset">Show all events</button></p></div>`;
+    }
+
+    viewEl.innerHTML = html;
+    const reset = viewEl.querySelector('.events-empty-reset');
+    if (reset) reset.addEventListener('click', () => setFilter('all'));
+  }
+
+  // ── PERIOD LABEL & NAV VISIBILITY ──
+  function updatePeriodLabel() {
+    if (state.view === 'month') {
+      periodEl.textContent = `${MONTH_NAMES[state.anchor.getMonth()]} ${state.anchor.getFullYear()}`;
+      periodEl.hidden = false;
+      navEl.hidden = false;
+    } else if (state.view === 'week') {
+      const ws = startOfWeek(state.anchor);
+      const we = addDays(ws, 6);
+      const sameYr = ws.getFullYear() === we.getFullYear();
+      const sameMo = sameYr && ws.getMonth() === we.getMonth();
+      let label;
+      if (sameMo) {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()} – ${we.getDate()}, ${ws.getFullYear()}`;
+      } else if (sameYr) {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()} – ${MONTH_SHORT[we.getMonth()]} ${we.getDate()}, ${ws.getFullYear()}`;
+      } else {
+        label = `${MONTH_SHORT[ws.getMonth()]} ${ws.getDate()}, ${ws.getFullYear()} – ${MONTH_SHORT[we.getMonth()]} ${we.getDate()}, ${we.getFullYear()}`;
+      }
+      periodEl.textContent = label;
+      periodEl.hidden = false;
+      navEl.hidden = false;
+    } else {
+      periodEl.hidden = true;
+      navEl.hidden = true;
+    }
+  }
+
+  // ── RENDER DISPATCH ──
+  function render() {
+    updatePeriodLabel();
+    viewEl.className = 'events-section-inner cal-view cal-view--' + state.view;
+    if (state.view === 'month') renderMonth();
+    else if (state.view === 'week') renderWeek();
+    else renderList();
+  }
+
+  // ── EVENT HANDLERS ──
+  function setView(v) {
+    state.view = v;
+    document.querySelectorAll('.cal-view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+    render();
+  }
+  function setFilter(f) {
+    state.filter = f;
+    document.querySelectorAll('.events-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    render();
+  }
+  function shiftAnchor(dir) {
+    if (state.view === 'month') {
+      state.anchor = new Date(state.anchor.getFullYear(), state.anchor.getMonth() + dir, 1);
+    } else if (state.view === 'week') {
+      state.anchor = addDays(state.anchor, dir * 7);
+    }
+    render();
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  function wireEventClicks() {
+    viewEl.querySelectorAll('.cal-event').forEach(el => {
+      el.addEventListener('click', e => e.preventDefault());
+    });
+  }
+
+  // ── WIRE UI ──
+  document.querySelectorAll('.cal-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+  document.querySelectorAll('.events-filter').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+  });
+  document.querySelectorAll('.cal-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nav = btn.dataset.nav;
+      if (nav === 'today') { state.anchor = new Date(TODAY); render(); }
+      else if (nav === 'prev') shiftAnchor(-1);
+      else if (nav === 'next') shiftAnchor(1);
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

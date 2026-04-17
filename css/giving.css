@@ -1,0 +1,363 @@
+/* ================================================================
+   FBC Concord — Give / Donation Page
+   ================================================================ */
+
+.giving-section {
+  padding: 7rem 24px 5rem;
+  background: var(--light-bg);
+}
+.giving-section-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── Intro strip above the form ── */
+.giving-intro {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+.giving-intro p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── Card shell ── */
+.giving-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2.5rem 2.25rem;
+}
+
+/* ── Section label inside the form ── */
+.giving-field-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+/* ── Fund dropdown (reuses contact form select pattern) ── */
+.giving-select-wrap {
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.giving-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 1.1rem;
+  top: 2.3rem;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.giving-fund-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 2.6rem 0.85rem 1rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.giving-fund-select:hover { border-color: var(--gold); }
+.giving-fund-select:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+.giving-fund-select option {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--white);
+}
+
+/* ── Amount grid ── */
+.giving-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+.giving-amount-btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 0.6rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+.giving-amount-btn:hover {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+}
+.giving-amount-btn.selected {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 2px 10px rgba(201, 162, 39, 0.25);
+}
+
+/* ── Custom amount input ── */
+.giving-custom-amount {
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.giving-custom-amount .currency-sign {
+  position: absolute;
+  left: 1rem;
+  top: 0.88rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.giving-custom-amount input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem 0.8rem 2.1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.giving-custom-amount input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.giving-custom-amount input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* ── Frequency segmented control ── */
+.giving-frequency {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+  margin-bottom: 1.75rem;
+}
+.giving-frequency input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.giving-frequency label {
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+.giving-frequency input[type="radio"]:checked + label {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ── Donor fields (reuses .form-row pattern from contact.css but scoped here) ── */
+.giving-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.giving-form .form-row {
+  display: flex;
+  flex-direction: column;
+}
+.giving-form .form-row label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--navy);
+  letter-spacing: 0.3px;
+  margin-bottom: 0.45rem;
+}
+.giving-form .form-row .req { color: var(--gold); margin-left: 2px; }
+.giving-form .form-row input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--light-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.giving-form .form-row input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.giving-form .form-row input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* ── Card field row (expiry + CVV side by side) ── */
+.giving-card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ── Section divider headings (Payment, Your Info) ── */
+.giving-section-heading {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 1.75rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.giving-section-heading:first-of-type {
+  padding-top: 0;
+  border-top: none;
+  margin-top: 0;
+}
+
+/* ── Submit ── */
+.giving-submit {
+  align-self: stretch;
+  justify-content: center;
+  margin-top: 0.6rem;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+}
+.giving-submit-total {
+  font-weight: 600;
+  margin-left: 4px;
+}
+.giving-form-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0.6rem 0 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ── Demo banner ── */
+.giving-demo-banner {
+  background: var(--gold-soft);
+  border: 1px dashed rgba(201, 162, 39, 0.4);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-body);
+  text-align: center;
+  line-height: 1.5;
+}
+.giving-demo-banner strong {
+  color: var(--navy);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ── Success state ── */
+.giving-form-success {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+.giving-success-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-soft);
+  border-radius: 50%;
+}
+.giving-success-icon svg { width: 34px; height: 34px; color: var(--gold); }
+.giving-form-success h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+.giving-form-success .success-amount {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.giving-form-success p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Other ways to give block ── */
+.giving-alt {
+  margin-top: 2.5rem;
+  padding: 1.75rem 2rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.giving-alt h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.giving-alt p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+.giving-alt p:last-child { margin-bottom: 0; }
+.giving-alt a { color: var(--gold); transition: opacity 0.2s; }
+.giving-alt a:hover { opacity: 0.8; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .giving-form-card { padding: 1.8rem 1.4rem 1.6rem; }
+  .giving-amount-grid { grid-template-columns: repeat(2, 1fr); }
+  .giving-alt { padding: 1.4rem 1.3rem; }
+}
