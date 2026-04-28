@@ -19,12 +19,13 @@ Add a content management system to the FBC Concord static site so that:
 - A general-purpose CMS competing with WordPress / Sanity. This is purpose-built for this site.
 - Self-hosted video. YouTube is and remains the source of truth for sermon video.
 - Approval workflows. Sermons publish immediately; admin is for post-publish edits.
+- Building our own admin UI from scratch. We use an off-the-shelf git-backed CMS (Sveltia) and focus engineering effort on the custom sermon pipeline that no off-the-shelf tool provides.
 
 ## Architecture
 
 ### Source of truth: the git repository
 
-All content — sermons, blog posts, photos, and the JSON indexes that drive list pages — lives in the existing GitHub repo. Publishing = committing to `main`. Cloudflare Pages auto-deploys on push. Rollback = `git revert`.
+All content — sermons, blog posts, photos, and the JSON/Markdown indexes that drive list pages — lives in the existing GitHub repo. Publishing = committing to `main`. Cloudflare Pages auto-deploys on push. Rollback = `git revert`.
 
 This means:
 
@@ -32,43 +33,58 @@ This means:
 - Every change is auditable (git log shows who published what and when).
 - The CMS can be down for days and the site keeps working perfectly.
 
-### Three components
+### Two components
 
 ```
 ┌─────────────────────┐     ┌──────────────────────┐     ┌─────────────────────┐
-│  Zapier (YouTube    │────▶│  CMS Worker          │────▶│  GitHub repo        │
-│  new-video trigger) │     │  (Cloudflare Worker) │     │  (commits HTML +    │
-└─────────────────────┘     │                      │     │   JSON indexes)     │
-                            │  - /webhook/sermon   │     └──────────┬──────────┘
-┌─────────────────────┐     │  - /admin (UI)       │                │
-│  Admin user (dad,   │────▶│  - /api/...          │                ▼
-│  Nick, others) in   │     │                      │     ┌─────────────────────┐
-│  a web browser      │     │  Calls Anthropic +   │     │  Cloudflare Pages   │
-└─────────────────────┘     │  YouTube + GitHub    │     │  auto-deploys       │
-                            │  APIs                │     │  (public site)      │
-                            └──────────────────────┘     └─────────────────────┘
+│  Zapier (YouTube    │────▶│  Sermon Pipeline     │────▶│  GitHub repo        │
+│  new-video trigger) │     │  Worker              │     │  (commits HTML +    │
+└─────────────────────┘     │  (Cloudflare Worker) │     │   JSON indexes)     │
+                            │  /webhook/sermon     │     └──────────┬──────────┘
+                            │  Calls Anthropic +   │                │
+                            │  YouTube + GitHub    │                │
+                            │  APIs                │                │
+                            └──────────────────────┘                │
+                                                                    │
+┌─────────────────────┐     ┌──────────────────────┐                │
+│  Admin user (dad,   │────▶│  Sveltia CMS         │────────────────┤
+│  Nick, others) in   │     │  (static admin page  │                │
+│  a web browser      │     │   served from /admin)│                │
+└─────────────────────┘     │  Logs in with GitHub │                │
+                            │  OAuth, commits      │                │
+                            │  directly via API    │                │
+                            └──────────────────────┘                │
+                                                                    ▼
+                                                       ┌─────────────────────┐
+                                                       │  Cloudflare Pages   │
+                                                       │  auto-deploys       │
+                                                       │  (public site)      │
+                                                       └─────────────────────┘
 ```
 
 1. **Cloudflare Pages** — serves the public static site. Already exists. Unchanged.
-2. **CMS Worker** — single Cloudflare Worker hosting the admin UI, the API, and the Zapier webhook endpoint. Talks to GitHub API to commit content.
-3. **External services** — Anthropic API (Claude, for sermon AI), YouTube Data API (for transcript + video metadata), Resend or similar (for publish notifications).
+2. **Sveltia CMS** — open-source, git-backed CMS. A single static `/admin/index.html` page on the site. Users log in with GitHub OAuth; Sveltia commits content (Markdown, JSON, images) directly to the repo via the GitHub API. Free, actively maintained, no server to run.
+3. **Sermon Pipeline Worker** — a Cloudflare Worker that hosts the Zapier webhook and runs the YouTube → transcript → Claude → commit pipeline. The only custom server code we maintain.
 
-### Why a Cloudflare Worker for admin (not a separate service)
+### Why Sveltia (not Decap, TinaCMS, or building our own)
 
-- Same platform as the site (one place to manage, one bill).
-- Free tier covers all expected traffic.
-- Native bindings to Cloudflare KV (for sessions) and Secrets (for API keys).
-- Routes can be split: `/admin/*` and `/api/*` go to the Worker, everything else to Pages.
+- **Free and open-source.** No vendor lock-in.
+- **Git-native.** Reads and writes content directly to the repo. No separate database.
+- **Active maintenance.** Decap (the predecessor) has slowed; Sveltia is the modern fork.
+- **Fast and friendly UI.** Better than Decap, more polished than self-built equivalents.
+- **GitHub OAuth login.** Your dad signs in with a GitHub account; permissions are managed via repo collaborators.
+- **Self-hosted as a static file.** Lives in the repo as `/admin/index.html` + a config file. No server.
+- **YAML-configurable content model.** We define each content type once; Sveltia generates the entire admin UI.
+
+Building our own admin would be ~40–60 hours of work plus indefinite maintenance (sessions, password reset, security patches, mobile quirks, accessibility, etc.) for a feature set that Sveltia gives us in an afternoon. Not worth it for a 3-user church site.
 
 ## Content model
 
-Each content type has both a **rendered HTML file** (for the public site) and an **entry in a JSON index** (the source of structured data, used by the admin and by list pages).
+Each content type has both **rendered HTML/Markdown files** (for the public site) and an **index file** that drives list pages. Sveltia reads and writes both via its YAML config.
 
 ### Sermons
 
-**HTML file:** `sermons/YYYY-MM-DD-slug.html` — generated from `templates/sermon-page.html`.
-
-**Index file:** `data/sermons.json` — array of records, newest first:
+Sveltia stores each sermon as a JSON record in `data/sermons/YYYY-MM-DD-slug.json`:
 
 ```json
 {
@@ -83,43 +99,42 @@ Each content type has both a **rendered HTML file** (for the public site) and an
   "tags": ["Romans 12", "Worship", "Spiritual Growth"],
   "categories": ["growth"],
   "summary": "Two-paragraph AI-generated summary…",
-  "url": "/sermons/2026-04-13-the-heart-of-worship.html",
   "publishedAt": "2026-04-13T17:42:00Z",
   "source": "auto"
 }
 ```
 
-The existing `sermons.html` library page is regenerated from this JSON on every publish (cards, filters, "Load More" — all driven by the index).
+A small **build step** (run on every push by a GitHub Action) reads all sermon JSON files and produces:
+
+- Individual sermon pages: `sermons/YYYY-MM-DD-slug.html`, generated from `templates/sermon-page.html` (the existing `sermon.html` becomes this template).
+- The library page `sermons.html`, regenerated from the JSON index (cards, filter tabs, "Load More").
+
+This separation matters: Sveltia edits structured data (clean, reliable); the build step produces presentation HTML (consistent, no risk of breaking layout). Your dad never edits HTML.
 
 ### Blog posts
 
-**HTML file:** `blog/YYYY-MM-DD-slug.html` — generated from `templates/blog-post.html`.
+Sveltia stores each post as Markdown with frontmatter at `blog/_source/YYYY-MM-DD-slug.md`:
 
-**Index file:** `data/blog.json` — array of records:
+```markdown
+---
+title: Finding Peace in Anxious Times
+author: Pastor Aaron Edwards
+date: 2026-03-15
+heroImage: /images/blog/finding-peace-hero.jpg
+excerpt: One-sentence teaser shown on the blog index.
+tags: [Faith, Anxiety]
+---
 
-```json
-{
-  "id": "2026-03-15-finding-peace-in-anxious-times",
-  "slug": "finding-peace-in-anxious-times",
-  "date": "2026-03-15",
-  "title": "Finding Peace in Anxious Times",
-  "author": "Pastor Aaron Edwards",
-  "heroImage": "/images/blog/finding-peace-hero.jpg",
-  "excerpt": "One-sentence teaser shown on the blog index.",
-  "tags": ["Faith", "Anxiety"],
-  "bodyHtml": "<p>Full post HTML…</p>",
-  "url": "/blog/2026-03-15-finding-peace-in-anxious-times.html",
-  "publishedAt": "2026-03-15T09:00:00Z"
-}
+Full post body in Markdown…
 ```
 
-`blog/index.html` is regenerated from this JSON on every publish.
+Same build step renders each `.md` to `blog/YYYY-MM-DD-slug.html` from `templates/blog-post.html`, and regenerates `blog/index.html` from the post list.
 
-### Photos / galleries
+Sveltia provides a friendly Markdown rich-text editor out of the box, plus inline image upload.
 
-**Files:** `images/<gallery-name>/<filename>.jpg` — uploaded as-is.
+### Photo galleries
 
-**Index file:** `data/galleries.json` — one record per gallery:
+Sveltia stores each gallery as a JSON record at `data/galleries/<slug>.json`:
 
 ```json
 {
@@ -128,23 +143,23 @@ The existing `sermons.html` library page is regenerated from this JSON on every 
   "description": "Photos from our preschool ministry.",
   "coverImage": "/images/abc-preschool/cover.jpg",
   "images": [
-    { "src": "/images/abc-preschool/01.jpg", "alt": "Children at chapel", "uploadedAt": "2026-04-20T..." }
+    { "src": "/images/abc-preschool/01.jpg", "alt": "Children at chapel" }
   ]
 }
 ```
 
-A single template `templates/gallery-page.html` renders any gallery from its slug. (Future-friendly: lets the admin create new galleries without new code.)
+Sveltia handles multi-image upload and reordering via its built-in repeatable-list field. The build step generates a `gallery/<slug>.html` page from `templates/gallery-page.html` for each gallery, plus a `gallery/index.html` listing all galleries.
 
 ## The sermon auto-publish pipeline
 
-Triggered by Zapier. Zapier watches the FBC Concord YouTube channel (or a designated "Sermons" playlist — see open questions) and fires a webhook to `https://<cms-worker>/webhook/sermon` with the new video's ID and basic metadata.
+Triggered by Zapier. Zapier watches the FBC Concord YouTube channel (or a designated "Sermons" playlist — see open questions) and fires a webhook to `https://<pipeline-worker>/webhook/sermon` with the new video's ID and basic metadata.
 
 ### Pipeline steps
 
 1. **Authenticate the webhook.** Zapier sends a shared-secret header (stored in both Zapier and the Worker's secrets). Reject anything else.
 2. **Fetch video metadata** from YouTube Data API: title, description, publish date, duration, thumbnail URL.
-3. **Filter** — duration < 20 minutes? Reject (probably an announcement/livestream cut). Title doesn't match a sermon pattern? Reject. (Filter rules live in a config file; easy to tweak.)
-4. **Fetch transcript** from YouTube. (Auto-generated captions are usually available within ~1 hour of upload; if not, retry up to 3 times with backoff.)
+3. **Filter** — duration < 20 minutes? Reject (probably an announcement/livestream cut). Title doesn't match a sermon pattern? Reject. Filter rules live in a config file; easy to tweak.
+4. **Fetch transcript** from YouTube. Auto-generated captions are usually available within ~1 hour of upload; if not, retry up to 3 times with backoff.
 5. **Call Claude** (Anthropic API) with the transcript and a carefully tuned prompt. Returns structured JSON:
    - `title` — clean sermon title
    - `summary` — 2-paragraph "About This Message"
@@ -152,118 +167,122 @@ Triggered by Zapier. Zapier watches the FBC Concord YouTube channel (or a design
    - `speaker` — pastor name (Claude detects from intro / from a known-speaker list in the prompt)
    - `tags` — 2–4 short tags
    - `categories` — 1–2 from the existing filter set (`series`, `bible`, `faith`, `family`, `growth`, `missions`)
-6. **Render** the sermon HTML by templating `templates/sermon-page.html` with the AI fields + YouTube embed ID + thumbnail.
-7. **Update `data/sermons.json`** — prepend the new record.
-8. **Regenerate `sermons.html`** — re-render the library page from the updated index (replaces the hand-written cards with a generated block delimited by `<!-- SERMON CARDS:START -->` / `END` markers so we don't disturb surrounding HTML).
-9. **Commit to GitHub** — single commit containing the new sermon HTML, updated `data/sermons.json`, and updated `sermons.html`. Commit message: `Auto-publish sermon: <title>`. Author: a dedicated `fbc-cms-bot` GitHub identity.
-10. **Send notification** — email to dad + Nick with subject `New sermon published: <title>` and a body containing the public URL and an "Edit in admin" link.
+6. **Build the sermon JSON record** with AI fields + YouTube embed ID + thumbnail.
+7. **Commit to GitHub** — single commit creating `data/sermons/YYYY-MM-DD-slug.json`. Commit message: `Auto-publish sermon: <title>`. Author: a dedicated `fbc-cms-bot` GitHub identity.
+8. **The site's GitHub Action runs the build step** — reads all sermon JSON, regenerates all sermon HTML pages and the `sermons.html` library page. Cloudflare Pages auto-deploys.
+9. **Send notification** — email to dad + Nick with subject `New sermon published: <title>` and a body containing the public URL and a link to the sermon's edit page in Sveltia.
+
+The pipeline only ever writes the JSON record. The build step (and Sveltia, when humans edit) does the same. One source of truth, one render path.
 
 ### Failure handling
 
-- **Transcript not available after 3 retries:** publish a "skeleton" sermon page with title from YouTube + the embed + a placeholder summary. Notify admin: "Transcript unavailable; please add details." Don't block forever.
-- **Claude API error:** same fallback. Skeleton page + notify.
+- **Transcript not available after 3 retries:** publish a "skeleton" sermon record with title from YouTube + the embed + a placeholder summary. Notify admin: "Transcript unavailable; please add details in Sveltia." Don't block forever.
+- **Claude API error:** same fallback. Skeleton record + notify.
 - **GitHub commit fails:** retry with backoff (3 attempts). On final failure, log + notify Nick (not dad — this is a tech failure).
-- **Duplicate detection:** before publishing, check if a sermon with the same `youtubeId` already exists in `data/sermons.json`. If so, skip silently (Zapier sometimes double-fires).
+- **Duplicate detection:** before publishing, check if a sermon with the same `youtubeId` already exists in `data/sermons/`. If so, skip silently (Zapier sometimes double-fires).
 
-## The admin UI
+## The build step
 
-A simple, mobile-friendly web app at `https://admin.fbcconcord.com` (or `/admin` on the main domain — TBD by DNS preference). Server-rendered HTML pages with minimal JavaScript (sprinkled-in for the rich-text editor and image upload). Same visual style as the public site (reuse `css/global.css`).
+A small Node.js script at `scripts/build.js`. Run on every push by GitHub Actions before Cloudflare Pages deploys.
 
-### Pages
+Reads:
+- All `data/sermons/*.json` → renders all sermon HTML pages + `sermons.html`.
+- All `blog/_source/*.md` → renders all blog HTML pages + `blog/index.html`.
+- All `data/galleries/*.json` → renders all gallery HTML pages + `gallery/index.html`.
 
-- **`/admin/login`** — email + password.
-- **`/admin`** — dashboard. Three cards: "Sermons" / "Blog Posts" / "Photo Galleries". Each shows a count and a "Recent activity" list.
-- **`/admin/sermons`** — list of all sermons with search. Click any to edit.
-- **`/admin/sermons/:id/edit`** — form pre-filled with all fields from `data/sermons.json`. Includes title, date, speaker (dropdown), scripture, tags (chip input), categories (checkboxes), summary (textarea), YouTube ID. "Save" commits an updated record. "Delete" removes the record + the HTML file (with confirm). No "create new" — sermons are auto-created by the pipeline only.
-- **`/admin/blog`** — list, with a prominent "+ New Post" button.
-- **`/admin/blog/new` and `/admin/blog/:id/edit`** — form: title, author (dropdown), date, hero image (upload), tags, body (rich-text editor — TipTap or similar). "Publish" commits.
-- **`/admin/galleries`** — list of galleries.
-- **`/admin/galleries/:slug`** — gallery editor: title, description, drag-drop multi-image upload, reorder, delete individual images. "+ New Gallery" creates a new one.
+Templates live in `templates/`. Rendering uses simple string substitution or a tiny template library (e.g., Eta, Mustache) — no React, no build framework. The output is plain static HTML, identical in structure to the hand-written pages today.
 
-### Authentication
+This is the *only* code we own that touches presentation HTML. Sveltia and the pipeline never write HTML directly — they only write structured records.
 
-- 3 hardcoded users to start: Nick, Dad, +1 spare slot. Stored in a `data/users.json` (or Cloudflare KV) with bcrypt-hashed passwords. No self-signup, no password reset email flow at v1 — Nick can reset by editing the file.
-- Login produces a signed session cookie (HttpOnly, Secure, SameSite=Lax). Stored server-side in Cloudflare KV with a 30-day expiry.
-- All `/admin/*` and `/api/*` routes require a valid session. The `/webhook/sermon` route uses the shared secret instead.
+## Sveltia configuration
 
-### Image uploads (blog hero, galleries)
+A single file: `admin/config.yml`. Describes:
 
-- Browser uploads directly to the Worker, which forwards to Cloudflare R2 (object storage, free tier covers expected volume).
-- Worker also commits a copy into `images/...` in the repo, OR the public site serves images from R2 via a `images.fbcconcord.com` subdomain.
-- **Recommendation: commit to repo for v1.** Keeps everything in git (one source of truth, one rollback mechanism). R2 is an option later if image volume grows beyond what's comfortable in git.
-- Resize on upload: large images get a `-large.jpg` (max 1600px wide) and `-thumb.jpg` (400px). Original is kept too. Done with a Worker-compatible image library or Cloudflare Images.
+- **Backend:** GitHub OAuth, this repo, `main` branch.
+- **Media folder:** `images/uploads/` (where Sveltia uploads images go).
+- **Collections** (one per content type):
+  - **Sermons** — folder collection on `data/sermons/`. Fields: title, date, speaker (select), scripture, youtubeId, tags (list), categories (multi-select), summary (long text), thumbnail (image).
+  - **Blog Posts** — folder collection on `blog/_source/`. Fields: title, author (select), date, heroImage (image), excerpt, tags (list), body (Markdown rich-text).
+  - **Galleries** — folder collection on `data/galleries/`. Fields: title, description, coverImage (image), images (list of {src, alt}).
+
+The admin UI at `/admin/` consists of just two files: `index.html` (loads Sveltia from a CDN) and `config.yml`. That's the entire admin.
+
+## Authentication
+
+GitHub OAuth, handled by Sveltia.
+
+- Each user (Nick, dad, +1 spare) needs a GitHub account and must be added as a **collaborator** on the repo.
+- Sveltia handles the OAuth flow itself by way of an OAuth proxy (Sveltia provides a free hosted one, or we can self-host a tiny Worker — recommend the hosted one for v1).
+- No passwords for us to store, no session management, no rate limiting to build. GitHub does it.
+- For dad: one-time setup of a GitHub account (10 minutes, walk him through it). After that, he just clicks "Sign in with GitHub" once a month.
+
+The pipeline Worker has its own auth (the Zapier shared secret) and its own GitHub commit credentials (a fine-scoped PAT or GitHub App).
 
 ## Tech stack
 
 | Concern | Choice | Why |
 |---|---|---|
 | Public site hosting | Cloudflare Pages (existing) | Already in place, free, fast |
-| Admin app + webhook | Cloudflare Worker | Same platform, free tier, easy secrets |
-| Admin framework | Hono (or plain fetch handlers) | Lightweight, Worker-native, server-rendered HTML |
-| Sessions | Cloudflare KV + signed cookies | Built-in, no DB needed |
-| Rich-text editor | TipTap | Good defaults, outputs clean HTML, mobile-friendly |
-| AI | Anthropic SDK (Claude Sonnet 4.6) | High-quality structured outputs, prompt caching for the system prompt |
+| Admin UI | Sveltia CMS (static, served from `/admin/`) | Free, git-backed, zero ongoing maintenance |
+| Build step | Node.js script run by GitHub Actions | Free, deterministic, version-controlled |
+| Sermon pipeline | Cloudflare Worker | Same platform as site, free tier, easy secrets |
+| AI | Anthropic SDK (Claude Sonnet 4.6) | High-quality structured outputs, prompt caching |
 | YouTube | YouTube Data API v3 + youtube-transcript library | Standard |
-| Git operations | GitHub REST API (octokit) | No need for a clone — direct API commits |
-| Email | Resend | Cheap, simple, good Worker support |
-| Image processing | Cloudflare Images (or sharp via a separate function) | TBD during implementation |
+| Git operations (pipeline) | GitHub REST API (octokit) | No clone needed; direct API commits |
+| Email notifications | Resend | Cheap, simple, good Worker support |
+
+No database. No session store. No password hashing. No custom auth.
 
 ## Security
 
-- All admin routes behind login. Webhook behind shared secret.
-- All API keys in Cloudflare Worker secrets (never in code).
-- GitHub access via a fine-scoped personal access token (contents:write on this one repo only) or a GitHub App. Prefer GitHub App for v2; PAT is fine for v1.
-- Bcrypt for password hashing. Argon2id if the chosen library supports it on Workers.
-- Rate-limit `/admin/login` to prevent brute force (5 attempts / 15 min per IP, in KV).
-- CSRF tokens on admin forms.
+- Sveltia: GitHub OAuth handles auth. Repo write access controlled via GitHub collaborators.
+- Pipeline webhook: shared secret in header. Reject anything else.
+- All API keys (Anthropic, YouTube, GitHub PAT, Resend, Zapier shared secret) live in Cloudflare Worker secrets.
+- The pipeline's GitHub PAT is scoped to `contents:write` on this one repo only.
+- The site is publicly readable, so there is nothing sensitive in the repo to protect at the data layer.
 
 ## What we're explicitly NOT building (YAGNI)
 
+- A custom admin UI (Sveltia provides it).
+- A login system, password storage, sessions, password reset (Sveltia + GitHub provide it).
 - A WYSIWYG sermon editor with theme/color choices. Sermons all use the same template.
-- A "draft" / "scheduled publish" feature. Publish = now.
-- A media library with search, tags, EXIF data. Just folder-based galleries.
+- Drafts / scheduled publish. Publish = now.
+- A media library with EXIF, search, tagging. Sveltia's built-in media browser is enough.
 - Multi-tenancy. One church.
 - Analytics in the admin. Use Cloudflare's built-in analytics for the public site.
-- Email newsletters / mailing list integration. Out of scope.
+- Email newsletters. Out of scope.
 - An iOS/Android app.
 
 ## Rollout phases
 
 This spec covers v1. Suggested implementation order:
 
-**Phase 1 — Sermon auto-publish only (the highest-value piece):**
-- CMS Worker skeleton, secrets, GitHub commit plumbing
-- `/webhook/sermon` endpoint + Zapier integration
-- Sermon pipeline (transcript → Claude → HTML render → commit)
-- `templates/sermon-page.html` and `data/sermons.json` schema
-- Regenerate `sermons.html` from index
-- Notification email
+**Phase 1 — Sveltia + build step (immediately useful):**
+- Refactor existing sermons into `data/sermons/*.json` (one-time migration of the 6 hand-written cards).
+- Refactor existing blog post into `blog/_source/*.md`.
+- Refactor existing galleries into `data/galleries/*.json` if any.
+- Write `scripts/build.js` that regenerates all HTML from the JSON/MD sources.
+- Set up GitHub Actions to run the build on every push.
+- Create `templates/sermon-page.html`, `templates/blog-post.html`, `templates/gallery-page.html`.
+- Add `admin/index.html` + `admin/config.yml` for Sveltia.
+- Set up GitHub OAuth, add Nick + Dad as repo collaborators.
+- **Outcome:** dad can immediately edit any existing sermon/blog post and create new ones via Sveltia. The site is now CMS-managed.
 
-**Phase 2 — Admin login + sermon editing:**
-- Auth (login page, sessions, user file)
-- Sermon list + edit page
-- Delete sermon
+**Phase 2 — Sermon auto-publish pipeline:**
+- Cloudflare Worker skeleton, secrets, GitHub commit plumbing.
+- `/webhook/sermon` endpoint + Zapier integration.
+- Sermon pipeline (transcript → Claude → JSON record → commit).
+- Notification email.
+- **Outcome:** every new sermon on YouTube auto-publishes. Dad gets an email with the URL and an edit link if anything needs touching up.
 
-**Phase 3 — Blog posts:**
-- Blog list, create, edit, publish
-- Rich-text editor
-- Hero image upload + repo commit
-- Regenerate `blog/index.html` from index
-
-**Phase 4 — Photo galleries:**
-- Gallery list, create
-- Multi-image upload with resize
-- Generic gallery template
-- Regenerate gallery list page
-
-Each phase is independently shippable.
+Each phase is independently shippable. Phase 1 alone is a huge improvement; Phase 2 is the magic.
 
 ## Open questions for the reviewer (Nick)
 
 1. **YouTube source filter:** Does FBC have a dedicated "Sermons" playlist on YouTube, or should the pipeline use a duration + title-pattern filter? (Playlist is more reliable; no playlist means we depend on filter heuristics.)
-2. **Admin URL:** `admin.fbcconcord.com` (subdomain, cleaner) or `fbcconcord.com/admin` (no DNS work)?
-3. **Speaker dropdown — who's on the list?** I'll seed it with "Pastor Jim Collier" and "Pastor Aaron Edwards" from existing pages; add others?
-4. **Email-from address for notifications:** `cms@fbcconcord.com`? Needs a verified sender in Resend (or whatever we pick).
-5. **Image processing:** Cloudflare Images is $5/month and handles resize/optimization automatically. Worth it, or roll our own with sharp-on-a-Worker?
+2. **Speaker dropdown — who's on the list?** I'll seed it with "Pastor Jim Collier" and "Pastor Aaron Edwards" from existing pages; add others?
+3. **Email-from address for notifications:** `cms@fbcconcord.com`? Needs a verified sender in Resend (or whatever we pick).
+4. **Does your dad already have a GitHub account?** If not, we'll spend 10 minutes setting one up during Phase 1 rollout.
+5. **OAuth proxy:** Use Sveltia's free hosted OAuth proxy, or self-host a tiny Worker for it? (Hosted is simpler; self-hosted is one less third-party dependency.)
 
 Resolve these during spec review or during plan-writing.
