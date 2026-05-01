@@ -5,7 +5,7 @@
 /* ── HERO OVERRIDES ── */
 .page-hero { padding: 9rem 24px 5rem; }
 .page-hero-bg {
-  background: url('../images/20240331_063503_resized-scaled.jpg') center center / cover no-repeat;
+  background: url('../images/generated/visit-hero-bg.jpg') center center / cover no-repeat;
 }
 .page-hero::before {
   background:
