@@ -124,6 +124,102 @@
     }
     .nav-visit:hover { background: var(--gold-dim); transform: translateY(-1px); }
 
+    /* Nav dropdown (ABC Preschool submenu) */
+    .nav-center .has-dropdown { position: relative; }
+    .nav-center .has-dropdown::after {
+      content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 14px;
+    }
+    .nav-center .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 220px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow:
+        0 2px 0 var(--gold) inset,
+        0 1px 3px rgba(0, 0, 0, 0.06),
+        0 18px 40px rgba(15, 27, 45, 0.18);
+      list-style: none;
+      padding: 0.5rem 0 0.55rem;
+      margin: 0;
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        visibility 0.22s;
+      z-index: 110;
+    }
+    .nav-center .nav-dropdown::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      border-radius: 2px 0 0 0;
+    }
+    .nav-center .has-dropdown:hover .nav-dropdown,
+    .nav-center .has-dropdown:focus-within .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-center .nav-dropdown li { margin: 0; list-style: none; }
+    .nav-center .nav-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 1.25rem 0.5rem 1.1rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--navy);
+      white-space: nowrap;
+      position: relative;
+      background: transparent;
+      transition: color 0.18s ease, padding-left 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .nav-center .nav-dropdown a::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: transparent;
+      flex-shrink: 0;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    .nav-center .nav-dropdown a:hover,
+    .nav-center .nav-dropdown a:focus-visible {
+      color: var(--gold);
+      padding-left: 1.4rem;
+      outline: none;
+    }
+    .nav-center .nav-dropdown a:hover::before,
+    .nav-center .nav-dropdown a:focus-visible::before {
+      background: var(--gold);
+      transform: scale(1.4);
+    }
+    .nav-center .nav-dropdown li:last-child a {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      margin-top: 0.3rem;
+      padding-top: 0.65rem;
+    }
+    .nav-center .nav-dropdown li:last-child a::before { display: none; }
+    .nav-center .nav-dropdown li:last-child a:hover,
+    .nav-center .nav-dropdown li:last-child a:focus-visible { padding-left: 1.1rem; }
+
     .hamburger {
       display: none; background: none; border: none; cursor: pointer;
       width: 32px; height: 24px; position: relative; z-index: 201;
