@@ -1,0 +1,20 @@
+# Files and directories Wrangler should NOT upload as static assets.
+# Syntax: gitignore-style.
+
+.git
+.gitignore
+.DS_Store
+**/.DS_Store
+
+node_modules
+
+# Repo-only docs and tooling — not part of the deployed site
+docs
+templates
+.superpowers
+CLAUDE.md
+church-website-review-concord-nc.md
+
+# Wrangler config itself doesn't need to be served
+wrangler.jsonc
+.assetsignore
