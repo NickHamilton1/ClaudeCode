@@ -20,7 +20,9 @@
   --abc-font-script: 'Caveat', 'Playfair Display', cursive;
 
   background: var(--abc-cream);
+  overflow-x: hidden;
 }
+.abc-page * { min-width: 0; }
 
 /* ── Padding offset for the fixed church nav ── */
 .abc-page .abc-content {
@@ -674,4 +676,11 @@
   .abc-final-buttons { flex-direction: column; align-items: center; }
   .abc-hours-divider { display: none; }
   .abc-hours-row { gap: 1.5rem; flex-direction: column; }
+  .abc-trust-list { font-size: 0.65rem; letter-spacing: 1px; gap: 0.6rem 0.9rem; }
+}
+
+@media (max-width: 359px) {
+  .abc-trust-list { font-size: 0.6rem; letter-spacing: 0.5px; }
+  .abc-hero-headline { font-size: 1.4rem; }
+  .abc-hero-tagline { font-size: 1.7rem; }
 }
