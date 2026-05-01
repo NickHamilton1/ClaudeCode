@@ -120,6 +120,134 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-links a.active { color: var(--navy); }
 .nav-links a.active::after { width: 100%; left: 0; }
 
+/* ── Nav dropdown (e.g. ABC Preschool submenu) ── */
+.nav-links .has-dropdown,
+.nav-center .has-dropdown {
+  position: relative;
+}
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow:
+    0 2px 0 var(--gold) inset,
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 18px 40px rgba(15, 27, 45, 0.18);
+  list-style: none;
+  padding: 0.5rem 0 0.55rem;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    visibility 0.22s;
+  z-index: 110;
+}
+/* Subtle pointer arrow that ties the panel to the nav link above */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  border-radius: 2px 0 0 0;
+}
+.nav-links .has-dropdown:hover .nav-dropdown,
+.nav-links .has-dropdown:focus-within .nav-dropdown,
+.nav-center .has-dropdown:hover .nav-dropdown,
+.nav-center .has-dropdown:focus-within .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+/* Invisible bridge so the dropdown stays open while moving the cursor onto it */
+.nav-links .has-dropdown::after,
+.nav-center .has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+.nav-dropdown li { margin: 0; list-style: none; }
+/* Use ul.nav-dropdown a — extra specificity to beat .nav-center a / .nav-links a */
+ul.nav-dropdown a,
+.nav-center ul.nav-dropdown a,
+.nav-links ul.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem 1.25rem 0.5rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy);
+  white-space: nowrap;
+  position: relative;
+  background: transparent;
+  transition:
+    color 0.18s ease,
+    padding-left 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+ul.nav-dropdown a::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+ul.nav-dropdown a::after { display: none; }
+ul.nav-dropdown a:hover,
+ul.nav-dropdown a:focus-visible,
+.nav-center ul.nav-dropdown a:hover,
+.nav-center ul.nav-dropdown a:focus-visible,
+.nav-links ul.nav-dropdown a:hover,
+.nav-links ul.nav-dropdown a:focus-visible {
+  color: var(--gold-hover);
+  padding-left: 1.4rem;
+  outline: none;
+}
+ul.nav-dropdown a:hover::before,
+ul.nav-dropdown a:focus-visible::before {
+  background: var(--gold);
+  transform: scale(1.4);
+}
+/* Subtle separator before the last item ("Meet the Director") so it reads as a related-but-distinct closer */
+ul.nav-dropdown li:last-child a {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 0.3rem;
+  padding-top: 0.65rem;
+}
+ul.nav-dropdown li:last-child a::before {
+  display: none;
+}
+ul.nav-dropdown li:last-child a:hover,
+ul.nav-dropdown li:last-child a:focus-visible {
+  padding-left: 1.1rem;
+}
+/* Prevent .nav-center flex from stretching dropdown <li>s into row items */
+.nav-center .nav-dropdown,
+.nav-links .nav-dropdown {
+  display: block;
+}
+
 .nav-cta {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 0.55rem 1.4rem;

@@ -1,0 +1,971 @@
+/* ================================================================
+   FBC Concord — ABC Preschool Section
+   Scoped to body.abc-page so tokens don't leak to the rest of the site.
+   ================================================================ */
+
+.abc-page {
+  /* ── ABC palette (sampled from logo) ── */
+  --abc-red: #a81818;
+  --abc-yellow: #d8a818;
+  --abc-yellow-dark: #c79014;
+  --abc-green: #187830;
+  --abc-blue: #0060a8;
+  --abc-navy: #001848;
+  --abc-cream: #fffaf0;
+  --abc-cream-warm: #ffeec2;
+  --abc-text: #3d3935;
+  --abc-text-muted: #6b6560;
+
+  --abc-font-playful: 'Fredoka', 'DM Sans', sans-serif;
+  --abc-font-script: 'Caveat', 'Playfair Display', cursive;
+
+  background: var(--abc-cream);
+  overflow-x: hidden;
+}
+.abc-page * { min-width: 0; }
+
+/* ── Padding offset for the fixed church nav ── */
+.abc-page .abc-content {
+  padding-top: 76px;
+}
+
+/* ── Section base ── */
+.abc-section {
+  padding: 3.5rem 1.5rem;
+}
+.abc-section--cream { background: var(--abc-cream); }
+.abc-section--white { background: #fff; }
+.abc-section--navy  { background: var(--abc-navy); color: #fff; }
+.abc-section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.abc-eyebrow {
+  font-family: var(--abc-font-playful);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.abc-eyebrow--red    { color: var(--abc-red); }
+.abc-eyebrow--blue   { color: var(--abc-blue); }
+.abc-eyebrow--green  { color: var(--abc-green); }
+.abc-eyebrow--yellow { color: var(--abc-yellow-dark); }
+.abc-eyebrow--gold-on-navy { color: var(--abc-yellow); }
+
+.abc-headline-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--abc-navy);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  line-height: 1.3;
+  margin-top: 0.5rem;
+}
+
+.abc-section-head {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Pill buttons ── */
+.abc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-family: var(--abc-font-playful);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  text-align: center;
+}
+.abc-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+.abc-pill:focus-visible {
+  outline: 3px solid var(--abc-blue);
+  outline-offset: 3px;
+}
+.abc-pill--red    { background: var(--abc-red);   color: #fff; }
+.abc-pill--green  { background: var(--abc-green); color: #fff; }
+.abc-pill--blue   { background: var(--abc-blue);  color: #fff; }
+.abc-pill--yellow { background: var(--abc-yellow); color: var(--abc-navy); }
+.abc-pill--ghost-blue {
+  background: #fff;
+  color: var(--abc-blue);
+  border-color: var(--abc-blue);
+}
+.abc-pill--ghost-light {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.abc-pill .arrow { transition: transform 0.25s ease; display: inline-block; }
+.abc-pill:hover .arrow { transform: translateX(4px); }
+
+/* ── HERO ── */
+.abc-hero {
+  background: linear-gradient(135deg, #fffaf0 0%, #ffeec2 100%);
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+.abc-hero-logo {
+  max-width: 280px;
+  margin: 0 auto 1rem;
+  display: block;
+}
+.abc-hero-tagline {
+  font-family: var(--abc-font-script);
+  color: var(--abc-red);
+  font-size: clamp(2rem, 5vw, 2.4rem);
+  line-height: 1;
+  margin-bottom: 0.85rem;
+}
+.abc-hero-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: clamp(1.6rem, 4vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.25;
+  max-width: 680px;
+  margin: 0 auto 0.85rem;
+}
+.abc-hero-sub {
+  color: var(--abc-text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 600px;
+  margin: 0 auto 1.6rem;
+}
+.abc-hero-buttons {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.abc-hero-callout {
+  font-size: 0.78rem;
+  color: var(--abc-text-muted);
+}
+.abc-hero-callout a {
+  color: var(--abc-red);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* ── TRUST STRIP ── */
+.abc-trust {
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1rem 1.5rem;
+}
+.abc-trust-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 1.6rem;
+  justify-content: center;
+  max-width: 980px;
+  margin: 0 auto;
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: var(--abc-text-muted);
+  text-transform: uppercase;
+}
+
+/* ── MISSION ── */
+.abc-mission { text-align: center; }
+.abc-mission-lead {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--abc-navy);
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0.85rem auto 0.85rem;
+}
+.abc-mission-body {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--abc-text);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── PROGRAMS / AGE CARDS ── */
+.abc-age-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.abc-age-card {
+  border-radius: 18px;
+  padding: 1.5rem 0.6rem;
+  text-align: center;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+  cursor: pointer;
+}
+.abc-age-card:hover {
+  transform: translateY(-8px) rotate(-1.5deg) scale(1.04);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+.abc-age-card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+.abc-age-card:hover .abc-age-num { animation: abc-bounce 0.5s ease; }
+@keyframes abc-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.abc-age-num {
+  font-family: var(--abc-font-playful);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.abc-age-num--tk {
+  font-size: 1.5rem;
+  line-height: 1.05;
+}
+.abc-age-label {
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+.abc-age-meta {
+  font-size: 0.7rem;
+  margin-top: 0.55rem;
+  opacity: 0.95;
+}
+.abc-age-card--1  { background: var(--abc-red);    color: #fff; box-shadow: 0 4px 12px rgba(168, 24, 24, 0.25); }
+.abc-age-card--2  { background: var(--abc-yellow); color: var(--abc-navy); box-shadow: 0 4px 12px rgba(216, 168, 24, 0.3); }
+.abc-age-card--3  { background: var(--abc-green);  color: #fff; box-shadow: 0 4px 12px rgba(24, 120, 48, 0.25); }
+.abc-age-card--4  { background: var(--abc-blue);   color: #fff; box-shadow: 0 4px 12px rgba(0, 96, 168, 0.25); }
+.abc-age-card--tk { background: var(--abc-navy);   color: #fff; box-shadow: 0 4px 12px rgba(0, 24, 72, 0.3); }
+.abc-age-card--2 .abc-age-label,
+.abc-age-card--2 .abc-age-meta { opacity: 0.85; }
+
+/* ── HOURS + LOCATION STRIP ── */
+.abc-hours {
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 2rem 1.5rem;
+}
+.abc-hours-row {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.25rem;
+  align-items: center;
+  justify-content: center;
+}
+.abc-hours-cell { text-align: center; }
+.abc-hours-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.abc-hours-time {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: 1.35rem;
+  margin-top: 0.25rem;
+}
+.abc-hours-loc {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+}
+.abc-hours-meta {
+  font-size: 0.78rem;
+  color: var(--abc-text-muted);
+  margin-top: 0.15rem;
+}
+
+/* ── A DAY AT ABC ── */
+.abc-day-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+  max-width: 920px;
+  margin: 0 auto 1.5rem;
+}
+.abc-day-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  border-top: 5px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.abc-day-card:nth-child(1) { border-top-color: var(--abc-yellow); }
+.abc-day-card:nth-child(2) { border-top-color: var(--abc-red); }
+.abc-day-card:nth-child(3) { border-top-color: var(--abc-green); }
+.abc-day-card:nth-child(4) { border-top-color: var(--abc-blue); }
+.abc-day-time {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-blue);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.abc-day-name {
+  font-family: var(--abc-font-playful);
+  color: var(--abc-navy);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.abc-day-cta { text-align: center; }
+
+/* ── FAITH (navy band) ── */
+.abc-faith { text-align: center; }
+.abc-faith-inner { max-width: 780px; margin: 0 auto; }
+.abc-faith-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.4vw, 1.9rem);
+  line-height: 1.3;
+  margin: 0.85rem 0 1.1rem;
+  color: #fff;
+}
+.abc-faith-body {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  opacity: 0.92;
+  color: #fff;
+}
+
+/* ── 6 NAV TILES ── */
+.abc-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.abc-tile {
+  display: block;
+  background: var(--abc-cream);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border-top: 5px solid;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
+}
+.abc-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+.abc-tile:focus-visible {
+  outline: 3px solid var(--abc-blue);
+  outline-offset: 3px;
+}
+.abc-tile:hover .arrow { transform: translateX(6px); }
+.abc-tile--red    { border-top-color: var(--abc-red); }
+.abc-tile--yellow { border-top-color: var(--abc-yellow); }
+.abc-tile--blue   { border-top-color: var(--abc-blue); }
+.abc-tile--green  { border-top-color: var(--abc-green); }
+.abc-tile-eyebrow {
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.abc-tile-eyebrow--red    { color: var(--abc-red); }
+.abc-tile-eyebrow--yellow { color: var(--abc-yellow-dark); }
+.abc-tile-eyebrow--blue   { color: var(--abc-blue); }
+.abc-tile-eyebrow--green  { color: var(--abc-green); }
+.abc-tile-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--abc-navy);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  margin-bottom: 0.45rem;
+}
+.abc-tile-body {
+  font-size: 0.78rem;
+  color: var(--abc-text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+.abc-tile-cta {
+  font-family: var(--abc-font-playful);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.abc-tile-cta .arrow { transition: transform 0.3s ease; display: inline-block; }
+.abc-tile-cta--red    { color: var(--abc-red); }
+.abc-tile-cta--yellow { color: var(--abc-yellow-dark); }
+.abc-tile-cta--blue   { color: var(--abc-blue); }
+.abc-tile-cta--green  { color: var(--abc-green); }
+
+/* ── TUITION ── */
+.abc-tuition { text-align: center; }
+.abc-tuition-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+  line-height: 1.3;
+  max-width: 560px;
+  margin: 0.85rem auto 1.4rem;
+}
+.abc-price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+  max-width: 680px;
+  margin: 0 auto 1.3rem;
+}
+.abc-price-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 0.75rem;
+  border: 2px solid;
+}
+.abc-price-card--red    { border-color: var(--abc-red); }
+.abc-price-card--blue   { border-color: var(--abc-blue); }
+.abc-price-card--yellow { border-color: var(--abc-yellow); }
+.abc-price-amt {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+}
+.abc-price-card--red    .abc-price-amt { color: var(--abc-red); }
+.abc-price-card--blue   .abc-price-amt { color: var(--abc-blue); }
+.abc-price-card--yellow .abc-price-amt { color: var(--abc-yellow-dark); }
+.abc-price-meta {
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  color: var(--abc-text-muted);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+.abc-tuition-note {
+  font-size: 0.78rem;
+  color: var(--abc-text-muted);
+  margin-bottom: 0.85rem;
+}
+
+/* ── DIRECTOR TEASER ── */
+.abc-director-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.abc-director-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #d4e3f4, #cfeae6);
+  display: block;
+}
+.abc-director-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.abc-director-bio {
+  font-size: 0.95rem;
+  color: var(--abc-text);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+/* ── PHOTO GALLERY ── */
+.abc-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.abc-photo-tile {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.abc-photo-tile:hover { transform: scale(1.03); }
+.abc-photo-tile--chapel  { background: linear-gradient(135deg, #fde0e2, #fbb1b6); }
+.abc-photo-tile--centers { background: linear-gradient(135deg, #cfeae6, #86c9bf); }
+.abc-photo-tile--music   { background: linear-gradient(135deg, #d4e3f4, #9bc2e6); }
+.abc-photo-tile--outdoor { background: linear-gradient(135deg, #fdecbf, #f4d97a); }
+.abc-photo-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  color: #fff;
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.abc-photo-tile--outdoor .abc-photo-caption { color: #7a5f0f; }
+
+/* ── FINAL CTA ── */
+.abc-final { text-align: center; padding: 4rem 1.5rem; }
+.abc-final-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 1.9rem);
+  margin: 0.6rem auto 0.85rem;
+  line-height: 1.2;
+  max-width: 600px;
+  color: #fff;
+}
+.abc-final-body {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0 auto 1.5rem;
+  max-width: 560px;
+  line-height: 1.6;
+  color: #fff;
+}
+.abc-final-buttons {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.abc-final-meta {
+  margin-top: 1.4rem;
+  font-size: 0.78rem;
+  opacity: 0.75;
+  letter-spacing: 0.5px;
+}
+.abc-final-meta a { color: inherit; text-decoration: underline; }
+
+/* ── STUB PAGES ── */
+.abc-stub {
+  padding: 5rem 1.5rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.abc-stub-eyebrow {
+  font-family: var(--abc-font-playful);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--abc-red);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+.abc-stub h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.abc-stub-lead {
+  font-size: 1rem;
+  color: var(--abc-text);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 1.5rem;
+}
+.abc-stub-contact {
+  font-family: var(--abc-font-playful);
+  font-size: 0.95rem;
+  color: var(--abc-text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+.abc-stub-contact a {
+  color: var(--abc-red);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.abc-stub-back {
+  font-family: var(--abc-font-playful);
+  font-size: 0.85rem;
+  color: var(--abc-blue);
+  text-decoration: underline;
+}
+
+/* ── SUBPAGE HERO (cream gradient, no logo) ── */
+.abc-subhero {
+  background: linear-gradient(135deg, #fffaf0 0%, #ffeec2 100%);
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+.abc-subhero-eyebrow {
+  font-family: var(--abc-font-playful);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--abc-red);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+.abc-subhero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 720px;
+  margin: 0 auto 1rem;
+}
+.abc-subhero-lead {
+  color: var(--abc-text);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ── PROSE: long-form content blocks ── */
+.abc-prose {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--abc-text);
+}
+.abc-prose h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: clamp(1.4rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  margin: 2.4rem 0 0.8rem;
+  line-height: 1.3;
+}
+.abc-prose h2:first-child { margin-top: 0; }
+.abc-prose h3 {
+  font-family: var(--abc-font-playful);
+  color: var(--abc-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 1.6rem 0 0.5rem;
+}
+.abc-prose p { margin-bottom: 1rem; }
+.abc-prose ul,
+.abc-prose ol {
+  margin: 0.5rem 0 1.2rem 1.4rem;
+}
+.abc-prose li { margin-bottom: 0.4rem; }
+.abc-prose strong { color: var(--abc-navy); }
+.abc-prose a {
+  color: var(--abc-red);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* ── CALLOUT BOX ── */
+.abc-callout {
+  background: #fff;
+  border-left: 4px solid var(--abc-blue);
+  border-radius: 8px;
+  padding: 1.25rem 1.4rem;
+  margin: 1.6rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.abc-callout--red    { border-left-color: var(--abc-red); }
+.abc-callout--green  { border-left-color: var(--abc-green); }
+.abc-callout--yellow { border-left-color: var(--abc-yellow); }
+.abc-callout-eyebrow {
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--abc-blue);
+  margin-bottom: 0.4rem;
+}
+.abc-callout--red    .abc-callout-eyebrow { color: var(--abc-red); }
+.abc-callout--green  .abc-callout-eyebrow { color: var(--abc-green); }
+.abc-callout--yellow .abc-callout-eyebrow { color: var(--abc-yellow-dark); }
+
+/* ── CURRICULUM AGE BLOCKS ── */
+.abc-curric-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.abc-curric-block {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem;
+  border-top: 5px solid;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.abc-curric-block--2  { border-top-color: var(--abc-yellow); }
+.abc-curric-block--3  { border-top-color: var(--abc-green); }
+.abc-curric-block--4  { border-top-color: var(--abc-blue); }
+.abc-curric-block h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--abc-navy);
+  font-size: 1.5rem;
+  margin: 0 0 0.4rem;
+  font-weight: 500;
+}
+.abc-curric-block-sub {
+  font-family: var(--abc-font-playful);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.abc-curric-block--2 .abc-curric-block-sub { color: var(--abc-yellow-dark); }
+.abc-curric-block--3 .abc-curric-block-sub { color: var(--abc-green); }
+.abc-curric-block--4 .abc-curric-block-sub { color: var(--abc-blue); }
+.abc-curric-block h3 {
+  font-family: var(--abc-font-playful);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--abc-navy);
+  margin: 1.1rem 0 0.4rem;
+}
+.abc-curric-block ul {
+  margin: 0 0 0 1.2rem;
+  padding: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--abc-text);
+}
+.abc-curric-block li { margin-bottom: 0.25rem; }
+
+/* ── ENROLLMENT PRICING TABLE ── */
+.abc-fee-table {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin: 1.4rem 0;
+}
+.abc-fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.abc-fee-row:last-child { border-bottom: none; }
+.abc-fee-label {
+  font-family: var(--abc-font-playful);
+  font-size: 0.95rem;
+  color: var(--abc-navy);
+  font-weight: 500;
+}
+.abc-fee-amt {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--abc-red);
+  font-weight: 700;
+}
+
+/* ── FAQ ACCORDION ── */
+.abc-faq {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.abc-faq-group {
+  margin-bottom: 1.8rem;
+}
+.abc-faq-group h2 {
+  font-family: var(--abc-font-playful);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--abc-blue);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.abc-faq-item {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+.abc-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--abc-navy);
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: background 0.2s ease;
+}
+.abc-faq-item summary::-webkit-details-marker { display: none; }
+.abc-faq-item summary::after {
+  content: "+";
+  font-family: var(--abc-font-playful);
+  font-size: 1.4rem;
+  color: var(--abc-red);
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.abc-faq-item[open] summary::after {
+  content: "–";
+  transform: rotate(0deg);
+}
+.abc-faq-item summary:hover {
+  background: var(--abc-cream);
+}
+.abc-faq-item summary:focus-visible {
+  outline: 3px solid var(--abc-blue);
+  outline-offset: -3px;
+}
+.abc-faq-answer {
+  padding: 0 1.2rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--abc-text);
+}
+.abc-faq-answer p { margin-bottom: 0.7rem; }
+.abc-faq-answer p:last-child { margin-bottom: 0; }
+.abc-faq-answer a {
+  color: var(--abc-red);
+  text-decoration: underline;
+}
+
+/* ── CONTACT BOX (subpage footer) ── */
+.abc-subpage-cta {
+  background: var(--abc-navy);
+  color: #fff;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+}
+.abc-subpage-cta h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.2vw, 2rem);
+  font-weight: 500;
+  margin-bottom: 0.85rem;
+  color: #fff;
+}
+.abc-subpage-cta p {
+  font-size: 0.95rem;
+  opacity: 0.92;
+  max-width: 540px;
+  margin: 0 auto 1.4rem;
+  line-height: 1.7;
+}
+.abc-subpage-cta-buttons {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .abc-page *,
+  .abc-page *::before,
+  .abc-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .abc-age-card:hover,
+  .abc-tile:hover,
+  .abc-pill:hover,
+  .abc-photo-tile:hover {
+    transform: none !important;
+  }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 899px) {
+  .abc-age-grid { grid-template-columns: repeat(3, 1fr); }
+  .abc-age-card--4,
+  .abc-age-card--tk { grid-column: span 1; }
+  .abc-day-grid { grid-template-columns: repeat(2, 1fr); }
+  .abc-tiles { grid-template-columns: repeat(2, 1fr); }
+  .abc-gallery { grid-template-columns: repeat(2, 1fr); }
+  .abc-director-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .abc-director-photo { max-width: 280px; margin: 0 auto; }
+}
+
+@media (max-width: 599px) {
+  .abc-section { padding: 2.75rem 1.25rem; }
+  .abc-hero { padding: 2.75rem 1.25rem 2.25rem; }
+  .abc-hero-logo { max-width: 220px; }
+  .abc-age-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 360px;
+  }
+  .abc-age-card--tk { grid-column: span 2; }
+  .abc-price-grid { grid-template-columns: 1fr; max-width: 280px; }
+  .abc-pill { width: 100%; justify-content: center; max-width: 320px; }
+  .abc-hero-buttons,
+  .abc-final-buttons { flex-direction: column; align-items: center; }
+  .abc-hours-divider { display: none; }
+  .abc-hours-row { gap: 1.5rem; flex-direction: column; }
+  .abc-trust-list { font-size: 0.65rem; letter-spacing: 1px; gap: 0.6rem 0.9rem; }
+}
+
+@media (max-width: 359px) {
+  .abc-trust-list { font-size: 0.6rem; letter-spacing: 0.5px; }
+  .abc-hero-headline { font-size: 1.4rem; }
+  .abc-hero-tagline { font-size: 1.7rem; }
+}

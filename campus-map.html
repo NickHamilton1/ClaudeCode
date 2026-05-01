@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Map — First Baptist Church Concord, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #10233f;
+      --cream: #f7f2e8;
+      --gold: #d7a642;
+      --text: #243142;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--text);
+      font-family: "DM Sans", Arial, sans-serif;
+    }
+
+    .map-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .map-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px clamp(18px, 4vw, 52px);
+      background: #ffffff;
+      border-bottom: 1px solid rgba(16, 35, 63, .1);
+    }
+
+    .map-header h1 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .map-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .map-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 6px;
+      border: 1px solid rgba(16, 35, 63, .18);
+      color: var(--navy);
+      background: #ffffff;
+      font-size: .88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .map-action.primary {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #10233f;
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 0;
+      padding: clamp(12px, 2vw, 28px);
+    }
+
+    .map-frame object {
+      display: block;
+      width: 100%;
+      max-width: 1700px;
+      margin: 0 auto;
+      aspect-ratio: 2488 / 1364;
+      border-radius: 12px;
+      box-shadow: 0 22px 60px rgba(16, 35, 63, .22);
+      background: #0e2240;
+    }
+
+    @media print {
+      .map-header { display: none; }
+      .map-frame { padding: 0; overflow: visible; }
+      .map-frame object { min-width: 0; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="map-page">
+    <header class="map-header">
+      <h1>Campus Map</h1>
+      <div class="map-actions">
+        <a class="map-action" href="visit.html">Back to Visit</a>
+        <a class="map-action primary" href="images/Church Map/church-campus-map-2026.svg" download>Download Map</a>
+      </div>
+    </header>
+    <div class="map-frame">
+      <object data="images/Church Map/church-campus-map-2026.svg" type="image/svg+xml" aria-label="First Baptist Church Concord campus map"></object>
+    </div>
+  </main>
+</body>
+</html>
