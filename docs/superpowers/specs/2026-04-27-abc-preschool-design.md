@@ -76,6 +76,29 @@ The home page lives at the repo root (matching `giving.html`, `kids.html`, etc. 
 
 These colors are **scoped to ABC pages**. The rest of the site continues to use the existing navy/gold/cream palette from `css/global.css`.
 
+#### How these hex codes were picked
+
+Sampled directly from `images/abc-preschool/ABC_Preschool_Logo_Transparent.png` using a small Python/Pillow script: load the PNG, filter to opaque + saturated pixels (alpha ≥ 200, max(R,G,B) − min(R,G,B) ≥ 60 to drop grays, max ≥ 80 to drop near-black), bucket pixel values into 24-step bins, and take the most-frequent buckets per hue family. The numbers above are the resulting top occupants of each color region in the logo, lightly rounded for readability and compatibility. To re-derive these (e.g., if the logo art changes), run roughly:
+
+```python
+from PIL import Image
+import collections
+img = Image.open('images/abc-preschool/ABC_Preschool_Logo_Transparent.png').convert('RGBA')
+def is_color(p):
+    r,g,b,a = p
+    if a < 200: return False
+    if max(r,g,b) - min(r,g,b) < 60: return False  # gray
+    if max(r,g,b) < 80: return False               # near-black
+    return True
+def bucket(c): return (c[0]//24*24, c[1]//24*24, c[2]//24*24)
+colored = [p[:3] for p in img.getdata() if is_color(p)]
+counts = collections.Counter(bucket(c) for c in colored)
+for c,n in counts.most_common(20):
+    print(f'#{c[0]:02x}{c[1]:02x}{c[2]:02x}  count={n}')
+```
+
+The yellow ichthus dominates the pixel count, so it surfaces first. Blue (the "b"), green (the "a"), and red (the "c") follow. Navy comes from the "preschool" wordmark. AA contrast was checked manually for white-on-yellow (fails) → navy text used on the yellow card; all other colored cards use white text and pass AA against their backgrounds.
+
 ### Typography
 
 - **Body + display italic:** Georgia / Playfair Display (existing site fonts — continuity with the church site)

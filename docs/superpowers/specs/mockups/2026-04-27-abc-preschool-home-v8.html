@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Preschool — home page mockup v8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&family=Fredoka:wght@500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: #3d3935; background: #fffaf0; line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  .mockup-banner { background: #001848; color: #fff; padding: 12px 30px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; font-family: 'Fredoka', sans-serif; }
+  .mockup-banner strong { color: #d8a818; }
+
+  /* Stand-in nav (the real page will use giving.html nav verbatim) */
+  .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,.08); padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .nav-brand { font-family: Georgia, serif; font-style: italic; color: #001848; font-size: 18px; font-weight: 500; }
+  .nav-links { font-size: 12px; letter-spacing: 1.5px; color: #3d3935; text-transform: uppercase; }
+  .nav-links .active { color: #0060a8; border-bottom: 2px solid #0060a8; padding-bottom: 4px; font-weight: 600; }
+  .nav-cta { background: #c9a227; color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 500; font-size: 12px; letter-spacing: 1px; }
+
+  /* Animations */
+  .age-card { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease; cursor: pointer; }
+  .age-card:hover { transform: translateY(-8px) rotate(-1.5deg) scale(1.04); box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
+  .age-card:hover .age-num { animation: bounce 0.5s ease; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .nav-tile, .link-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; display: block; }
+  .nav-tile:hover, .link-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
+  .nav-tile:hover .nav-arrow, .link-card:hover .link-arrow { transform: translateX(6px); }
+  .nav-arrow, .link-arrow { transition: transform 0.3s ease; display: inline-block; }
+  .pill-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; display: inline-block; }
+  .pill-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+  .photo-tile { transition: transform 0.3s ease; }
+  .photo-tile:hover { transform: scale(1.03); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .age-card, .nav-tile, .link-card, .pill-btn, .photo-tile, .nav-arrow, .link-arrow, .age-num { transition: none !important; animation: none !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">Mockup · <strong>ABC Preschool home page · v8 (research-informed)</strong> · Reference only — final page uses real church nav + footer</div>
+
+<!-- STAND-IN NAV -->
+<nav class="nav">
+  <span class="nav-brand">First Baptist Concord</span>
+  <span class="nav-links">About &nbsp;·&nbsp; Staff &nbsp;·&nbsp; Ministries &nbsp;·&nbsp; <span class="active">ABC Preschool</span> &nbsp;·&nbsp; Events &nbsp;·&nbsp; Sermons &nbsp;·&nbsp; Blog &nbsp;·&nbsp; Give</span>
+  <span class="nav-cta">Plan Your Visit →</span>
+</nav>
+
+<!-- HERO -->
+<section style="background:linear-gradient(135deg,#fffaf0 0%,#ffeec2 100%);padding:60px 30px 50px;text-align:center;">
+  <img src="../../../../images/abc-preschool/ABC_Preschool_Logo_Transparent.png" alt="ABC Preschool — All Because of Christ, a ministry of FBC Concord" style="max-width:280px;margin:0 auto;display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+  <div style="display:none;max-width:280px;height:120px;margin:0 auto;background:#fffaf0;border:2px dashed #c9a227;border-radius:12px;color:#a81818;font-family:'Fredoka',sans-serif;font-size:13px;display:flex;align-items:center;justify-content:center;">[Logo: ABC_Preschool_Logo_Transparent.png]</div>
+  <div style="font-family:'Caveat',cursive;color:#a81818;font-size:38px;line-height:1;margin-top:18px;margin-bottom:14px;">All Because of Christ</div>
+  <h1 style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:30px;font-weight:500;line-height:1.25;max-width:680px;margin:0 auto 14px;">A Christ-centered half-day preschool in Concord, NC.</h1>
+  <p style="color:#3d3935;font-size:15px;line-height:1.55;max-width:600px;margin:0 auto 28px;">Serving 1-year-olds through Transitional Kindergarten · Monday–Friday, 8:45 am – 12:30 pm</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a class="pill-btn" href="abc-preschool/enrollment.html" style="background:#a81818;color:#fff;padding:13px 28px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;">Schedule a Tour →</a>
+    <a class="pill-btn" href="abc-preschool/enrollment.html" style="background:#fff;color:#0060a8;border:2px solid #0060a8;padding:11px 28px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;">Apply Now</a>
+  </div>
+  <p style="margin-top:18px;font-size:12px;color:#6b6560;">Or call <a href="tel:7047869167" style="color:#a81818;text-decoration:underline;">704-786-9167</a> · families of any background welcome to apply</p>
+</section>
+
+<!-- TRUST STRIP -->
+<section style="background:#fff;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:18px 30px;">
+  <div style="max-width:980px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center;font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1.5px;color:#6b6560;text-transform:uppercase;">
+    <span>✓ NC Licensed</span>
+    <span>✓ Background-Checked Staff</span>
+    <span>✓ ABeka Curriculum</span>
+    <span>✓ A Ministry of FBC Concord</span>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section style="background:#fff;padding:54px 30px;text-align:center;">
+  <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#a81818;font-weight:600;margin-bottom:14px;text-transform:uppercase;">Our Mission</div>
+  <p style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:22px;line-height:1.6;max-width:720px;margin:0 auto 14px;">ABC Preschool is a ministry of First Baptist Church of Concord — a safe, loving, Christian environment where young children grow spiritually, intellectually, and socially.</p>
+  <p style="font-family:'Playfair Display',Georgia,serif;color:#3d3935;font-size:16px;line-height:1.7;max-width:680px;margin:0 auto;">We partner with families to nurture the whole child in spirit, mind, and friendship — built on Scripture and grounded in academic excellence.</p>
+</section>
+
+<!-- PROGRAMS -->
+<section style="background:#fffaf0;padding:54px 30px;">
+  <div style="text-align:center;margin-bottom:30px;">
+    <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#0060a8;font-weight:600;text-transform:uppercase;">Programs Offered</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:30px;margin-top:8px;">Five age groups, one community</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:840px;margin:0 auto;">
+    <div class="age-card" style="background:#a81818;color:#fff;padding:24px 10px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(168,24,24,0.25);">
+      <div class="age-num" style="font-family:'Fredoka',sans-serif;font-size:34px;font-weight:700;line-height:1;">1</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;opacity:.95;margin-top:4px;text-transform:uppercase;">Year Olds</div>
+      <div style="font-size:11px;margin-top:8px;opacity:.95;">3 or 5 days/wk</div>
+    </div>
+    <div class="age-card" style="background:#d8a818;color:#001848;padding:24px 10px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(216,168,24,0.3);">
+      <div class="age-num" style="font-family:'Fredoka',sans-serif;font-size:34px;font-weight:700;line-height:1;">2</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;opacity:.85;margin-top:4px;text-transform:uppercase;">Year Olds</div>
+      <div style="font-size:11px;margin-top:8px;opacity:.85;">3 or 5 days/wk</div>
+    </div>
+    <div class="age-card" style="background:#187830;color:#fff;padding:24px 10px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(24,120,48,0.25);">
+      <div class="age-num" style="font-family:'Fredoka',sans-serif;font-size:34px;font-weight:700;line-height:1;">3</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;opacity:.95;margin-top:4px;text-transform:uppercase;">Year Olds</div>
+      <div style="font-size:11px;margin-top:8px;opacity:.95;">3 or 5 days/wk</div>
+    </div>
+    <div class="age-card" style="background:#0060a8;color:#fff;padding:24px 10px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(0,96,168,0.25);">
+      <div class="age-num" style="font-family:'Fredoka',sans-serif;font-size:34px;font-weight:700;line-height:1;">4</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;opacity:.95;margin-top:4px;text-transform:uppercase;">Year Olds</div>
+      <div style="font-size:11px;margin-top:8px;opacity:.95;">5 days/wk</div>
+    </div>
+    <div class="age-card" style="background:#001848;color:#fff;padding:24px 10px;border-radius:18px;text-align:center;box-shadow:0 4px 12px rgba(0,24,72,0.3);">
+      <div class="age-num" style="font-family:'Fredoka',sans-serif;font-size:24px;font-weight:700;line-height:1.05;">TK</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:10px;letter-spacing:1px;opacity:.95;margin-top:6px;text-transform:uppercase;">Transitional K</div>
+      <div style="font-size:11px;margin-top:8px;opacity:.95;">5 days/wk</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS + LOCATION STRIP -->
+<section style="background:#fff;padding:32px 30px;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);">
+  <div style="max-width:980px;margin:0 auto;display:flex;flex-wrap:wrap;gap:36px;align-items:center;justify-content:center;">
+    <div style="text-align:center;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#0060a8;font-weight:600;text-transform:uppercase;">Hours</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:22px;margin-top:4px;">8:45 am – 12:30 pm</div>
+      <div style="font-size:12px;color:#6b6560;margin-top:2px;">Monday–Friday, school year</div>
+    </div>
+    <div style="width:1px;height:48px;background:rgba(0,0,0,.1);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#0060a8;font-weight:600;text-transform:uppercase;">Location</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:18px;margin-top:6px;">200 Branchview Dr SE</div>
+      <div style="font-size:12px;color:#6b6560;margin-top:2px;">Concord, NC 28025</div>
+    </div>
+  </div>
+</section>
+
+<!-- A DAY AT ABC PREVIEW -->
+<section style="background:#fffaf0;padding:54px 30px;">
+  <div style="text-align:center;margin-bottom:30px;">
+    <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#187830;font-weight:600;text-transform:uppercase;">A Day at ABC</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:30px;margin-top:8px;">A predictable, joyful rhythm</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px;margin:0 auto 22px;">
+    <div style="background:#fff;border-radius:14px;padding:22px 16px;text-align:center;border-top:5px solid #d8a818;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#0060a8;font-size:14px;margin-bottom:8px;">8:45 am</div>
+      <div style="font-family:'Fredoka',sans-serif;color:#001848;font-size:14px;font-weight:600;">Arrival &amp; Welcome</div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:22px 16px;text-align:center;border-top:5px solid #a81818;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#0060a8;font-size:14px;margin-bottom:8px;">9:15 am</div>
+      <div style="font-family:'Fredoka',sans-serif;color:#001848;font-size:14px;font-weight:600;">Bible &amp; Circle Time</div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:22px 16px;text-align:center;border-top:5px solid #187830;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#0060a8;font-size:14px;margin-bottom:8px;">10:00 am</div>
+      <div style="font-family:'Fredoka',sans-serif;color:#001848;font-size:14px;font-weight:600;">Learning Centers</div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:22px 16px;text-align:center;border-top:5px solid #0060a8;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#0060a8;font-size:14px;margin-bottom:8px;">11:00 am</div>
+      <div style="font-family:'Fredoka',sans-serif;color:#001848;font-size:14px;font-weight:600;">Outdoor Play &amp; Snack</div>
+    </div>
+  </div>
+  <div style="text-align:center;">
+    <a class="link-card" href="abc-preschool/a-day-at-abc.html" style="display:inline-block;"><span class="pill-btn" style="background:#187830;color:#fff;padding:11px 24px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:13px;">See a Full Day <span class="link-arrow">→</span></span></a>
+  </div>
+</section>
+
+<!-- FAITH AT ABC -->
+<section style="background:#001848;color:#fff;padding:54px 30px;">
+  <div style="max-width:780px;margin:0 auto;text-align:center;">
+    <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#d8a818;font-weight:600;margin-bottom:14px;text-transform:uppercase;">Faith at ABC</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:28px;line-height:1.3;margin-bottom:18px;">We are unapologetically Christian.</div>
+    <p style="font-size:15px;line-height:1.75;opacity:.92;">Children at ABC begin each day with a Bible story at circle time, pray together at meals and chapel, and learn through songs, scripture, and play. Christ is the center of who we are — not a layer added on. Families of any background are welcome to apply, and we honestly share what your child will hear and learn so you can choose what's right for your family.</p>
+  </div>
+</section>
+
+<!-- 6 NAV TILES -->
+<section style="background:#fff;padding:54px 30px;">
+  <div style="text-align:center;margin-bottom:30px;">
+    <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#187830;font-weight:600;text-transform:uppercase;">Get to Know Our Program</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:30px;margin-top:8px;">Find the right fit for your child</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:980px;margin:0 auto;">
+    <a class="nav-tile" href="abc-preschool/programs.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #a81818;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#a81818;font-weight:600;margin-bottom:8px;text-transform:uppercase;">Programs by Age</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">1s, 2s, 3s, 4s, and TK</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">What each classroom looks like and learns.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#a81818;">Explore <span class="nav-arrow">→</span></span>
+    </a>
+    <a class="nav-tile" href="abc-preschool/a-day-at-abc.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #d8a818;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#c79014;font-weight:600;margin-bottom:8px;text-transform:uppercase;">A Day at ABC</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">Minute-by-minute walkthrough</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">Chapel, centers, music, snack, outdoor play.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#c79014;">See a Day <span class="nav-arrow">→</span></span>
+    </a>
+    <a class="nav-tile" href="abc-preschool/curriculum.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #0060a8;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#0060a8;font-weight:600;margin-bottom:8px;text-transform:uppercase;">Curriculum</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">ABeka, Bible-based</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">Songs, stories, letters — what ABeka looks like at preschool age.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#0060a8;">Curriculum <span class="nav-arrow">→</span></span>
+    </a>
+    <a class="nav-tile" href="abc-preschool/calendar.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #187830;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#187830;font-weight:600;margin-bottom:8px;text-transform:uppercase;">Calendar</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">School year &amp; key dates</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">Holidays, breaks, and weather closing notes.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#187830;">Calendar <span class="nav-arrow">→</span></span>
+    </a>
+    <a class="nav-tile" href="abc-preschool/enrollment.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #a81818;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#a81818;font-weight:600;margin-bottom:8px;text-transform:uppercase;">Tuition &amp; Apply</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">Pricing, fees, and forms</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">Half-day rates, registration, and how to enroll.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#a81818;">View &amp; Apply <span class="nav-arrow">→</span></span>
+    </a>
+    <a class="nav-tile" href="abc-preschool/meet-the-director.html" style="background:#fffaf0;border-radius:16px;padding:24px;border-top:5px solid #0060a8;">
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:2.5px;color:#0060a8;font-weight:600;margin-bottom:8px;text-transform:uppercase;">Meet the Director</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#001848;font-size:18px;line-height:1.3;margin-bottom:8px;">Korighan Gabriel's story</div>
+      <div style="font-size:12px;color:#6b6560;line-height:1.5;margin-bottom:12px;">Years of children's ministry, family-first approach.</div>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:#0060a8;">Read Her Story <span class="nav-arrow">→</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- TUITION TEASE -->
+<section style="background:#fffaf0;padding:50px 30px;text-align:center;">
+  <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#a81818;font-weight:600;margin-bottom:14px;text-transform:uppercase;">Tuition</div>
+  <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:26px;line-height:1.3;max-width:560px;margin:0 auto 24px;">Half-day Christian education for less than half the cost of full-day daycare.</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;margin:0 auto 22px;">
+    <div style="background:#fff;border-radius:14px;padding:20px 12px;border:2px solid #a81818;">
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#a81818;font-size:30px;font-weight:700;">$290</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1.5px;color:#6b6560;margin-top:4px;text-transform:uppercase;">/ Mo · 3 Days</div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:20px 12px;border:2px solid #0060a8;">
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#0060a8;font-size:30px;font-weight:700;">$385</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1.5px;color:#6b6560;margin-top:4px;text-transform:uppercase;">/ Mo · 5 Days</div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:20px 12px;border:2px solid #d8a818;">
+      <div style="font-family:'Playfair Display',Georgia,serif;color:#c79014;font-size:30px;font-weight:700;">$100</div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1.5px;color:#6b6560;margin-top:4px;text-transform:uppercase;">Reg Fee · One-Time</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:#6b6560;margin-bottom:14px;">No hidden fees. Visit the Tuition page for what's included.</p>
+  <a class="link-card" href="abc-preschool/enrollment.html" style="display:inline-block;"><span class="pill-btn" style="background:#a81818;color:#fff;padding:11px 24px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:13px;">Tuition &amp; Apply <span class="link-arrow">→</span></span></a>
+</section>
+
+<!-- DIRECTOR TEASER -->
+<section style="background:#fff;padding:54px 30px;">
+  <div style="max-width:880px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center;">
+    <div style="aspect-ratio:4/5;background:linear-gradient(135deg,#d4e3f4,#cfeae6);border-radius:20px;display:flex;align-items:center;justify-content:center;color:#0060a8;font-family:'Fredoka',sans-serif;font-size:13px;">[Director photo]</div>
+    <div>
+      <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;color:#a81818;font-weight:600;margin-bottom:10px;text-transform:uppercase;">Meet Our Director</div>
+      <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;color:#001848;font-size:32px;line-height:1.2;margin-bottom:16px;">Korighan Gabriel</div>
+      <p style="font-size:15px;color:#3d3935;line-height:1.75;margin-bottom:24px;">A heart for children's discipleship and years of ministry experience leading FBC Concord's Children's Ministry — Korighan brings a Christ-centered, family-first approach to every classroom.</p>
+      <a class="link-card" href="abc-preschool/meet-the-director.html" style="display:inline-block;"><span class="pill-btn" style="background:#0060a8;color:#fff;padding:13px 26px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;">Read Korighan's Story <span class="link-arrow">→</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section style="background:#fffaf0;padding:50px 30px;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:980px;margin:0 auto;">
+    <div class="photo-tile" style="aspect-ratio:1/1;background:linear-gradient(135deg,#fde0e2,#fbb1b6);border-radius:14px;position:relative;overflow:hidden;">
+      <div style="position:absolute;bottom:10px;left:12px;color:#fff;font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Chapel time</div>
+    </div>
+    <div class="photo-tile" style="aspect-ratio:1/1;background:linear-gradient(135deg,#cfeae6,#86c9bf);border-radius:14px;position:relative;overflow:hidden;">
+      <div style="position:absolute;bottom:10px;left:12px;color:#fff;font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Learning centers</div>
+    </div>
+    <div class="photo-tile" style="aspect-ratio:1/1;background:linear-gradient(135deg,#d4e3f4,#9bc2e6);border-radius:14px;position:relative;overflow:hidden;">
+      <div style="position:absolute;bottom:10px;left:12px;color:#fff;font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Music &amp; movement</div>
+    </div>
+    <div class="photo-tile" style="aspect-ratio:1/1;background:linear-gradient(135deg,#fdecbf,#f4d97a);border-radius:14px;position:relative;overflow:hidden;">
+      <div style="position:absolute;bottom:10px;left:12px;color:#7a5f0f;font-family:'Fredoka',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Outdoor play</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="background:#001848;color:#fff;padding:60px 30px;text-align:center;">
+  <div style="font-family:'Fredoka',sans-serif;font-size:12px;letter-spacing:3px;font-weight:600;opacity:.85;margin-bottom:12px;text-transform:uppercase;">Ready to Visit?</div>
+  <div style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:30px;margin-bottom:14px;line-height:1.2;max-width:600px;margin-left:auto;margin-right:auto;">Come see what a day at ABC feels like.</div>
+  <p style="font-size:14px;opacity:.9;margin-bottom:24px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;">Schedule a tour, start an application, or call Korighan with any questions. Applications are open year-round.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a class="pill-btn" href="abc-preschool/enrollment.html" style="background:#d8a818;color:#001848;padding:13px 28px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;">Schedule a Tour →</a>
+    <a class="pill-btn" href="abc-preschool/enrollment.html" style="background:transparent;color:#fff;padding:11px 28px;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;border:2px solid rgba(255,255,255,.45);">Apply Now</a>
+  </div>
+  <p style="margin-top:22px;font-size:12px;opacity:.75;letter-spacing:1px;">All Because of Christ Preschool · 200 Branchview Dr SE · Concord, NC 28025 · <a href="tel:7047869167" style="color:inherit;text-decoration:underline;">704-786-9167</a></p>
+</section>
+
+<!-- FOOTER (placeholder) -->
+<footer style="background:#000a26;color:#fff;padding:28px 30px;text-align:center;font-size:11px;opacity:.7;letter-spacing:1.5px;text-transform:uppercase;">FBC Concord (real footer used in production)</footer>
+
+</body>
+</html>
